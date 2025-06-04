@@ -6,7 +6,7 @@
 
 # User Story 2:
 * Title: Smart Chat with Human and Bot Switching
-* Description: As a user, I want to chat with my cleaner in real time through the website, and if they are offline, receive automated replies from a chatbot, so I can always get timely support and updates.
+* Description: As a user, I want to chat with my cleaners in real time through the website. If they are offline, the chatbot will automatically reply so that I can get support and updates in time. For some difficult problems, you can transfer to manual customer service or cleaners at any time.
 * Priority: Medium
 * Estimated: 2 days
 
