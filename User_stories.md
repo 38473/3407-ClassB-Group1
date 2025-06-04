@@ -17,9 +17,9 @@
 * Estimated: 2 days
 
 # User Story 4:
-* Title: Customer communication
-* Description: As an end user, I want to message my cleaner through the app, receive real-time notifications about my booking status, and leave a review after the service. This will help me stay informed and assist others in making better service choices. The system should support two-way messaging, push notifications, and a star-based review system with optional comments.
-* Priority: Low
+* Title: AI Assistant Reservation System 
+* Description: As a service provider, I hope to reduce costs by using an AI assistant to answer customers' questions 24 hours a day and help them make service appointments. Users can fill in their address, phone number, date and cleaning time through the form sent by the AI. 
+* Priority: Medium 
 * Effort Estimate: 2 days
 
 # User Story 5: 
