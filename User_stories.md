@@ -5,10 +5,10 @@
 * Estimated: 2 days
 
 # User Story 2:
-* Title: Manage Cleaner Booking Calendar
-* Description: As a service provider, I want to manage my booking calendar through the app to view all upcoming appointments, reschedule or cancel them, and avoid time conflicts. The calendar should integrate with Google Calendar or Reminders and provide reminders for each job.
+* Title: Smart Chat with Human and Bot Switching
+* Description: As a user, I want to chat with my cleaner in real time through the website, and if they are offline, receive automated replies from a chatbot, so I can always get timely support and updates.
 * Priority: Medium
-* Estimated: 3 days
+* Estimated: 2 days
 
 # User Story 3:
 * Title: In-App Payment Processing
