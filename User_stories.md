@@ -1,6 +1,6 @@
 # User Story 1:
-* Title: Book a Cleaning Service
-* Description: As a user, I want to book a cleaning service through the MyClean app to easily schedule a cleaning appointment at my preferred time and location. The system should allow me to select a service provider, choose a package, set a time and address, and confirm the booking through an in-app notification.
+* Title: Gather Location Information from Users
+* Description: As a user, I want the MyClean app to collect my location information during booking, so that nearby service providers can be suggested and the appointment address can be filled automatically.
 * Priority: High
 * Estimated: 2 days
 
