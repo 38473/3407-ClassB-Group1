@@ -2,7 +2,7 @@
 * Title: Gather Location Information from Users
 * Description: As a user, I want the MyClean app to collect my location information during booking, so that nearby service providers can be suggested and the appointment address can be filled automatically.
 * Priority: High
-* Estimated: 2 days
+* Estimated: 3 days
 
 # User Story 2:
 * Title: Smart Chat with Human and Bot Switching
@@ -11,10 +11,10 @@
 * Estimated: 2 days
 
 # User Story 3:
-* Title: In-App Payment Processing
-* Description: As an end user, I want to pay for cleaning services directly through the MyClean app using a secure payment method (e.g. credit card, PayPal) so that I don’t have to use cash. The system should provide receipts and support refunds in case of cancellations.
-* Priority: Low
-* Estimated: 1 days
+* Title: Multi-Languages
+* Description: As a user, I hope to be able to interact with the chatbot and the cleaning company in various languages. When chatting with real people, the language is automatically translated, thereby enhancing accessibility.
+* Priority: Medium
+* Estimated: 2 days
 
 # User Story 4:
 * Title: Customer communication
