@@ -23,10 +23,10 @@
 * Effort Estimate: 2 days
 
 # User Story 5: 
-* Title: Analysis and reporting
-* Description: As a service provider, I want to access analytics that display my booking trends, revenue over time, and basic customer demographics. This will allow me to track business performance and identify growth opportunities. The dashboard should include visual charts and the ability to download reports.
-* Priority: Medium
-* Effort Estimate: 2 days
+* Title: Give Feedback
+* Description: As a business owner, I would like to be able to provide feedback or report inaccuracies to help improve the service and performance of the MyClean website.
+* Priority: Low
+* Effort Estimate: 1 day
 
 # User Story 6:
 * Title: Customize and Maintain Service Provider Profile
