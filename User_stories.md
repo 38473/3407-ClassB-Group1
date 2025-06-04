@@ -29,13 +29,13 @@
 * Effort Estimate: 1 day
 
 # User Story 6:
-* Title: Customize and Maintain Service Provider Profile
-* Description: As a service provider, I want to create and update my professional profile with my services, pricing, availability, and certifications, so that customers can understand my offerings and choose me based on accurate information.
-* Priority: Medium
-* Effort Estimate: 3 days
+* Title: Conversation history
+* Description: As a user, I want to be able to view previous messages in the same conversation so I can reference previous questions and keep the conversation coherent and consistent throughout the interaction.
+* Priority: Low
+* Effort Estimate: 1 days
 
 # User Story 7:
-* Title: Manage and Moderate Customer Feedback
-* Description: As a cleaner, I want to view customer reviews and respond to them, so I can build trust, maintain my reputation, and improve my service based on feedback.
-* Priority: Medium
-* Effort Estimate: 1 days
+* Title: In-app Payment 
+* Description: As an end user, I want to pay for the cleaning service through the MyClean app using secure payment methods (such as credit cards, PayPal), and also pay in cash directly after the cleaner finishes the cleaning work. The system should provide receipts and support refunds in case of cancellation. 
+* Priority: Low
+* Effort Estimate: 1 day
