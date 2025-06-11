@@ -17,8 +17,8 @@
 * Estimated: 2 days
 
 # User Story 4:
-* Title: AI Assistant Reservation System 
-* Description: As a service provider, I hope to reduce costs by using an AI assistant to answer customers' questions 24 hours a day and help them make service appointments. Users can fill in their address, phone number, date and cleaning time through the form sent by the AI. 
+* Title: Reservation System 
+* Description: As a service provider, I hope there will be a dedicated page for customers to fill in the reservation information, so that our company can arrange services efficiently.
 * Priority: Medium 
 * Effort Estimate: 2 days
 
