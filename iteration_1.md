@@ -135,14 +135,29 @@ Implement refund and cancellation logic including front-end confirmation
 
 Estimated Time: 0.25 day
 
+To do:
+* User story2 Task-3 (Wang chenxi)
+* User story1 Task-2 (Wang zihan)
+* User story1 Task-4 (Wang chenxi)
+* User story6 Task-1 (Wang zihan)
+* User story6 Task-2 (Wang chenxi)
+
 
 In progress:
-* Task-2 (developer name or initials), date started
-* ...
+* User story2 Task-2 (Wang zihan), 11/06
+* User story2 Task-4 (Guo yuye), 11/06
+* User story1 Task-3 (Wang zihan), 12/06
+* User story4 Task-2 (Wang chenxi), 12/06
 
+  
 Completed:
-* Task-3 (developer name or initials), date completed
-* ...
+* User story2 Task-1 (Guo yuye), 11/06
+* User story1 Task-1 (Guo yuye), 11/06
+* User story4 Task-1 (Guo yuye), 11/06
+* User story4 Task-3 (Wang zihan), 12/06
+* User story7 Task-1 (Wang chenxi), 12/06
+* User story7 Task-2 (Guo yuye), 12/06
+* User story7 Task-3 (Wang zihan), 12/06
 
 ### Burn Down for iteration-1 (see chapter 4):
 Update this at least once per week
