@@ -1,0 +1,498 @@
+
+
+body, header, nav, main, footer, h1, div, img, ul { 
+    margin: 0; 
+    padding: 0; 
+    border: 0;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+img {
+    max-width: 100%; 
+    display: block; 
+}
+
+header {
+    width: 25%;
+    float: left;
+}
+
+nav {
+    width: 70%;
+    float: right;
+    margin: 1em 3em 0 0;
+    position: relative;
+    z-index: 10;
+
+    /* 新增 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+nav li {
+    display: inline-block;
+    font-size: 1.2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: normal;
+}
+
+nav li a {
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+
+nav a.active {
+    color: white;
+    background-color: #292929;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+/* 让 nav 内容横向排列，并左右分布 */
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px; /* 可根据需要微调 */
+}
+
+/* 左边的导航链接列表 */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 登录注册按钮的容器 */
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* 按钮样式（可根据实际需求微调） */
+.btn {
+  padding: 8px 16px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.btn-outline {
+  background-color: #f4f4f4;
+  border: 1px solid #333;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #222;
+  color: white;
+  border: none;
+}
+
+
+.full-width-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;  /* 确保没有上下间距 */
+    padding: 0;
+}
+
+/* 背景图容器设置为相对定位 */
+#header-background {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* 叠加在图片上的标题 */
+#header-text {
+    position: absolute;
+    top: 50%; /* 可根据需要调整位置 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(2, 2, 2);
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-align: center; /* ✅ 让文字居中 */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    margin: 0;
+    padding: 0;
+}
+#header-text p {
+    font-size: 30px;     /* 可根据需要改大或改小 */
+    font-weight: normal; /* 可选：让它不加粗 */
+    margin-top: 10px;    /* 可选：让段落和标题之间留点空隙 */
+    white-space: nowrap; /* ✅ 防止文字换行 */
+}
+
+
+/* 图片通用样式，确保无空隙 */
+.full-width-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* 可选：消除两张图片之间可能的默认空白 */
+#header-background,
+#cleaning {
+    margin: 0;
+    padding: 0;
+}
+
+
+main {
+    clear: left;
+    background-color: #fff; 
+    padding: 2%; 
+    font-size: 1.25em;  
+}
+
+
+#our-cleaners h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+#our-cleaners .subtitle {
+  text-align: center;
+  color: #777;
+  margin-bottom: 2rem;
+}
+
+.cleaners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.cleaner-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+.cleaner-card h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.cleaner-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cleaner-info img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cleaner-info p {
+  flex: 1;
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+}
+
+.full-width-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/*about us page*/
+#aboutus {
+  position: absolute;
+  top: 50%;        /* 垂直居中 */
+  left: 50%;       /* 水平居中 */
+  transform: translate(-50%, -50%);
+  color: rgb(17, 16, 16);
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  font-family: Arial, sans-serif;
+}
+/*account*/
+.account-page {
+  padding: 20px;
+}
+
+.account-page h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.tab-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.tab-link {
+  padding: 10px 20px;
+  background: #f3f4f6;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.tab-link.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.card input[type="text"],
+.card input[type="email"],
+.card input[type="tel"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.card button {
+  padding: 10px 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #9ca3af;
+}
+
+.address-list li,
+.payment-methods li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.address-list p span {
+  color: green;
+  font-weight: bold;
+}
+
+.appointment-card {
+  background: #f9fafb;
+  padding: 15px;
+  border-radius: 6px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.setting-item {
+  margin-bottom: 15px;
+}
+
+.status.disabled {
+  color: red;
+}
+
+.danger-zone .danger {
+  background-color: #ef4444;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Optional: Responsive adjustment for small screens */
+@media (max-width:900px) {
+  .cleaners-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cleaners-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cleaner-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cleaner-info img {
+    margin-bottom: 1rem;
+  }
+}
+
+
+footer p { 
+    font-size: 0.75em; 
+    text-align: center; 
+    color: #fff; 
+    padding: 0 1em; 
+}
+
+footer p a { 
+    color: #fff;
+    text-decoration: none; 
+}
+.site-footer {
+  background-color: #fff;
+  padding: 40px 20px;
+  border-top: 1px solid #eee;
+  font-family: sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 20px;
+}
+
+.footer-brand {
+  flex: 1 1 200px;
+  margin-bottom: 20px;
+
+}
+
+.footer-logo {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;               /* 横向排列 */
+  gap: 12px;                   /* 图标之间的间距 */
+  justify-content: flex-start; /* 图标靠左 */      
+  margin-top: 10px;
+}
+
+.social-icons a img {
+  width: 20px;
+  height: 20px;
+}
+.social-icons a img {
+  width: 20px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+.footer-links {
+  display: flex;
+  flex: 3 1 600px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  min-width: 180px;
+  margin-bottom: 20px;
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+}
