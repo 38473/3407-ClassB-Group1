@@ -11,13 +11,13 @@
 * Estimated: 2 days
 
 # User Story 3:
-* Title: Multi-Languages
+* Title: Interactions with multi-languages
 * Description: As a user, I hope to be able to interact with the chatbot and the cleaning company in various languages. When chatting with real people, the language is automatically translated, thereby enhancing accessibility.
 * Priority: Medium
 * Estimated: 2 days
 
 # User Story 4:
-* Title: Reservation System 
+* Title: Services Reservation System 
 * Description: As a service provider, I hope there will be a dedicated page for customers to fill in the reservation information, so that our company can arrange services efficiently.
 * Priority: Medium 
 * Effort Estimate: 2 days
