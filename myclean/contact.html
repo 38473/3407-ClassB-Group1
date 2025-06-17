@@ -4,7 +4,7 @@
   <title>My Clean</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/styles.css">
-  <!-- Tailwind CSS CDN for Chat -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -21,6 +21,12 @@
     #chat-box::-webkit-scrollbar-thumb {
       background-color: #cbd5e0;
       border-radius: 3px;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   </style>
 </head>
@@ -40,23 +46,25 @@
         <li><a href="account.html">Account</a></li>
       </ul>
       <div class="auth-buttons">
-            <a href="signin.html" class="btn btn-outline">Sign in</a>
-            <a href="register.html" class="btn btn-primary">Register</a>
-        </div>
+        <a href="signin.html" class="btn btn-outline">Sign in</a>
+        <a href="register.html" class="btn btn-primary">Register</a>
+      </div>
     </nav>
 
     <main>
-        
       <div id="intro">
         <!-- Live Chat Integration -->
         <div class="bg-gray-100 text-gray-800">
 
           <!-- Header -->
-          <header class="bg-white shadow-sm py-4 px-6 flex items-center justify-between">
-            <div class="text-xl font-bold text-gray-900">my clean</div>
-            <h1 class="text-lg font-semibold">Live Chat</h1>
-            <div class="text-sm text-gray-500">Agent Status:
-              <span id="status-indicator" class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span>Offline
+          <header class="bg-white shadow-sm py-4 px-6">
+            <div class="header-container">
+              <div class="text-xl font-bold text-gray-900">my clean</div>
+              <h1 class="text-lg font-semibold">Live Chat</h1>
+              <div class="text-sm text-gray-500" id="agent-status">
+                Agent Status:
+                <span id="status-indicator" class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span>Offline (9 AM - 5 PM)
+              </div>
             </div>
           </header>
 
@@ -65,7 +73,6 @@
             <!-- Chat Messages -->
             <div id="chat-box" class="flex-1 overflow-y-auto p-4 space-y-4">
               <!-- Message bubbles will be added here -->
-              <div class="text-center text-gray-500 text-sm">The agent is currently offline. Our AI assistant is ready to help you.</div>
             </div>
 
             <!-- Input Form -->
@@ -75,12 +82,66 @@
             </form>
           </main>
 
-         
         </div>
       </div>
     </main>
 
-   
+    <footer class="site-footer">
+      <div class="footer-container">
+        <!-- Left Column: Logo & Social Icons -->
+        <div class="footer-brand">
+          <img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo" />
+          <div class="social-icons">
+            <a href=" "><img src="images/x-icon.jpg" alt="X/Twitter"></a>
+            <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a>
+            <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a>
+            <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a>
+          </div>
+        </div>
+
+        <!-- Center Columns: Links -->
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Use cases</h4>
+            <ul>
+              <li><a href="#">Home Cleaning</a></li>
+              <li><a href="#">Deep Cleaning</a></li>
+              <li><a href="#">Move-In/Move-Out Cleaning</a></li>
+              <li><a href="#">Office & Commercial Cleaning</a></li>
+              <li><a href="#">Pet-Friendly Services</a></li>
+              <li><a href="#">Eco-Friendly Cleaning</a></li>
+              <li><a href="#">Subscription Plans</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#">Booking Process</a></li>
+              <li><a href="#">Smart Chat (Bot & Human)</a></li>
+              <li><a href="#">Real-Time Cleaner Tracking</a></li>
+              <li><a href="#">Pricing & Packages</a></li>
+              <li><a href="#">Customer Reviews</a></li>
+              <li><a href="#">Multi-language Support</a></li>
+              <li><a href="#">Service Recommendations</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">How-To Guides</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Customer Support</a></li>
+              <li><a href="#">Cleaning Tips & Articles</a></li>
+              <li><a href="#">Terms & Policies</a></li>
+              <li><a href="#">Invoices & Billing</a></li>
+              <li><a href="#">Feedback & Reporting</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <!-- Script for chat functionality -->
@@ -88,21 +149,50 @@
     const chatBox = document.getElementById('chat-box');
     const form = document.getElementById('chat-form');
     const input = document.getElementById('message-input');
+    const statusIndicator = document.getElementById('status-indicator');
+    const agentStatusText = document.getElementById('agent-status');
 
     // AI auto-reply messages
     const aiResponses = [
       "Hello! I'm the AI assistant from my clean. How can I assist you today?",
       "We offer professional cleaning services for homes, offices, and special areas.",
       "Please let me know your needs, and I'll do my best to help.",
-      "Sorry, our support team is currently offline. You can leave your contact info, and we'll get back to you soon.",
       "Is there anything specific you'd like to know about our cleaning services?"
     ];
 
-    function addMessage(text, isUser = false) {
+    function isAgentOnline() {
+      const now = new Date();
+      const currentHour = now.getHours();
+      return currentHour >= 9 && currentHour < 17;
+    }
+
+    function updateAgentStatus() {
+      if (isAgentOnline()) {
+        statusIndicator.style.backgroundColor = 'green';
+        agentStatusText.innerHTML = `
+          Agent Status:
+          <span id="status-indicator" class="inline-block w-2 h-2 rounded-full bg-green-500 mr-1"></span>Online (9 AM - 5 PM)
+        `;
+      } else {
+        statusIndicator.style.backgroundColor = 'red';
+        agentStatusText.innerHTML = `
+          Agent Status:
+          <span id="status-indicator" class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span>Offline (9 AM - 5 PM)
+        `;
+      }
+    }
+
+    function addMessage(text, isUser = false, isAgent = false) {
       const message = document.createElement('div');
       message.className = isUser ? 'text-right' : 'text-left';
+      const bgColor = isUser
+        ? 'bg-blue-500 text-white'
+        : isAgent
+          ? 'bg-green-100 text-gray-800'
+          : 'bg-gray-200 text-gray-800';
+
       message.innerHTML = `
-        <div class="${isUser ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} inline-block max-w-xs md:max-w-md p-3 rounded-lg">
+        <div class="${bgColor} inline-block max-w-xs md:max-w-md p-3 rounded-lg">
           ${text}
         </div>
       `;
@@ -110,7 +200,16 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    function aiReply() {
+    function aiReply(userMessage) {
+      if (userMessage.toLowerCase().includes("transfer to agent")) {
+        if (isAgentOnline()) {
+          addMessage("[Agent] You are now connected with a live agent.", false, true);
+        } else {
+          addMessage("The support team is currently offline. Our working hours are from 9 AM to 5 PM.", false);
+        }
+        return;
+      }
+
       setTimeout(() => {
         const reply = aiResponses[Math.floor(Math.random() * aiResponses.length)];
         addMessage(reply, false);
@@ -122,68 +221,14 @@
       const text = input.value.trim();
       if (text !== '') {
         addMessage(text, true);
+        aiReply(text);
         input.value = '';
-        aiReply(); // AI auto reply
       }
     });
+
+    // Initial setup
+    updateAgentStatus();
+    addMessage(aiResponses[0], false); // First message from AI
   </script>
-   <footer class="site-footer">
-  <div class="footer-container">
-    
-    <!-- Left Column: Logo & Social Icons -->
-    <div class="footer-brand">
-      <img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo" />
-      <div class="social-icons">
-        <a href=" "><img src="images/x-icon.jpg" alt="X/Twitter"></a >
-        <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a >
-        <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a >
-        <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a >
-      </div>
-    </div>
-
-    <!-- Center Columns: Links -->
-    <div class="footer-links">
-      <div class="footer-column">
-        <h4>Use cases</h4>
-        <ul>
-          <li><a href="#">Home Cleaning</a ></li>
-          <li><a href="#">Deep Cleaning</a ></li>
-          <li><a href="#">Move-In/Move-Out Cleaning</a ></li>
-          <li><a href="#">Office & Commercial Cleaning</a ></li>
-          <li><a href="#">Pet-Friendly Services</a ></li>
-          <li><a href="#">Eco-Friendly Cleaning</a ></li>
-          <li><a href="#">Subscription Plans</a ></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="#">Booking Process</a ></li>
-          <li><a href="#">Smart Chat (Bot & Human)</a ></li>
-          <li><a href="#">Real-Time Cleaner Tracking</a ></li>
-          <li><a href="#">Pricing & Packages</a ></li>
-          <li><a href="#">Customer Reviews</a ></li>
-          <li><a href="#">Multi-language Support</a ></li>
-          <li><a href="#">Service Recommendations</a ></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>Resources</h4>
-        <ul>
-          <li><a href="#">How-To Guides</a ></li>
-          <li><a href="#">FAQ</a ></li>
-          <li><a href="#">Customer Support</a ></li>
-          <li><a href="#">Cleaning Tips & Articles</a ></li>
-          <li><a href="#">Terms & Policies</a ></li>
-          <li><a href="#">Invoices & Billing</a ></li>
-          <li><a href="#">Feedback & Reporting</a ></li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</footer>
 </body>
 </html>
