@@ -30,7 +30,7 @@
     }
   </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
   <div id="container">
     <header>
       <a href="index.html"><img src="images/myclean.png" alt="My Clean logo" height="70" width="96"></a>
@@ -57,19 +57,29 @@
         <div class="bg-gray-100 text-gray-800">
 
           <!-- Header -->
-          <header class="bg-white shadow-sm py-4 px-6">
-            <div class="header-container">
+          <header class="bg-white shadow-sm py-4 px-6 w-full">
+            <div class="flex items-center">
+              <!-- Left: Logo -->
               <div class="text-xl font-bold text-gray-900">my clean</div>
-              <h1 class="text-lg font-semibold">Live Chat</h1>
-              <div class="text-sm text-gray-500" id="agent-status">
-                Agent Status:
-                <span id="status-indicator" class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span>Offline (9 AM - 5 PM)
+          
+              <!-- Middle: Title -->
+              <div class="mx-4 text-lg font-semibold">Live Chat</div>
+          
+              <!-- Right: Agent Status -->
+              <div class="ml-auto text-sm text-gray-500 flex items-center gap-2 whitespace-nowrap" id="agent-status">
+                <span>Agent Status:</span>
+                <div class="flex items-center">
+                  <span id="status-indicator" class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span>
+                  <span id="status-text">Offline</span>
+                </div>
+                <span>(9 AM - 5 PM)</span>
               </div>
             </div>
-          </header>
+          </header>          
+          
 
           <!-- Chat Container -->
-          <main class="max-w-4xl mx-auto mt-6 p-4 bg-white shadow rounded-lg h-[70vh] flex flex-col">
+          <main class="max-w-8xl mx-auto mt-6 p-4 bg-white shadow rounded-lg h-[70vh] flex flex-col">
             <!-- Chat Messages -->
             <div id="chat-box" class="flex-1 overflow-y-auto p-4 space-y-4">
               <!-- Message bubbles will be added here -->
@@ -92,7 +102,7 @@
         <div class="footer-brand">
           <img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo" />
           <div class="social-icons">
-            <a href=" "><img src="images/x-icon.jpg" alt="X/Twitter"></a>
+            <a href="#"><img src="images/x-icon.jpg" alt="X/Twitter"></a>
             <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a>
             <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a>
             <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a>
@@ -150,7 +160,7 @@
     const form = document.getElementById('chat-form');
     const input = document.getElementById('message-input');
     const statusIndicator = document.getElementById('status-indicator');
-    const agentStatusText = document.getElementById('agent-status');
+    const statusText = document.getElementById('status-text');
 
     // AI auto-reply messages
     const aiResponses = [
@@ -169,16 +179,10 @@
     function updateAgentStatus() {
       if (isAgentOnline()) {
         statusIndicator.style.backgroundColor = 'green';
-        agentStatusText.innerHTML = `
-          Agent Status:
-          <span id="status-indicator" class="inline-block w-2 h-2 rounded-full bg-green-500 mr-1"></span>Online (9 AM - 5 PM)
-        `;
+        statusText.textContent = 'Online';
       } else {
         statusIndicator.style.backgroundColor = 'red';
-        agentStatusText.innerHTML = `
-          Agent Status:
-          <span id="status-indicator" class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span>Offline (9 AM - 5 PM)
-        `;
+        statusText.textContent = 'Offline';
       }
     }
 
@@ -229,6 +233,9 @@
     // Initial setup
     updateAgentStatus();
     addMessage(aiResponses[0], false); // First message from AI
+
+    // Update agent status every minute
+    setInterval(updateAgentStatus, 60000);
   </script>
 </body>
 </html>
