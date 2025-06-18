@@ -11,4 +11,4 @@
 ![22c7b514a19a5650c0f0c49b11a9df10](https://github.com/user-attachments/assets/19c86479-4964-4dbf-bf02-1aaf3c0642d2)
 
 # Payment
-![Uploading c1cb9a5a303ba2ad1edf3630ccbbc181.png…]()
+![c1cb9a5a303ba2ad1edf3630ccbbc181](https://github.com/user-attachments/assets/fb833950-a5ff-41ae-b752-6fa34611083b)
