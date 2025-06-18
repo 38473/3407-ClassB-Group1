@@ -142,86 +142,9 @@
 
   </div>
 </section>
-      <div id="intro">
-        <!-- Location Access Modal -->
-        <div id="locationModal" class="modal">
-          <div class="modal-content">
-            <h2 class="text-xl font-bold mb-4">Allow Location Access?</h2>
-            <p class="mb-4">We need your location to suggest nearby service providers and pre-fill your address.</p >
-            <button class="allow-btn" onclick="getLocation()">Allow</button>
-            <button class="deny-btn" onclick="closeModal()">Cancel</button>
-          </div>
-        </div>
-
-        <!-- Placeholder for detected location -->
-        <div class="mt-6 p-4 bg-gray-100 rounded max-w-md mx-auto hidden" id="locationInfo">
-          <h3 class="font-semibold">Detected Address:</h3>
-          <p id="addressDisplay"></p >
-        </div>
-      </div>
+      
     </main>
     
-    </div>
-    <script>
-    // Show modal on page load
-    window.onload = function () {
-      document.getElementById("locationModal").classList.remove("hidden");
-    };
-
-    function closeModal() {
-      document.getElementById("locationModal").classList.add("hidden");
-    }
-
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-
-            // Close modal right after permission is granted
-            closeModal();
-
-            reverseGeocode(lat, lng);
-          },
-          (error) => {
-            alert("Unable to retrieve your location.");
-            console.error("Geolocation error:", error.message);
-            closeModal(); // Also close modal on error
-          }
-        );
-      } else {
-        alert("Geolocation is not supported by this browser.");
-        closeModal();
-      }
-    }
-
-    function reverseGeocode(lat, lng) {
-      const geocoder = new google.maps.Geocoder();
-      const latlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
-
-      geocoder.geocode({ location: latlng }, (results, status) => {
-        if (status === "OK") {
-          if (results[0]) {
-            const address = results[0].formatted_address;
-            document.getElementById("addressDisplay").textContent = address;
-            document.getElementById("locationInfo").classList.remove("hidden");
-
-            // Simulate storing into a form input
-            const fakeFormInput = document.createElement('input');
-            fakeFormInput.type = 'hidden';
-            fakeFormInput.id = 'address-field';
-            fakeFormInput.value = address;
-            document.body.appendChild(fakeFormInput);
-          } else {
-            alert("No address found for this location.");
-          }
-        } else {
-          alert("Reverse geocoding failed.");
-        }
-      });
-    }
-  </script>
   <footer class="site-footer">
   <div class="footer-container">
     

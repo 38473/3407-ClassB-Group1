@@ -38,8 +38,8 @@
                 <div class="error" id="addressError">Please enter your address.</div>
         
                 <label for="mobile">Mobile Phone Number</label>
-                <input type="tel" id="mobile" name="mobile" placeholder="e.g. 1234567890" required>
-                <div class="error" id="mobileError">Please enter a valid 10-digit phone number.</div>
+                <input type="tel" id="mobile" name="mobile" placeholder="e.g. 123456" required>
+                <div class="error" id="mobileError">Please enter a valid 6-digit phone number.</div>
         
                 <label for="date">Service Date</label>
                 <input type="date" id="date" name="date" required>
@@ -166,7 +166,7 @@
                     isValid = false;
                 }
         
-                const phoneRegex = /^[0-9]{10}$/;
+                const phoneRegex = /^[0-9]{6}$/;
                 if (!phoneRegex.test(mobile)) {
                     document.getElementById("mobileError").style.display = "block";
                     isValid = false;
@@ -182,15 +182,79 @@
                     isValid = false;
                 }
         
-                if (isValid) {
-                    document.getElementById("successModal").classList.remove("hidden");
-                    document.getElementById("bookingForm").reset(); 
-                }
-            });
+               if (isValid) {
+        // Save data to sessionStorage
+        sessionStorage.setItem("bookingData", JSON.stringify({ address, mobile, date, time }));
+
+        // Display success pop-up window
+        document.getElementById("successModal").classList.remove("hidden");
+
+        // Clear the form
+        document.getElementById("bookingForm").reset();
+    }
+});
+
+function closeSuccessModal() {
+    // Hide pop-up window
+    document.getElementById("successModal").classList.add("hidden");
+
+    // Navigate to the payment page
+    window.location.href = "payment.html";
+}
+
         
-            function closeSuccessModal() {
-                document.getElementById("successModal").classList.add("hidden");
+  window.addEventListener("DOMContentLoaded", () => {
+  // Browser geolocation API, attempt to obtain more accurate address
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+       fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=en`)
+          .then(res => res.json())
+          .then(data => {
+            const address = data.display_name || "";
+            const addressInput = document.getElementById("address");
+            if (addressInput && !addressInput.value) {
+              addressInput.value = address;
             }
+          })
+          .catch(err => {
+            console.error("反向地理编码失败", err);
+            // In case of failure, use the address of localStorage.
+            fillAddressFromStorage();
+          });
+      },
+      (error) => {
+        console.error("获取位置失败", error);
+        // Use the localStorage address in case of positioning failure.
+        fillAddressFromStorage();
+      }
+    );
+  } else {
+    console.log("浏览器不支持地理定位");
+    fillAddressFromStorage();
+  }
+
+  // Fill in the address in localStorage (as an alternative option)
+  function fillAddressFromStorage() {
+    const savedAddress = localStorage.getItem("userAddress");
+    if (savedAddress) {
+      const addressInput = document.getElementById("address");
+      if (addressInput && !addressInput.value) {
+        addressInput.value = savedAddress;
+      }
+    }
+  }
+
+  // The date is automatically filled as today.
+  const dateInput = document.getElementById("date");
+  if (dateInput && !dateInput.value) {
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.value = today;
+  }
+});
+
         </script>
         
             
