@@ -20,7 +20,7 @@
 
 ![1ede992ea657e8f4dd174647c8454260](https://github.com/user-attachments/assets/bb403a1e-cb92-4887-9f3e-f21968eb1087)
 
-# Database-MySQL
+# Database-ERD
 
 
 ![c9dd43aacdb45e4aa6c150e6a92fd368](https://github.com/user-attachments/assets/af11f746-f3b1-4aa1-8cb0-6ff1c5954166)
