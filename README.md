@@ -41,9 +41,9 @@ Project Goals:
 4. Deliver a minimum viable product (MVP) with core functionality by the end of iteration 2.
 
 # Team Roles
-Wang Zihan - GUI, Front-end, Back-end, AWS
-Guo Yuye - GUI, Front-end, Back-end, AWS
-Wang Chenxi - GUI, Front-end, Back-end, AWS
+* Wang Zihan - GUI, Front-end, Back-end, AWS
+* Guo Yuye - GUI, Front-end, Back-end, AWS
+* Wang Chenxi - GUI, Front-end, Back-end, AWS
 
 Checklist/TODOs: 
 * Update the following during each week prac session
