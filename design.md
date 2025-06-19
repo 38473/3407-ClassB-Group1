@@ -1,22 +1,22 @@
 # Prototype
 
-* Home Page
+Home Page
 
 ![b9290fad9924f621a74095cd80c7593d](https://github.com/user-attachments/assets/f262def6-6279-4938-95ea-b3834ebdda34)
 
-* About us page
+About us page
 
 ![d7caa6a38fafd35be47d860cc0919867](https://github.com/user-attachments/assets/22834727-2cfa-4d90-be2a-2932cdedbd4b)
 
-* Booking page
+Booking page
 
 ![d049c3463b48f8646eb9e06b991b61f7](https://github.com/user-attachments/assets/c8f8d156-c4b9-4d7c-bd2a-0c46242e0cee)
 
-* Contact
+Contact page
 
 ![7942a7695b251d7cbf28270cc7bf1f66](https://github.com/user-attachments/assets/f3af5aa2-b6ca-4de5-9e54-802bbf1390ff)
 
-* Payment
+Payment page
 
 ![1ede992ea657e8f4dd174647c8454260](https://github.com/user-attachments/assets/bb403a1e-cb92-4887-9f3e-f21968eb1087)
 
