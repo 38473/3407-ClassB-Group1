@@ -1,0 +1,300 @@
+<!doctype html>
+
+<html lang="en">
+ <head>
+    <title>My Clean</title>
+     <meta charset="utf-8">
+     <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="container">
+    <header>
+
+        <a href=" "></a ><img src="images/myclean.png" alt="My Clean logo"height="70" width="96"> </a >
+    </header>
+   <nav>
+         <ul>
+            <li><a href="index.html">Home</a ></li>
+            <li><a href="about.html">About us</a > </li>
+            <li><a href="booking.html">Booking</a ></li> 
+            <li><a href="contact.html">Contact</a ></li>
+            <li><a href="payment.html">Payment</a ></li> 
+            <li><a href="setting.html">Setting</a ></li> 
+            <li><a href="account.html" class="active">Account</a ></li> 
+        </ul>
+        <div class="auth-buttons">
+            <a href="signin.html" class="btn btn-outline">Sign in</a >
+            <a href="register.html" class="btn btn-primary">Register</a >
+        </div>
+    </nav>
+   
+    <main>
+      <div class="account-page">
+        <h2>User Account</h2>
+    
+        <!-- Tab Navigation -->
+        <nav class="tab-nav">
+          <button class="tab-link active" onclick="openTab(event, 'profile')">Profile</button>
+          <button class="tab-link" onclick="openTab(event, 'bookings')">Bookings</button>
+          <button class="tab-link" onclick="openTab(event, 'payment')">Payment</button>
+          <button class="tab-link" onclick="openTab(event, 'preferences')">Preferences</button>
+          <button class="tab-link" onclick="openTab(event, 'security')">Security</button>
+        </nav>
+    
+        <!-- Tab Content -->
+        <div class="tab-content" id="profile">
+          <section class="card">
+            <h3>Account Information</h3>
+            <form>
+              <label>Full Name</label>
+              <input type="text" value="John Doe">
+    
+              <label>Email Address</label>
+              <input type="email" value="john@example.com">
+    
+              <label>Phone Number</label>
+              <input type="tel" value="+1 555 123 4567">
+    
+              <button type="submit">Save Changes</button>
+            </form>
+          </section>
+    
+          <section class="card">
+            <h3>Manage Addresses</h3>
+            <ul class="address-list">
+              <li>
+                <div class="address-info">
+                  <p>123 Main St, Cityville <span>(Default)</span></p >
+                </div>
+                <div class="address-actions">
+                  <button>Edit</button>
+                  <button>Set as Default</button>
+                </div>
+              </li>
+              <li>
+                <div class="address-info">
+                  <p>456 Oak Ave, Townsville</p >
+                </div>
+                <div class="address-actions">
+                  <button>Edit</button>
+                  <button>Set as Default</button>
+                </div>
+              </li>
+            </ul>
+            <button class="btn-secondary">Add New Address</button>
+          </section>
+          
+        </div>
+    
+        <div class="tab-content" id="bookings">
+          <section class="card">
+            <h3>Upcoming Appointments</h3>
+            <div class="appointment-card">
+              <p><strong>Date:</strong> April 10, 2025</p >
+              <p><strong>Time:</strong> 10:00 AM - 1 PM</p >
+              <p><strong>Cleaner:</strong> Jane Smith</p >
+              <p><strong>Address:</strong> 123 Main St</p >
+              <button>Reschedule</button>
+              <button>Cancel</button>
+              <button>Contact Cleaner</button>
+            </div>
+          </section>
+    
+          <section class="card">
+            <h3>Booking History</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Service Type</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>April 1, 2025</td>
+                  <td>Home Cleaning</td>
+                  <td>Completed</td>
+                  <td>$89.99</td>
+                  <td><a href="#">Details</a > | <a href="#">Rebook</a ></td>
+                </tr>
+                <tr>
+                  <td>March 25, 2025</td>
+                  <td>Office Deep Clean</td>
+                  <td>Pending</td>
+                  <td>$129.99</td>
+                  <td><a href="#">Details</a > | <a href="#">Cancel</a ></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+    
+        <div class="tab-content" id="payment">
+          <section class="card">
+            <h3>Payment Methods</h3>
+            <ul class="payment-methods">
+              <li>
+                Visa •••• 4242 <a href="#">Edit</a > | <a href="#">Delete</a > | <a href="#">Set as Default</a >
+              </li>
+              <li>
+                PayNow ID: john123 <a href="#">Edit</a > | <a href="#">Delete</a >
+              </li>
+            </ul>
+            <button class="btn-secondary">Add New Payment Method</button>
+          </section>
+    
+          <section class="card">
+            <h3>Billing & Invoices</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Invoice</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>April 1, 2025</td>
+                  <td>Home Cleaning Service</td>
+                  <td>$89.99</td>
+                  <td><a href="#">Download PDF</a ></td>
+                </tr>
+                <tr>
+                  <td>March 25, 2025</td>
+                  <td>Office Deep Cleaning</td>
+                  <td>$129.99</td>
+                  <td><a href="#">Download PDF</a ></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+    
+        <div class="tab-content" id="preferences">
+          <section class="card">
+            <h3>Cleaner Preferences</h3>
+            <form>
+              <label><input type="checkbox" checked> Jane Smith (Favorite Cleaner)</label>
+              <label><input type="checkbox"> Female Preferred</label>
+              <label><input type="checkbox"> English Preferred</label>
+              <button type="submit">Save Preferences</button>
+            </form>
+          </section>
+    
+          <section class="card">
+            <h3>Support & Feedback</h3>
+            <p><a href="#">Contact Customer Support</a ></p >
+            <p><a href="#">Submit a Help Request</a ></p >
+            <p><a href="#">View My Reviews</a ></p >
+          </section>
+        </div>
+    
+        <div class="tab-content" id="security">
+          <section class="card">
+            <h3>Security Settings</h3>
+            <div class="setting-item">
+              <p>Password: *********** <a href="#">Change Password</a ></p >
+            </div>
+            <div class="setting-item">
+              <p>Two-Factor Authentication: <span class="status disabled">Disabled</span> <a href="#">Enable</a ></p >
+            </div>
+            <div class="setting-item">
+              <p>Login History: <a href="#">View Recent Logins</a ></p >
+            </div>
+          </section>
+    
+          <section class="card danger-zone">
+            <h3>Logout & Account Management</h3>
+            <button onclick="logout()">Log Out</button>
+            <button onclick="deleteAccount()" class="danger">Delete My Account</button>
+          </section>
+        </div>
+      </div>
+    </main>
+    
+    <footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- Left Column: Logo & Social Icons -->
+    <div class="footer-brand">
+      < img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo" />
+      <div class="social-icons">
+        <a href=" ">< img src="images/x-icon.jpg" alt="X/Twitter"></a >
+        <a href="#">< img src="images/instagram-icon.jpg" alt="Instagram"></a >
+        <a href="#">< img src="images/youtube-icon.jpg" alt="YouTube"></a >
+        <a href="#">< img src="images/linkedin-icon.jpg" alt="LinkedIn"></a >
+      </div>
+    </div>
+
+    <!-- Center Columns: Links -->
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>Use cases</h4>
+        <ul>
+          <li><a href="#">Home Cleaning</a ></li>
+          <li><a href="#">Deep Cleaning</a ></li>
+          <li><a href="#">Move-In/Move-Out Cleaning</a ></li>
+          <li><a href="#">Office & Commercial Cleaning</a ></li>
+          <li><a href="#">Pet-Friendly Services</a ></li>
+          <li><a href="#">Eco-Friendly Cleaning</a ></li>
+          <li><a href="#">Subscription Plans</a ></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Booking Process</a ></li>
+          <li><a href="#">Smart Chat (Bot & Human)</a ></li>
+          <li><a href="#">Real-Time Cleaner Tracking</a ></li>
+          <li><a href="#">Pricing & Packages</a ></li>
+          <li><a href="#">Customer Reviews</a ></li>
+          <li><a href="#">Multi-language Support</a ></li>
+          <li><a href="#">Service Recommendations</a ></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">How-To Guides</a ></li>
+          <li><a href="#">FAQ</a ></li>
+          <li><a href="#">Customer Support</a ></li>
+          <li><a href="#">Cleaning Tips & Articles</a ></li>
+          <li><a href="#">Terms & Policies</a ></li>
+          <li><a href="#">Invoices & Billing</a ></li>
+          <li><a href="#">Feedback & Reporting</a ></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</footer>
+<script>
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tab-link");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+  }
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('.tab-link').click();
+  });
+  </script>
+  
+    </div>
+</body>
+</html>
