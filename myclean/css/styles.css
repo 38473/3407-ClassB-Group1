@@ -64,15 +64,15 @@ nav a.active {
     border-radius: 5px;
     padding: 10px 15px;
 }
-/* 让 nav 内容横向排列，并左右分布 */
+/* Make the nav content arranged horizontally and distributed on both sides. */
 .main-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px; /* 可根据需要微调 */
+  padding: 10px 40px; 
 }
 
-/* 左边的导航链接列表 */
+/* The navigation link list on the left */
 .nav-links {
   display: flex;
   gap: 20px;
@@ -81,13 +81,13 @@ nav a.active {
   padding: 0;
 }
 
-/* 登录注册按钮的容器 */
+/* Container of the login and registration buttons */
 .auth-buttons {
   display: flex;
   gap: 10px;
 }
 
-/* 按钮样式（可根据实际需求微调） */
+/* Button style */
 .btn {
   padding: 8px 16px;
   text-decoration: none;
@@ -113,41 +113,41 @@ nav a.active {
     width: 100%;
     height: auto;
     display: block;
-    margin: 0;  /* 确保没有上下间距 */
+    margin: 0;  /* Make sure there is no space between lines. */
     padding: 0;
 }
 
-/* 背景图容器设置为相对定位 */
+/* The background image container is set to be positioned relatively. */
 #header-background {
     position: relative;
     margin: 0;
     padding: 0;
 }
 
-/* 叠加在图片上的标题 */
+/* The title superimposed on the picture */
 #header-text {
     position: absolute;
-    top: 50%; /* 可根据需要调整位置 */
+    top: 50%; 
     left: 50%;
     transform: translate(-50%, -50%);
     color: rgb(2, 2, 2);
     font-size: 50px;
     font-weight: bold;
     font-family: 'Arial', sans-serif;
-    text-align: center; /* ✅ 让文字居中 */
+    text-align: center; 
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
     margin: 0;
     padding: 0;
 }
 #header-text p {
-    font-size: 30px;     /* 可根据需要改大或改小 */
-    font-weight: normal; /* 可选：让它不加粗 */
-    margin-top: 10px;    /* 可选：让段落和标题之间留点空隙 */
-    white-space: nowrap; /* ✅ 防止文字换行 */
+    font-size: 30px;     
+    font-weight: normal; 
+    margin-top: 10px;    /* Leave some space between the paragraphs and the headings. */
+    white-space: nowrap; /* ✅ Prevent text from wrapping onto the next line */
 }
 
 
-/* 图片通用样式，确保无空隙 */
+
 .full-width-image {
     width: 100%;
     height: auto;
@@ -156,7 +156,7 @@ nav a.active {
     padding: 0;
 }
 
-/* 可选：消除两张图片之间可能的默认空白 */
+/* Eliminate any default blank space between the two images */
 #header-background,
 #cleaning {
     margin: 0;
@@ -234,8 +234,8 @@ main {
 /*about us page*/
 #aboutus {
   position: absolute;
-  top: 50%;        /* 垂直居中 */
-  left: 50%;       /* 水平居中 */
+  top: 50%;        
+  left: 50%;      
   transform: translate(-50%, -50%);
   color: rgb(17, 16, 16);
   font-size: 48px;
@@ -426,9 +426,9 @@ footer p a {
 }
 
 .social-icons {
-  display: flex;               /* 横向排列 */
-  gap: 12px;                   /* 图标之间的间距 */
-  justify-content: flex-start; /* 图标靠左 */      
+  display: flex;               /* Horizontal arrangement */
+  gap: 12px;                   /* The spacing between icons */
+  justify-content: flex-start;     
   margin-top: 10px;
 }
 
