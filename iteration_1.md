@@ -140,7 +140,7 @@ Estimated Time: 2 days
    
    Priority: Low
    
-   Effort Estimate: 1 day
+   Effort Estimate: 2 days
 
 * Task 1: 
 
