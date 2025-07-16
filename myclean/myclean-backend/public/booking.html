@@ -10,7 +10,8 @@
     <div id="container">
     <header>
 
-        <a href="index.html"></a><img src="images/myclean.png" alt="My Clean logo" height="70" width="96"> </a>
+       <a href="index.html"><img src="images/myclean.png" alt="My Clean logo" height="70" width="96"></a>
+
     </header>
     <nav>
          <ul>
@@ -32,10 +33,23 @@
         <div id="intro">
             <form id="bookingForm">
                 <h2>Service Reservation Form</h2>
+                <label for="serviceType">Service Type</label>
+                <select id="serviceType" name="serviceType" required>
+                <option value="">-- Please select a service type --</option>
+                <option value="home_cleaning">Home Cleaning</option>
+                <option value="deep_cleaning">Deep Cleaning</option>
+                <option value="move_cleaning">Move-In/Move-Out Cleaning</option>
+                <option value="office_cleaning">Office & Commercial Cleaning</option>
+                <option value="pet_friendly">Pet-Friendly Services</option>
+                <option value="package">Custom Packages & Subscriptions</option>
+                </select>
+              <div class="error" id="serviceTypeError">Please select a service type.</div>
+
         
                 <label for="address">Address</label>
                 <input type="text" id="address" name="address" required>
                 <div class="error" id="addressError">Please enter your address.</div>
+
         
                 <label for="mobile">Mobile Phone Number</label>
                 <input type="tel" id="mobile" name="mobile" placeholder="e.g. 123456" required>
@@ -48,7 +62,7 @@
                 <label for="time">Service Time</label>
                 <input type="time" id="time" name="time" required>
                 <div class="error" id="timeError">Please select a service time.</div>
-        
+
                 <button type="submit">Submit Reservation</button>
             </form>
         </div>
@@ -112,6 +126,16 @@
             button[type="submit"]:hover {
                 background-color: #2563eb;
             }
+            select {
+            width: 100%;
+            padding: 8px;
+           margin-top: 4px;
+           border: 1px solid #d1d5db;
+            border-radius: 4px;
+            }
+
+            
+
         
             /* Modal */
             .modal {
@@ -153,6 +177,13 @@
                 event.preventDefault(); 
         
                 let isValid = true;
+
+                const serviceType = document.getElementById("serviceType").value;
+                if (serviceType === "") {
+                document.getElementById("serviceTypeError").style.display = "block";
+                isValid = false;
+                }
+
         
                 document.querySelectorAll(".error").forEach(error => error.style.display = "none");
         
@@ -184,7 +215,7 @@
         
                if (isValid) {
         // Save data to sessionStorage
-        sessionStorage.setItem("bookingData", JSON.stringify({ address, mobile, date, time }));
+        sessionStorage.setItem("bookingData", JSON.stringify({ address, mobile, date, time, serviceType  }));
 
         // Display success pop-up window
         document.getElementById("successModal").classList.remove("hidden");
