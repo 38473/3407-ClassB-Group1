@@ -173,147 +173,92 @@
         </style>
         
         <script>
-            document.getElementById("bookingForm").addEventListener("submit", function(event) {
-                event.preventDefault(); 
-        
-                let isValid = true;
-
-                const serviceType = document.getElementById("serviceType").value;
-                if (serviceType === "") {
-                document.getElementById("serviceTypeError").style.display = "block";
-                isValid = false;
-                }
-
-        
-                document.querySelectorAll(".error").forEach(error => error.style.display = "none");
-        
-                const address = document.getElementById("address").value.trim();
-                const mobile = document.getElementById("mobile").value.trim();
-                const date = document.getElementById("date").value;
-                const time = document.getElementById("time").value;
-        
-                if (address === "") {
-                    document.getElementById("addressError").style.display = "block";
-                    isValid = false;
-                }
-        
-                const phoneRegex = /^[0-9]{6}$/;
-                if (!phoneRegex.test(mobile)) {
-                    document.getElementById("mobileError").style.display = "block";
-                    isValid = false;
-                }
-        
-                if (date === "") {
-                    document.getElementById("dateError").style.display = "block";
-                    isValid = false;
-                }
-        
-                if (time === "") {
-                    document.getElementById("timeError").style.display = "block";
-                    isValid = false;
-                }
-        
-                if (isValid) {
-    // 获取现有预约列表或初始化为空数组
-    const bookings = JSON.parse(sessionStorage.getItem("bookings")) || [];
-
-    // 添加新预约
-    bookings.push({
-        address,
-        mobile,
-        date,
-        time,
-        serviceType: getServiceTypeName(serviceType),
-        cleaner: "Jane Smith", // 可从 API 获取，这里假设默认 Jane
-        status: "Upcoming"
-    });
-
-    // 存回 session storage
-    sessionStorage.setItem("bookings", JSON.stringify(bookings));
-
-    // 显示成功弹窗
-    document.getElementById("successModal").classList.remove("hidden");
-
-    // 清空表单
-    document.getElementById("bookingForm").reset();
-}
-
-});
-
-function getServiceTypeName(type) {
-    const types = {
-        home_cleaning: "Home Cleaning",
-        deep_cleaning: "Deep Cleaning",
-        move_cleaning: "Move-In/Move-Out Cleaning",
-        office_cleaning: "Office & Commercial Cleaning",
-        pet_friendly: "Pet-Friendly Services",
-        package: "Custom Packages & Subscriptions"
-    };
-    return types[type] || type;
-}
-
-function closeSuccessModal() {
-    // Hide pop-up window
-    document.getElementById("successModal").classList.add("hidden");
-
-    // Navigate to the payment page
-    window.location.href = "payment.html";
-}
-
-        
-  window.addEventListener("DOMContentLoaded", () => {
-  // Browser geolocation API, attempt to obtain more accurate address
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-       fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=en`)
-          .then(res => res.json())
-          .then(data => {
-            const address = data.display_name || "";
-            const addressInput = document.getElementById("address");
-            if (addressInput && !addressInput.value) {
-              addressInput.value = address;
-            }
-          })
-          .catch(err => {
-            console.error("反向地理编码失败", err);
-            // In case of failure, use the address of localStorage.
-            fillAddressFromStorage();
+          document.getElementById("bookingForm").addEventListener("submit", function(event) {
+              event.preventDefault(); 
+              let isValid = true;
+          
+              const serviceType = document.getElementById("serviceType").value;
+              if (serviceType === "") {
+                  document.getElementById("serviceTypeError").style.display = "block";
+                  isValid = false;
+              }
+          
+              document.querySelectorAll(".error").forEach(error => error.style.display = "none");
+          
+              const address = document.getElementById("address").value.trim();
+              const mobile = document.getElementById("mobile").value.trim();
+              const date = document.getElementById("date").value;
+              const time = document.getElementById("time").value;
+          
+              if (address === "") {
+                  document.getElementById("addressError").style.display = "block";
+                  isValid = false;
+              }
+          
+              const phoneRegex = /^[0-9]{6}$/;
+              if (!phoneRegex.test(mobile)) {
+                  document.getElementById("mobileError").style.display = "block";
+                  isValid = false;
+              }
+          
+              if (date === "") {
+                  document.getElementById("dateError").style.display = "block";
+                  isValid = false;
+              }
+          
+              if (time === "") {
+                  document.getElementById("timeError").style.display = "block";
+                  isValid = false;
+              }
+          
+              if (isValid) {
+                  // 获取现有预约列表或初始化为空数组
+                  const bookings = JSON.parse(sessionStorage.getItem("bookings")) || [];
+                  const bookingHistory = JSON.parse(localStorage.getItem("bookingHistory")) || [];
+          
+                  const newBooking = {
+                      address,
+                      mobile,
+                      date,
+                      time,
+                      serviceType: getServiceTypeName(serviceType),
+                      cleaner: "Jane Smith",
+                      status: "Upcoming"
+                  };
+          
+                  // 添加至 upcoming
+                  bookings.push(newBooking);
+                  sessionStorage.setItem("bookings", JSON.stringify(bookings));
+          
+                  // 同步添加至 history
+                  bookingHistory.push(newBooking);
+                  localStorage.setItem("bookingHistory", JSON.stringify(bookingHistory));
+          
+                  // 显示成功弹窗
+                  document.getElementById("successModal").classList.remove("hidden");
+          
+                  // 清空表单
+                  document.getElementById("bookingForm").reset();
+              }
           });
-      },
-      (error) => {
-        console.error("获取位置失败", error);
-        // Use the localStorage address in case of positioning failure.
-        fillAddressFromStorage();
-      }
-    );
-  } else {
-    console.log("浏览器不支持地理定位");
-    fillAddressFromStorage();
-  }
-
-  // Fill in the address in localStorage (as an alternative option)
-  function fillAddressFromStorage() {
-    const savedAddress = localStorage.getItem("userAddress");
-    if (savedAddress) {
-      const addressInput = document.getElementById("address");
-      if (addressInput && !addressInput.value) {
-        addressInput.value = savedAddress;
-      }
-    }
-  }
-
-  // The date is automatically filled as today.
-  const dateInput = document.getElementById("date");
-  if (dateInput && !dateInput.value) {
-    const today = new Date().toISOString().split("T")[0];
-    dateInput.value = today;
-  }
-});
-
-        </script>
+          
+          function getServiceTypeName(type) {
+              const types = {
+                  home_cleaning: "Home Cleaning",
+                  deep_cleaning: "Deep Cleaning",
+                  move_cleaning: "Move-In/Move-Out Cleaning",
+                  office_cleaning: "Office & Commercial Cleaning",
+                  pet_friendly: "Pet-Friendly Services",
+                  package: "Custom Packages & Subscriptions"
+              };
+              return types[type] || type;
+          }
+          
+          function closeSuccessModal() {
+              document.getElementById("successModal").classList.add("hidden");
+              window.location.href = "payment.html";
+          }
+          </script>          
         
             
         

@@ -329,13 +329,15 @@
         }
         document.getElementById(tabName).classList.add("active");
         evt.currentTarget.classList.add("active");
+    
         if (tabName === 'bookings') {
             loadBookings(); // 切换到 Bookings 时加载数据
+            loadBookingHistory(); // 同时加载历史记录
         }
     }
-
+    
     function loadBookings() {
-        const container = document.querySelector("#bookings .card .appointment-card");
+        const container = document.querySelector("#upcomingAppointments");
         if (!container) return;
         const bookings = JSON.parse(sessionStorage.getItem("bookings")) || [];
         container.innerHTML = ""; // 清空旧数据
@@ -361,55 +363,37 @@
             container.appendChild(div);
         });
     }
-
+    
+    function loadBookingHistory() {
+        const tableBody = document.querySelector("#bookings table tbody");
+        if (!tableBody) return;
+        const history = JSON.parse(localStorage.getItem("bookingHistory")) || [];
+        tableBody.innerHTML = ""; // 清空旧数据
+        if (history.length === 0) {
+            tableBody.innerHTML = "<tr><td colspan='5'>No booking history found.</td></tr>";
+            return;
+        }
+        history.forEach(booking => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${booking.date}</td>
+                <td>${booking.serviceType}</td>
+                <td>${booking.status}</td>
+                <td>$89.99</td>
+                <td><a href="#">Details</a> | <a href="#">Rebook</a></td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+    
     document.addEventListener('DOMContentLoaded', () => {
         const activeTab = document.querySelector('.tab-link.active');
         if (activeTab && activeTab.textContent.trim() === 'Bookings') {
             loadBookings();
+            loadBookingHistory();
         }
     });
-
-    function loadSessions() {
-      const sessionList = document.getElementById("session-list");
-      sessionList.innerHTML = "";
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      sessions.forEach((session, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <span contenteditable="true" onblur="renameSession(${index}, this.textContent)">${session}</span>
-          <button onclick="deleteSession(${index})" title="Delete">🗑️</button>
-        `;
-        sessionList.appendChild(li);
-      });
-    }
-
-    function addNewSession() {
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      const newName = "New Session " + (sessions.length + 1);
-      sessions.push(newName);
-      localStorage.setItem("chatSessions", JSON.stringify(sessions));
-      loadSessions();
-    }
-
-    function renameSession(index, newName) {
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      sessions[index] = newName.trim() || "Untitled Session";
-      localStorage.setItem("chatSessions", JSON.stringify(sessions));
-      loadSessions();
-    }
-
-    function deleteSession(index) {
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      sessions.splice(index, 1);
-      localStorage.setItem("chatSessions", JSON.stringify(sessions));
-      loadSessions();
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelector('.tab-link').click();
-      loadSessions();
-    });
-  </script>
+    </script>    
 </div>
 </body>
 </html>
