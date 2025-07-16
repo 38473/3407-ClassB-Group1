@@ -50,8 +50,11 @@ Estimated Time: 1 day
 **2. User Story 3:**
 
    Title: Multi-Languages
+   
    Description: As a user, I hope to be able to interact with the chatbot and the cleaning company in various languages. When chatting with real people, the language is automatically translated, thereby enhancing accessibility.
+   
    Priority: Medium
+   
    Estimated: 3 days
 
 * Task 1: 
@@ -83,8 +86,11 @@ Estimated Time: 0.5 day
 **3. User Story 8:**
 
    Title: Profile Editing
+   
    Description: As a regular user, I need a Profile for showing my individual’s stylish.
+   
    Priority: Medium
+   
    Estimated: 2 days
 
 * Task 1:
