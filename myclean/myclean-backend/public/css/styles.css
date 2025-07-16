@@ -678,14 +678,23 @@ footer p a {
   padding: 16px;
   border-radius: 8px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
+  position: relative; 
 }
 
 .appointment-card p {
   margin: 0;
   font-size: 14px;
   color: #374151;
+}
+
+.appointment-actions {
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
 }
 
 .setting-item {

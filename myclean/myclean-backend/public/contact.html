@@ -354,41 +354,67 @@ function addTypingMessage(lines) {
   let currentSessionId = null;
 const SESSION_STORAGE_KEY = 'chat_sessions';
 
-// 获取所有会话
-function getSessions() {
-  return JSON.parse(localStorage.getItem(SESSION_STORAGE_KEY) || '{}');
+// get all session
+async function getSessions() {
+  const res = await fetch(`http://localhost:3000/api/sessions`);
+  const list = await res.json();
+  const sessions = {};
+  for (const s of list) {
+    sessions[s.sessionId] = { name: s.name };
+  }
+  return sessions;
 }
 
-// 保存所有会话
-function saveSessions(sessions) {
-  localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(sessions));
+
+// save all session
+async function saveCurrentSessionMessages() {
+  if (!currentSessionId) return;
+
+  const messages = Array.from(chatBox.children).map(msg => {
+    const bubble = msg.querySelector('div');
+    return {
+      text: bubble.textContent,
+      isUser: msg.classList.contains('text-right'),
+      isAgent: bubble.classList.contains('bg-green-100')
+    };
+  });
+
+  await fetch(`http://localhost:3000/api/sessions/${currentSessionId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: sessions[currentSessionId]?.name || 'Untitled Chat',
+      messages
+    })
+  });
 }
 
-// 创建一个新会话
-function createNewSession() {
-  const sessions = getSessions();
+
+// create new session
+async function createNewSession() {
+  const sessions = await getSessions(); 
   const id = 'session_' + Date.now();
-  const welcome = aiResponses[0]; // <- use first AI response
+  const welcome = aiResponses[0];
 
   sessions[id] = {
     name: 'Untitled Chat',
     messages: [
-      { text: welcome, isUser: false, isAgent: true } // <- AI opening
+      { text: welcome, isUser: false, isAgent: true }
     ]
   };
 
-  saveSessions(sessions);
+  await saveSessions(sessions); 
   currentSessionId = id;
-  renderSessionTabs();
-  loadSession(id);
+  await loadSession(id);
+  await renderSessionTabs();
 }
 
 
-// 渲染顶部的会话标签
-function renderSessionTabs() {
-  const sessions = getSessions();
+// render session tabs
+async function renderSessionTabs() {
+  const sessions = await getSessions();
   const tabContainer = document.getElementById('session-tabs');
-  tabContainer.innerHTML = ''; // 清空
+  tabContainer.innerHTML = ''; // 清空已有内容
 
   for (const id in sessions) {
     const session = sessions[id];
@@ -443,27 +469,28 @@ function renderSessionTabs() {
     tabContainer.appendChild(wrapper);
   }
 
-  // + 新建会话按钮
+  // 新建会话按钮
   const newBtn = document.createElement('button');
   newBtn.textContent = '+ New Chat';
   newBtn.className = 'text-blue-600 hover:underline ml-2';
   newBtn.onclick = createNewSession;
   tabContainer.appendChild(newBtn);
 }
+
 // Load chat history for a specific session ID
-function loadSession(sessionId) {
-  const sessions = getSessions();
-  if (!sessions[sessionId]) return;
+async function loadSession(sessionId) {
+  const res = await fetch(`http://localhost:3000/api/sessions/${sessionId}`);
+  if (!res.ok) return;
 
-  currentSessionId = sessionId;
+  const session = await res.json();
   chatBox.innerHTML = '';
+  currentSessionId = sessionId;
 
-  const messages = sessions[sessionId].messages || [];
-  messages.forEach(msg => {
-    // Use your original addMessage, but pass save=false to avoid double save
+  session.messages.forEach(msg => {
     addMessage(msg.text, msg.isUser, msg.isAgent);
   });
 }
+
 
 // Save the current session's messages from the chat box
 function saveCurrentSessionMessages() {
@@ -494,17 +521,17 @@ addMessage = function(text, isUser = false, isAgent = false) {
 };
 
 // Initialize sessions on page load
-function initializeSessions() {
-  const sessions = getSessions();
+async function initializeSessions() {
+  const sessions = await getSessions();
   if (Object.keys(sessions).length === 0) {
-    createNewSession();
+    await createNewSession();
   } else {
-    // Load first session by default
     currentSessionId = Object.keys(sessions)[0];
-    loadSession(currentSessionId);
+    await loadSession(currentSessionId);
   }
-  renderSessionTabs();
+  await renderSessionTabs();
 }
+
 
 // Run initialization after your current code runs
 initializeSessions();
