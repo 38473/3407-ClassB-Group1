@@ -20,7 +20,7 @@
             <li><a href="booking.html" class="active">Booking</a ></li> 
             <li><a href="contact.html">Contact</a ></li>
             <li><a href="payment.html">Payment</a ></li> 
-            <li><a href="setting.html">Setting</a ></li> 
+            <li><a href="service.html">Service</a ></li> 
             <li><a href="account.html">Account</a ></li> 
         </ul>
         <div class="auth-buttons">
@@ -173,121 +173,81 @@
         </style>
         
         <script>
-            document.getElementById("bookingForm").addEventListener("submit", function(event) {
-                event.preventDefault(); 
-        
-                let isValid = true;
+  document.getElementById("bookingForm").addEventListener("submit", async function(event) {
+      event.preventDefault(); 
+      let isValid = true;
 
-                const serviceType = document.getElementById("serviceType").value;
-                if (serviceType === "") {
-                document.getElementById("serviceTypeError").style.display = "block";
-                isValid = false;
-                }
-
-        
-                document.querySelectorAll(".error").forEach(error => error.style.display = "none");
-        
-                const address = document.getElementById("address").value.trim();
-                const mobile = document.getElementById("mobile").value.trim();
-                const date = document.getElementById("date").value;
-                const time = document.getElementById("time").value;
-        
-                if (address === "") {
-                    document.getElementById("addressError").style.display = "block";
-                    isValid = false;
-                }
-        
-                const phoneRegex = /^[0-9]{6}$/;
-                if (!phoneRegex.test(mobile)) {
-                    document.getElementById("mobileError").style.display = "block";
-                    isValid = false;
-                }
-        
-                if (date === "") {
-                    document.getElementById("dateError").style.display = "block";
-                    isValid = false;
-                }
-        
-                if (time === "") {
-                    document.getElementById("timeError").style.display = "block";
-                    isValid = false;
-                }
-        
-               if (isValid) {
-        // Save data to sessionStorage
-        sessionStorage.setItem("bookingData", JSON.stringify({ address, mobile, date, time, serviceType  }));
-
-        // Display success pop-up window
-        document.getElementById("successModal").classList.remove("hidden");
-
-        // Clear the form
-        document.getElementById("bookingForm").reset();
-    }
-});
-
-function closeSuccessModal() {
-    // Hide pop-up window
-    document.getElementById("successModal").classList.add("hidden");
-
-    // Navigate to the payment page
-    window.location.href = "payment.html";
-}
-
-        
-  window.addEventListener("DOMContentLoaded", () => {
-  // Browser geolocation API, attempt to obtain more accurate address
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-       fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=en`)
-          .then(res => res.json())
-          .then(data => {
-            const address = data.display_name || "";
-            const addressInput = document.getElementById("address");
-            if (addressInput && !addressInput.value) {
-              addressInput.value = address;
-            }
-          })
-          .catch(err => {
-            console.error("反向地理编码失败", err);
-            // In case of failure, use the address of localStorage.
-            fillAddressFromStorage();
-          });
-      },
-      (error) => {
-        console.error("获取位置失败", error);
-        // Use the localStorage address in case of positioning failure.
-        fillAddressFromStorage();
+      const serviceType = document.getElementById("serviceType").value;
+      if (serviceType === "") {
+          document.getElementById("serviceTypeError").style.display = "block";
+          isValid = false;
       }
-    );
-  } else {
-    console.log("浏览器不支持地理定位");
-    fillAddressFromStorage();
-  }
 
-  // Fill in the address in localStorage (as an alternative option)
-  function fillAddressFromStorage() {
-    const savedAddress = localStorage.getItem("userAddress");
-    if (savedAddress) {
-      const addressInput = document.getElementById("address");
-      if (addressInput && !addressInput.value) {
-        addressInput.value = savedAddress;
+      // 先隐藏所有错误
+      document.querySelectorAll(".error").forEach(error => error.style.display = "none");
+
+      const address = document.getElementById("address").value.trim();
+      const mobile = document.getElementById("mobile").value.trim();
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+
+      if (address === "") {
+          document.getElementById("addressError").style.display = "block";
+          isValid = false;
       }
-    }
-  }
 
-  // The date is automatically filled as today.
-  const dateInput = document.getElementById("date");
-  if (dateInput && !dateInput.value) {
-    const today = new Date().toISOString().split("T")[0];
-    dateInput.value = today;
-  }
-});
+      const phoneRegex = /^[0-9]{6}$/;
+      if (!phoneRegex.test(mobile)) {
+          document.getElementById("mobileError").style.display = "block";
+          isValid = false;
+      }
 
-        </script>
-        
+      if (date === "") {
+          document.getElementById("dateError").style.display = "block";
+          isValid = false;
+      }
+
+      if (time === "") {
+          document.getElementById("timeError").style.display = "block";
+          isValid = false;
+      }
+
+      if (isValid) {
+          try {
+              const response = await fetch('/api/bookings', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                      serviceType,
+                      address,
+                      mobile,
+                      datetime: date + ' ' + time,
+                      userId: 1  // 这里写死了User_ID，后续你可以动态传
+                  })
+              });
+
+              if (response.ok) {
+                  const data = await response.json();
+                  console.log('Booking saved with ID:', data.insertId);
+                  document.getElementById("successModal").classList.remove("hidden");
+                  document.getElementById("bookingForm").reset();
+              } else {
+                  alert('Failed to save booking.');
+              }
+          } catch (error) {
+              console.error('Error submitting booking:', error);
+              alert('Error submitting booking.');
+          }
+      }
+  });
+
+  function closeSuccessModal() {
+      document.getElementById("successModal").classList.add("hidden");
+      window.location.href = "payment.html";
+  }
+</script>
             
         
         </div>

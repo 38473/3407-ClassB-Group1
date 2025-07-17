@@ -61,7 +61,7 @@
       <li><a href="booking.html">Booking</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="payment.html">Payment</a></li>
-      <li><a href="setting.html">Setting</a></li>
+      <li><a href="service.html">Service</a></li>
       <li><a href="account.html" class="active">Account</a></li>
     </ul>
     <div class="auth-buttons">
@@ -131,16 +131,10 @@
       <div class="tab-content" id="bookings">
         <section class="card">
           <h3>Upcoming Appointments</h3>
-          <div class="appointment-card">
-            <p><strong>Date:</strong> April 10, 2025</p>
-            <p><strong>Time:</strong> 10:00 AM - 1 PM</p>
-            <p><strong>Cleaner:</strong> Jane Smith</p>
-            <p><strong>Address:</strong> 123 Main St</p>
-            <button>Reschedule</button>
-            <button>Cancel</button>
-            <button>Contact Cleaner</button>
-          </div>
+          <div id="upcomingAppointments" class="appointment-card">
+          </div>          
         </section>
+        
 
         <section class="card">
           <h3>Booking History</h3>
@@ -154,22 +148,7 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>April 1, 2025</td>
-                <td>Home Cleaning</td>
-                <td>Completed</td>
-                <td>$89.99</td>
-                <td><a href="#">Details</a> | <a href="#">Rebook</a></td>
-              </tr>
-              <tr>
-                <td>March 25, 2025</td>
-                <td>Office Deep Clean</td>
-                <td>Pending</td>
-                <td>$129.99</td>
-                <td><a href="#">Details</a> | <a href="#">Cancel</a></td>
-              </tr>
-            </tbody>
+            
           </table>
         </section>
       </div>
@@ -323,61 +302,117 @@
   </footer>
 
   <script>
-    function openTab(evt, tabName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tab-content");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("active");
-      }
-      tablinks = document.getElementsByClassName("tab-link");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
-      }
-      document.getElementById(tabName).classList.add("active");
-      evt.currentTarget.classList.add("active");
-    }
+    function getCurrentUserId() {
+  return sessionStorage.getItem('userId');  
+}
 
-    function loadSessions() {
-      const sessionList = document.getElementById("session-list");
-      sessionList.innerHTML = "";
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      sessions.forEach((session, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <span contenteditable="true" onblur="renameSession(${index}, this.textContent)">${session}</span>
-          <button onclick="deleteSession(${index})" title="Delete">🗑️</button>
-        `;
-        sessionList.appendChild(li);
+
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-link");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    
+        if (tabName === 'bookings') {
+            loadBookings(); // 切换到 Bookings 时加载数据
+        }
+    }
+    
+    async function loadBookings() {
+  const container = document.querySelector("#upcomingAppointments");
+  if (!container) return;
+
+  container.innerHTML = "<p>Loading appointments...</p>";
+
+  // 假设你有某种方法获取当前登录用户ID，写成getCurrentUserId()示范：
+  const userId = getCurrentUserId(); 
+  if (!userId) {
+    container.innerHTML = "<p>Please login to see your bookings.</p>";
+    return;
+  }
+
+  try {
+    const response = await fetch(`/api/bookings?userId=${userId}`);
+    if (!response.ok) throw new Error('Failed to load bookings');
+    const bookings = await response.json();
+
+    // 分未来预约和历史预约
+    const now = new Date();
+
+    const upcoming = bookings.filter(b => new Date(b.Reservation_datetime) > now);
+    const history = bookings.filter(b => new Date(b.Reservation_datetime) <= now);
+
+    // 渲染未来预约
+    if (upcoming.length === 0) {
+      container.innerHTML = "<p>No upcoming appointments.</p>";
+    } else {
+      container.innerHTML = '';
+      upcoming.forEach(b => {
+        const dateObj = new Date(b.Reservation_datetime);
+        const html = `
+          <div class="appointment-card">
+            <p><strong>Date:</strong> ${dateObj.toLocaleDateString()}</p>
+            <p><strong>Time:</strong> ${dateObj.toLocaleTimeString()}</p>
+            <p><strong>Service:</strong> ${b.Reservation_service_type}</p>
+            <p><strong>Address:</strong> ${b.Reservation_address}</p>
+            <p><strong>Phone:</strong> ${b.Reservation_phone_number}</p>
+            <div class="appointment-actions">
+              <button>Reschedule</button>
+              <button>Cancel</button>
+              <button>Contact</button>
+            </div>
+          </div>`;
+        container.insertAdjacentHTML('beforeend', html);
       });
     }
 
-    function addNewSession() {
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      const newName = "New Session " + (sessions.length + 1);
-      sessions.push(newName);
-      localStorage.setItem("chatSessions", JSON.stringify(sessions));
-      loadSessions();
-    }
+    // 历史预约用你已有的loadBookingHistory渲染（或合并改写）
+    loadBookingHistory(history);
 
-    function renameSession(index, newName) {
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      sessions[index] = newName.trim() || "Untitled Session";
-      localStorage.setItem("chatSessions", JSON.stringify(sessions));
-      loadSessions();
-    }
+  } catch (error) {
+    container.innerHTML = `<p>Error loading bookings: ${error.message}</p>`;
+  }
+}
 
-    function deleteSession(index) {
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      sessions.splice(index, 1);
-      localStorage.setItem("chatSessions", JSON.stringify(sessions));
-      loadSessions();
-    }
+    
+   function loadBookingHistory(history) {
+  const tableBody = document.querySelector("#bookings table tbody");
+  if (!tableBody) return;
+  tableBody.innerHTML = ""; // 清空旧数据
+  if (!history || history.length === 0) {
+    tableBody.innerHTML = "<tr><td colspan='5'>No booking history found.</td></tr>";
+    return;
+  }
+  history.forEach(booking => {
+    const dateObj = new Date(booking.Reservation_datetime);
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${dateObj.toLocaleDateString()}</td>
+      <td>${booking.Reservation_service_type}</td>
+      <td>Completed</td>  <!-- 这里你可以根据实际状态改 -->
+      <td>$89.99</td>      <!-- 价格需你补充 -->
+      <td><a href="#">Details</a> | <a href="#">Rebook</a></td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
 
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelector('.tab-link').click();
-      loadSessions();
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const activeTab = document.querySelector('.tab-link.active');
+        if (activeTab && activeTab.textContent.trim() === 'Bookings') {
+            loadBookings();
+            loadBookingHistory();
+        }
     });
-  </script>
+    </script>    
 </div>
 </body>
 </html>

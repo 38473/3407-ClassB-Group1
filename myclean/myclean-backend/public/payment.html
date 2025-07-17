@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>My Clean</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <a href="index.html"><img src="images/myclean.png" alt="My Clean logo" height="70" width="96"></a>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="payment.html" class="active">Payment</a></li>
+        <li><a href="service.html">Service</a></li>
+        <li><a href="account.html">Account</a></li>
+      </ul>
+      <div class="auth-buttons">
+            <a href="signin.html" class="btn btn-outline">Sign in</a>
+            <a href="register.html" class="btn btn-primary">Register</a>
+        </div>
+    </nav>
+
+    <main>
+      <div id="intro">
+        <!-- Payment Page Integration -->
+
+        <!-- Header -->
+        <header class="bg-white shadow-sm py-4 px-6 flex items-center justify-between">
+          <div class="text-xl font-bold text-gray-900">my clean</div>
+          <h1 class="text-lg font-semibold">Payment</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-3xl mx-auto mt-6 p-6 bg-white shadow rounded-lg">
+         <section class="mb-6">
+  <h2 class="text-xl font-semibold mb-2">Order Summary</h2>
+  <ul class="space-y-2 text-gray-700">
+    <li>Service: Premium Home Cleaning</li>
+    <li><strong>Address:</strong> <span id="summary-address">N/A</span></li>
+    <li><strong>Mobile:</strong> <span id="summary-mobile">N/A</span></li>
+    <li><strong>Date:</strong> <span id="summary-date">N/A</span></li>
+    <li><strong>Time:</strong> <span id="summary-time">N/A</span></li>
+    <li>Total: <span class="font-medium">$120.00</span></li>
+  </ul>
+</section>
+
+
+          <section class="mb-6">
+            <h2 class="text-xl font-semibold mb-4">Select Payment Method</h2>
+            <div class="flex gap-4">
+              <button onclick="simulatePayment('Visa')" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Pay with Visa</button>
+              <button onclick="simulatePayment('PayPal')" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Pay with PayPal</button>
+            </div>
+          </section>
+
+          <section id="receipt-section" class="hidden mt-6 border-t pt-4">
+            <h2 class="text-xl font-semibold mb-2">Receipt</h2>
+            <p id="receipt-text" class="whitespace-pre-line text-gray-700"></p>
+          </section>
+
+          <section id="actions-section" class="hidden mt-6 flex gap-4">
+            <button onclick="confirmRefund()" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">Request Refund</button>
+            <button onclick="confirmCancel()" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition">Cancel Order</button>
+          </section>
+        </main>
+
+       
+
+      </div>
+    </main>
+
+   
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // 获取 sessionStorage 中的预订信息
+  const bookingData = JSON.parse(sessionStorage.getItem("bookingData"));
+
+  if (bookingData) {
+    document.getElementById("summary-address").textContent = bookingData.address || "N/A";
+    document.getElementById("summary-mobile").textContent = bookingData.mobile || "N/A";
+    document.getElementById("summary-date").textContent = bookingData.date || "N/A";
+    document.getElementById("summary-time").textContent = bookingData.time || "N/A";
+  }
+    function generateReceipt(paymentMethod) {
+      const receiptText = `
+Transaction ID: TXN-${Math.random().toString(36).substr(2, 9)}
+Date: ${new Date().toLocaleString()}
+Payment Method: ${paymentMethod}
+Amount: $120.00
+Service: Premium Home Cleaning
+Status: ✅ Paid
+
+Thank you for using my clean!
+`;
+      document.getElementById("receipt-text").textContent = receiptText;
+      document.getElementById("receipt-section").classList.remove("hidden");
+      document.getElementById("actions-section").classList.remove("hidden");
+    }
+
+    function simulatePayment(method) {
+      alert(`Processing payment via ${method}...`);
+      setTimeout(() => {
+        alert("Payment successful!");
+        generateReceipt(method);
+      }, 1000);
+    }
+
+    function confirmRefund() {
+      if (confirm("Are you sure you want to request a refund?")) {
+        alert("Refund request submitted.");
+        // Simulate backend refund logic
+        disableActions();
+      }
+    }
+
+    function confirmCancel() {
+      if (confirm("Are you sure you want to cancel this order?")) {
+        alert("Order canceled.");
+        disableActions();
+      }
+    }
+
+    function disableActions() {
+      const buttons = document.querySelectorAll("#actions-section button");
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.classList.add("opacity-50", "cursor-not-allowed");
+      });
+    }
+  </script>
+   <footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- Left Column: Logo & Social Icons -->
+    <div class="footer-brand">
+      <img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo" />
+      <div class="social-icons">
+        <a href=" "><img src="images/x-icon.jpg" alt="X/Twitter"></a >
+        <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a >
+        <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a >
+        <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a >
+      </div>
+    </div>
+
+    <!-- Center Columns: Links -->
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>Use cases</h4>
+        <ul>
+          <li><a href="#">Home Cleaning</a ></li>
+          <li><a href="#">Deep Cleaning</a ></li>
+          <li><a href="#">Move-In/Move-Out Cleaning</a ></li>
+          <li><a href="#">Office & Commercial Cleaning</a ></li>
+          <li><a href="#">Pet-Friendly Services</a ></li>
+          <li><a href="#">Eco-Friendly Cleaning</a ></li>
+          <li><a href="#">Subscription Plans</a ></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Booking Process</a ></li>
+          <li><a href="#">Smart Chat (Bot & Human)</a ></li>
+          <li><a href="#">Real-Time Cleaner Tracking</a ></li>
+          <li><a href="#">Pricing & Packages</a ></li>
+          <li><a href="#">Customer Reviews</a ></li>
+          <li><a href="#">Multi-language Support</a ></li>
+          <li><a href="#">Service Recommendations</a ></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">How-To Guides</a ></li>
+          <li><a href="#">FAQ</a ></li>
+          <li><a href="#">Customer Support</a ></li>
+          <li><a href="#">Cleaning Tips & Articles</a ></li>
+          <li><a href="#">Terms & Policies</a ></li>
+          <li><a href="#">Invoices & Billing</a ></li>
+          <li><a href="#">Feedback & Reporting</a ></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</footer>
+</body>
+</html>
