@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>My Clean</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Custom Styles for About Page */
+    #intro {
+      padding: 20px;
+    }
+
+    #intro h1, #intro h2 {
+      color: #2b2b2b;
+    }
+
+    #intro ul {
+      margin-left: 20px;
+    }
+
+    /* Carousel Styles */
+    .carousel {
+      max-width: 1000px;
+      margin: 40px auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 20px; /* spacing between images */
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+      flex: 0 0 calc((100% - 40px) / 3); /* 3 images with 20px gap between each */
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .carousel-button.prev {
+      left: 10px;
+    }
+
+    .carousel-button.next {
+      right: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-slide {
+        flex: 0 0 100%;
+      }
+
+      .carousel-track {
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <a href="index.html"><img src="images/myclean.png" alt="My Clean logo" height="70" width="96"></a>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About us</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="payment.html">Payment</a></li>
+        <li><a href="setting.html">Setting</a></li>
+        <li><a href="account.html">Account</a></li>
+      </ul>
+      <div class="auth-buttons">
+        <a href="signin.html" class="btn btn-outline">Sign in</a>
+        <a href="register.html" class="btn btn-primary">Register</a>
+      </div>
+    </nav>
+    <div class="image-container">
+     <img src="images/about.jpg" alt="The background picture of about us" class="full-width-image">
+    <div id="aboutus">
+        <h1>About us</h1>
+    </div>
+    </div>
+
+    <main>
+      <div id="intro">
+        <section>
+          <h1>About MyClean</h1>
+          <p>
+            MyClean is an intelligent cleaning service platform designed for modern urban residents and cleaning service providers. 
+            It is committed to reshaping the housekeeping and cleaning service industry through technological innovation and excellent 
+            user experience. Whether you are a busy professional, a housewife, or a professional cleaning company, MyClean can provide
+             you with an efficient, safe and transparent service experience.
+          </p>
+          <br>
+
+          <div style="display: flex; flex-wrap: wrap; align-items: center; margin-top: 20px;">
+            <img src="images/cleaning-team.jpg" alt="Our team" style="width: 45%; max-width: 400px; border-radius: 8px; margin-right: 20px;" />
+            <div style="flex: 1;">
+              <h2>Cleaning Services We Offer</h2>
+              <p>we are committed to making your space spotless and stress-free. We offer a wide range of professional cleaning services tailored to your needs:</p>
+              <ul>
+                <li>✓ Home Cleaning – Regular or one-time cleaning for apartments, condos, and houses.</li>
+                <li>✓ Deep Cleaning – Thorough top-to-bottom cleaning for kitchens, bathrooms, and other high-use areas.</li>
+                <li>✓ Move-In / Move-Out Cleaning – Ensure a fresh start or smooth transition with detailed property cleaning.</li>
+                <li>✓ Office & Commercial Cleaning – Keep your workplace clean, healthy, and professional.</li>
+                <li>✓ Pet-Friendly Cleaning – Specialized care for homes with furry friends.</li>
+                <li>✓ Custom Packages & Subscriptions – Flexible cleaning plans to fit your schedule and budget.
+</li>
+<br>
+              </ul>
+            </div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; margin-top: 20px;">
+  <div style="flex: 1;">
+    <h2>How to find us</h2>
+    <ul>
+      <li>address: My Clean Company Pte Ltd. 149 Sims Drive, S(387380)</li>
+      <li>call: 67093888</li>
+      <li>email: myclean.thiscompany@gmail.com</li>
+    </ul>
+  </div>
+  <img src="images/contact.png" alt="Our team" style="width: 45%; max-width: 400px; border-radius: 8px; margin-left: 20px;" />
+</div>
+<br>
+<div style="background-color: #c5f5dd; padding: 20px; border-radius: 10px; line-height: 1.6;">
+
+  <p><strong>Subscription cleaning plan:</strong> Provide regular cleaning subscription services, users can enjoy discounts and customized service reminders.</p>
+
+  <p><strong>1. Intelligent positioning recommendation system</strong><br>
+  When users make an appointment, their location information is automatically collected. The platform will recommend the best nearby cleaning service personnel based on distance, service quality and available time, saving communication costs and improving service efficiency.</p>
+
+  <p><strong>2. Intelligent customer service and real-time chat system</strong><br>
+  Built-in human-machine hybrid intelligent customer service system. Users can communicate with cleaning staff in real time through the website. When the other party is offline, the AI ​​chat robot automatically connects to provide users with quick question-answering services. When encountering complex problems, the system can seamlessly transfer to manual customer service or cleaning staff.</p>
+
+  <p><strong>3. Multi-language real-time translation support</strong><br>
+  The platform supports communication in multiple languages. Whether it is between users and chat robots or real customer service, the content can be automatically translated, making cross-cultural communication barrier-free and improving the global accessibility and inclusiveness of the platform.</p>
+
+  <p><strong>4. Appointment and scheduling management system</strong><br>
+  Cleaning companies or individual service providers can manage customer appointment information, work arrangements and customer needs through exclusive backends, thereby achieving more efficient business operations.</p>
+
+  <p><strong>5. User feedback and platform optimization mechanism</strong><br>
+  MyClean encourages users to provide feedback on their service experience and report problems at any time. The platform will handle them in a timely manner and continuously optimize algorithms and operational services to form a virtuous circle.</p>
+
+  <p><strong>6. Chat history backtracking function</strong><br>
+  During the conversation between users and customer service or service personnel, all conversations will be recorded in the chat history, which is convenient for subsequent viewing and reference, and improves service continuity.</p>
+
+  <p><strong>7. Diversified payment methods and refund mechanism</strong><br>
+  Users can choose online payment (credit card, PayPal) or offline payment in the application. The system will generate an electronic invoice and support users to quickly apply for a refund after canceling the order, making the transaction safe, transparent, flexible and convenient.</p>
+
+</div>
+<div style="text-align: center; max-width: 1400px; margin: 0 auto; padding: 20px;">
+  <h2>Our Vision</h2>
+  <p>
+    We hope to improve the overall standards of the cleaning service industry through the combination of technology and humanistic design, provide users with an easy, time-saving and safe service experience, and provide a fair, efficient and respectful platform for cleaning workers.
+  </p>
+</div>
+     </section>
+
+        <!-- Carousel -->
+        <section style="margin-top: 40px;">
+          <h2 style="text-align: center;">Explore Our Work</h2>
+          <div class="carousel">
+            <div class="carousel-track" id="carousel-track">
+              <div class="carousel-slide"><img src="images/showcase1.jpg" alt="Work 1"></div>
+              <div class="carousel-slide"><img src="images/showcase2.jpg" alt="Work 2"></div>
+              <div class="carousel-slide"><img src="images/showcase3.jpg" alt="Work 3"></div>
+              <div class="carousel-slide"><img src="images/showcase4.jpg" alt="Work 4"></div>
+              <div class="carousel-slide"><img src="images/showcase5.jpg" alt="Work 5"></div>
+              <div class="carousel-slide"><img src="images/showcase6.jpg" alt="Work 6"></div>
+              <div class="carousel-slide"><img src="images/showcase7.jpg" alt="Work 7"></div>
+            </div>
+            <button class="carousel-button prev" id="prevBtn">&#10094;</button>
+            <button class="carousel-button next" id="nextBtn">&#10095;</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo" />
+          <div class="social-icons">
+            <a href="#"><img src="images/x-icon.jpg" alt="X/Twitter"></a>
+            <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a>
+            <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a>
+            <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Use cases</h4>
+            <ul>
+              <li><a href="#">Home Cleaning</a></li>
+              <li><a href="#">Deep Cleaning</a></li>
+              <li><a href="#">Move-In/Move-Out Cleaning</a></li>
+              <li><a href="#">Office & Commercial Cleaning</a></li>
+              <li><a href="#">Pet-Friendly Services</a></li>
+              <li><a href="#">Eco-Friendly Cleaning</a></li>
+              <li><a href="#">Subscription Plans</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#">Booking Process</a></li>
+              <li><a href="#">Smart Chat (Bot & Human)</a></li>
+              <li><a href="#">Real-Time Cleaner Tracking</a></li>
+              <li><a href="#">Pricing & Packages</a></li>
+              <li><a href="#">Customer Reviews</a></li>
+              <li><a href="#">Multi-language Support</a></li>
+              <li><a href="#">Service Recommendations</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">How-To Guides</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Customer Support</a></li>
+              <li><a href="#">Cleaning Tips & Articles</a></li>
+              <li><a href="#">Terms & Policies</a></li>
+              <li><a href="#">Invoices & Billing</a></li>
+              <li><a href="#">Feedback & Reporting</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const track = document.getElementById('carousel-track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let index = 0;
+    const visibleSlides = 3;
+    const totalSlides = slides.length;
+
+    function updateCarousel() {
+      const slideWidth = slides[0].offsetWidth + 20; // 20px gap
+      track.style.transform = `translateX(-${index * slideWidth}px)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if (index < totalSlides - visibleSlides) {
+        index++;
+        updateCarousel();
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (index > 0) {
+        index--;
+        updateCarousel();
+      }
+    });
+
+    setInterval(() => {
+      if (index < totalSlides - visibleSlides) {
+        index++;
+      } else {
+        index = 0;
+      }
+      updateCarousel();
+    }, 4000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!doctype html>
+
+<html lang="en">
+ <head>
+    <title>My Clean</title>
+     <meta charset="utf-8">
+     <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="container">
+    <header>
+
+       <a href="index.html"><img src="images/myclean.png" alt="My Clean logo" height="70" width="96"></a>
+
+    </header>
+    <nav>
+         <ul>
+            <li><a href="index.html">Home</a ></li>
+            <li><a href="about.html">About us</a > </li>
+            <li><a href="booking.html" class="active">Booking</a ></li> 
+            <li><a href="contact.html">Contact</a ></li>
+            <li><a href="payment.html">Payment</a ></li> 
+            <li><a href="setting.html">Setting</a ></li> 
+            <li><a href="account.html">Account</a ></li> 
+        </ul>
+        <div class="auth-buttons">
+            <a href="signin.html" class="btn btn-outline">Sign in</a>
+            <a href="register.html" class="btn btn-primary">Register</a>
+        </div>
+    </nav>
+   
+     <main>
+        <div id="intro">
+            <form id="bookingForm">
+                <h2>Service Reservation Form</h2>
+                <label for="serviceType">Service Type</label>
+                <select id="serviceType" name="serviceType" required>
+                <option value="">-- Please select a service type --</option>
+                <option value="home_cleaning">Home Cleaning</option>
+                <option value="deep_cleaning">Deep Cleaning</option>
+                <option value="move_cleaning">Move-In/Move-Out Cleaning</option>
+                <option value="office_cleaning">Office & Commercial Cleaning</option>
+                <option value="pet_friendly">Pet-Friendly Services</option>
+                <option value="package">Custom Packages & Subscriptions</option>
+                </select>
+              <div class="error" id="serviceTypeError">Please select a service type.</div>
+
+        
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required>
+                <div class="error" id="addressError">Please enter your address.</div>
+
+        
+                <label for="mobile">Mobile Phone Number</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="e.g. 123456" required>
+                <div class="error" id="mobileError">Please enter a valid 6-digit phone number.</div>
+        
+                <label for="date">Service Date</label>
+                <input type="date" id="date" name="date" required>
+                <div class="error" id="dateError">Please select a service date.</div>
+        
+                <label for="time">Service Time</label>
+                <input type="time" id="time" name="time" required>
+                <div class="error" id="timeError">Please select a service time.</div>
+
+                <button type="submit">Submit Reservation</button>
+            </form>
+        </div>
+        
+        <!-- Success Modal -->
+        <div id="successModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Success!</h3>
+                <p>Your reservation has been submitted successfully.</p>
+                <button onclick="closeSuccessModal()">Close</button>
+            </div>
+        </div>
+        
+        <style>
+            form {
+                background-color: #ffffff;
+                padding: 24px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+        
+            h2 {
+                color: #1f2937;
+                margin-bottom: 16px;
+            }
+        
+            label {
+                display: block;
+                margin-top: 12px;
+                font-weight: bold;
+            }
+        
+            input[type="text"],
+            input[type="tel"],
+            input[type="date"],
+            input[type="time"] {
+                width: 100%;
+                padding: 8px;
+                margin-top: 4px;
+                border: 1px solid #d1d5db;
+                border-radius: 4px;
+            }
+        
+            .error {
+                color: red;
+                font-size: 12px;
+                display: none;
+                margin-top: 4px;
+            }
+        
+            button[type="submit"] {
+                margin-top: 20px;
+                background-color: #3b82f6;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        
+            button[type="submit"]:hover {
+                background-color: #2563eb;
+            }
+            select {
+            width: 100%;
+            padding: 8px;
+           margin-top: 4px;
+           border: 1px solid #d1d5db;
+            border-radius: 4px;
+            }
+
+            
+
+        
+            /* Modal */
+            .modal {
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+            }
+        
+            .modal-content {
+                background-color: #fff;
+                padding: 24px;
+                border-radius: 8px;
+                text-align: center;
+                max-width: 400px;
+            }
+        
+            .modal-content button {
+                margin-top: 16px;
+                background-color: #3b82f6;
+                color: white;
+                padding: 8px 16px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        
+            .hidden {
+                display: none;
+            }
+        </style>
+        
+        <script>
+            document.getElementById("bookingForm").addEventListener("submit", function(event) {
+                event.preventDefault(); 
+        
+                let isValid = true;
+
+                const serviceType = document.getElementById("serviceType").value;
+                if (serviceType === "") {
+                document.getElementById("serviceTypeError").style.display = "block";
+                isValid = false;
+                }
+
+        
+                document.querySelectorAll(".error").forEach(error => error.style.display = "none");
+        
+                const address = document.getElementById("address").value.trim();
+                const mobile = document.getElementById("mobile").value.trim();
+                const date = document.getElementById("date").value;
+                const time = document.getElementById("time").value;
+        
+                if (address === "") {
+                    document.getElementById("addressError").style.display = "block";
+                    isValid = false;
+                }
+        
+                const phoneRegex = /^[0-9]{6}$/;
+                if (!phoneRegex.test(mobile)) {
+                    document.getElementById("mobileError").style.display = "block";
+                    isValid = false;
+                }
+        
+                if (date === "") {
+                    document.getElementById("dateError").style.display = "block";
+                    isValid = false;
+                }
+        
+                if (time === "") {
+                    document.getElementById("timeError").style.display = "block";
+                    isValid = false;
+                }
+        
+               if (isValid) {
+        // Save data to sessionStorage
+        sessionStorage.setItem("bookingData", JSON.stringify({ address, mobile, date, time, serviceType  }));
+
+        // Display success pop-up window
+        document.getElementById("successModal").classList.remove("hidden");
+
+        // Clear the form
+        document.getElementById("bookingForm").reset();
+    }
+});
+
+function closeSuccessModal() {
+    // Hide pop-up window
+    document.getElementById("successModal").classList.add("hidden");
+
+    // Navigate to the payment page
+    window.location.href = "payment.html";
+}
+
+        
+  window.addEventListener("DOMContentLoaded", () => {
+  // Browser geolocation API, attempt to obtain more accurate address
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+       fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=en`)
+          .then(res => res.json())
+          .then(data => {
+            const address = data.display_name || "";
+            const addressInput = document.getElementById("address");
+            if (addressInput && !addressInput.value) {
+              addressInput.value = address;
+            }
+          })
+          .catch(err => {
+            console.error("反向地理编码失败", err);
+            // In case of failure, use the address of localStorage.
+            fillAddressFromStorage();
+          });
+      },
+      (error) => {
+        console.error("获取位置失败", error);
+        // Use the localStorage address in case of positioning failure.
+        fillAddressFromStorage();
+      }
+    );
+  } else {
+    console.log("浏览器不支持地理定位");
+    fillAddressFromStorage();
+  }
+
+  // Fill in the address in localStorage (as an alternative option)
+  function fillAddressFromStorage() {
+    const savedAddress = localStorage.getItem("userAddress");
+    if (savedAddress) {
+      const addressInput = document.getElementById("address");
+      if (addressInput && !addressInput.value) {
+        addressInput.value = savedAddress;
+      }
+    }
+  }
+
+  // The date is automatically filled as today.
+  const dateInput = document.getElementById("date");
+  if (dateInput && !dateInput.value) {
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.value = today;
+  }
+});
+
+        </script>
+        
+            
+        
+        </div>
+        
+     </main>
+     <footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- Left Column: Logo & Social Icons -->
+    <div class="footer-brand">
+      <img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo" />
+      <div class="social-icons">
+        <a href=" "><img src="images/x-icon.jpg" alt="X/Twitter"></a >
+        <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a >
+        <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a >
+        <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a >
+      </div>
+    </div>
+
+    <!-- Center Columns: Links -->
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>Use cases</h4>
+        <ul>
+          <li><a href="#">Home Cleaning</a ></li>
+          <li><a href="#">Deep Cleaning</a ></li>
+          <li><a href="#">Move-In/Move-Out Cleaning</a ></li>
+          <li><a href="#">Office & Commercial Cleaning</a ></li>
+          <li><a href="#">Pet-Friendly Services</a ></li>
+          <li><a href="#">Eco-Friendly Cleaning</a ></li>
+          <li><a href="#">Subscription Plans</a ></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Booking Process</a ></li>
+          <li><a href="#">Smart Chat (Bot & Human)</a ></li>
+          <li><a href="#">Real-Time Cleaner Tracking</a ></li>
+          <li><a href="#">Pricing & Packages</a ></li>
+          <li><a href="#">Customer Reviews</a ></li>
+          <li><a href="#">Multi-language Support</a ></li>
+          <li><a href="#">Service Recommendations</a ></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">How-To Guides</a ></li>
+          <li><a href="#">FAQ</a ></li>
+          <li><a href="#">Customer Support</a ></li>
+          <li><a href="#">Cleaning Tips & Articles</a ></li>
+          <li><a href="#">Terms & Policies</a ></li>
+          <li><a href="#">Invoices & Billing</a ></li>
+          <li><a href="#">Feedback & Reporting</a ></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</footer>
+    </div>
+</body>
+</html>
