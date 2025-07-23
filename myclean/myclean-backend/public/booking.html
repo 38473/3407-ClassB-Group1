@@ -173,6 +173,37 @@
         </style>
         
         <script>
+          console.log("Requesting location...");
+
+            // Try to automatically fetch user's location and fill in the address field
+  window.addEventListener("load", () => {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      async function(position) {
+        const { latitude, longitude } = position.coords;
+        console.log("User location:", latitude, longitude);
+
+        // Fetch address from OpenStreetMap
+        try {
+          const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
+          const data = await response.json();
+          if (data.address) {
+            const address = `${data.address.road || ''} ${data.address.house_number || ''}, ${data.address.city || data.address.town || data.address.village || ''}, ${data.address.country || ''}`;
+            document.getElementById("address").value = address;
+          }
+        } catch (err) {
+          console.warn("Reverse geocoding failed:", err);
+        }
+      },
+      function(error) {
+        console.warn("Geolocation error:", error.message);
+      }
+    );
+  } else {
+    console.warn("Geolocation not supported.");
+  }
+});
+
   document.getElementById("bookingForm").addEventListener("submit", async function(event) {
       event.preventDefault(); 
       let isValid = true;
