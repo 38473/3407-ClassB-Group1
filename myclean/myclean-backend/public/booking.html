@@ -52,8 +52,8 @@
 
         
                 <label for="mobile">Mobile Phone Number</label>
-                <input type="tel" id="mobile" name="mobile" placeholder="e.g. 123456" required>
-                <div class="error" id="mobileError">Please enter a valid 6-digit phone number.</div>
+                <input type="tel" id="mobile" name="mobile" placeholder="e.g. 12345678" required>
+                <div class="error" id="mobileError">Please enter a valid 8-digit phone number.</div>
         
                 <label for="date">Service Date</label>
                 <input type="date" id="date" name="date" required>
@@ -183,7 +183,7 @@
           isValid = false;
       }
 
-      // 先隐藏所有错误
+   
       document.querySelectorAll(".error").forEach(error => error.style.display = "none");
 
       const address = document.getElementById("address").value.trim();
@@ -196,7 +196,7 @@
           isValid = false;
       }
 
-      const phoneRegex = /^[0-9]{6}$/;
+      const phoneRegex = /^[0-9]{8}$/;
       if (!phoneRegex.test(mobile)) {
           document.getElementById("mobileError").style.display = "block";
           isValid = false;
@@ -214,25 +214,43 @@
 
       if (isValid) {
           try {
-              const response = await fetch('/api/bookings', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({
-                      serviceType,
-                      address,
-                      mobile,
-                      datetime: date + ' ' + time,
-                      userId: 1  // 这里写死了User_ID，后续你可以动态传
-                  })
-              });
+              const userIdRaw = localStorage.getItem('myclean_user_id');
+    const userId = parseInt(userIdRaw, 10);
+
+    if (!userId || isNaN(userId)) {
+      alert("Please log in before booking.");
+      return;
+    }
+
+    const response = await fetch('/api/bookings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        serviceType,
+        address,
+        mobile,
+        datetime: date + ' ' + time,
+        userId: userId
+      })
+    });
 
               if (response.ok) {
                   const data = await response.json();
                   console.log('Booking saved with ID:', data.insertId);
                   document.getElementById("successModal").classList.remove("hidden");
                   document.getElementById("bookingForm").reset();
+                  sessionStorage.setItem("bookingData", JSON.stringify({
+                    serviceType,
+                    address,
+                    mobile,
+                    date,
+                    time
+                }));
+
+                // ✅ Go to payment.html
+                window.location.href = "payment.html";
               } else {
                   alert('Failed to save booking.');
               }
@@ -272,14 +290,14 @@
       <div class="footer-column">
         <h4>Use cases</h4>
         <ul>
-          <li><a href="#">Home Cleaning</a ></li>
-          <li><a href="#">Deep Cleaning</a ></li>
-          <li><a href="#">Move-In/Move-Out Cleaning</a ></li>
-          <li><a href="#">Office & Commercial Cleaning</a ></li>
-          <li><a href="#">Pet-Friendly Services</a ></li>
-          <li><a href="#">Eco-Friendly Cleaning</a ></li>
-          <li><a href="#">Subscription Plans</a ></li>
-        </ul>
+              <li><a href="about.html#home_cleaning">Home Cleaning</a></li>
+              <li><a href="about.html#deep_cleaning">Deep Cleaning</a></li>
+              <li><a href="about.html#move_cleaning">Move-In/Move-Out Cleaning</a></li>
+              <li><a href="about.html#office_cleaning">Office & Commercial Cleaning</a></li>
+              <li><a href="about.html#pet_cleaning">Pet-Friendly Services</a></li>
+              <li><a href="about.html#other_cleaning">Eco-Friendly Cleaning</a></li>
+              <li><a href="#">Subscription Plans</a></li>
+            </ul>
       </div>
 
       <div class="footer-column">
