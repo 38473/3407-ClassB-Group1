@@ -14,14 +14,12 @@ const aiResponses = [
   "Is there anything specific you'd like to know about our cleaning services?"
 ];
 
-// Check if the agent is online based on working hours (9 AM - 5 PM)
+// Agent status
 function isAgentOnline() {
   const now = new Date();
   const currentHour = now.getHours();
   return currentHour >= 9 && currentHour < 17;
 }
-
-// Update the agent status indicator and text
 function updateAgentStatus() {
   if (isAgentOnline()) {
     statusIndicator.style.backgroundColor = 'green';
@@ -32,7 +30,7 @@ function updateAgentStatus() {
   }
 }
 
-// Save chat history to localStorage
+// Save chat history
 function saveChatHistory() {
   const messages = Array.from(chatBox.children).map(msg => {
     const bubble = msg.querySelector('div');
@@ -43,8 +41,18 @@ function saveChatHistory() {
       datetime: new Date().toISOString()
     };
   });
+
   localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(messages));
+
   const sessionId = localStorage.getItem('myclean_current_session');
+  if (sessionId) {
+    const sessions = JSON.parse(localStorage.getItem('myclean_chat_sessions') || '{}');
+    if (sessions[sessionId]) {
+      sessions[sessionId].messages = messages;
+      localStorage.setItem('myclean_chat_sessions', JSON.stringify(sessions));
+    }
+  }
+
   const userId = localStorage.getItem('myclean_user_id');
   if (sessionId && userId) {
     fetch('/api/chat/message', {
@@ -54,7 +62,7 @@ function saveChatHistory() {
     })
     .then(res => res.json())
     .then(data => {
-      if(data.message) {
+      if (data.message) {
         console.log(data.message);
       } else {
         console.error('Save chat failed:', data.error);
@@ -64,15 +72,16 @@ function saveChatHistory() {
   }
 }
 
-// Load chat history from localStorage
+// Load chat history (仅恢复，不加欢迎语)
 function loadChatHistory() {
   const saved = localStorage.getItem(CHAT_HISTORY_KEY);
-  if (!saved) return;
-  const messages = JSON.parse(saved);
-  messages.forEach(msg => addMessage(msg.text, msg.isUser, msg.isAgent));
+  if (saved) {
+    const messages = JSON.parse(saved);
+    messages.forEach(msg => addMessage(msg.text, msg.isUser, msg.isAgent));
+  }
 }
 
-// Add a message bubble to the chat box
+// Add message
 function addMessage(text, isUser = false, isAgent = false) {
   const message = document.createElement('div');
   message.className = isUser ? 'text-right' : 'text-left';
@@ -89,10 +98,10 @@ function addMessage(text, isUser = false, isAgent = false) {
   chatBox.appendChild(message);
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  saveChatHistory(); // Save after adding each message
+  saveChatHistory();
 }
 
-// Simulate typing effect for AI responses split into multiple lines
+// Typing animation
 function addTypingMessage(lines) {
   if (!lines || lines.length === 0) return;
 
@@ -126,7 +135,7 @@ function addTypingMessage(lines) {
   typeLine();
 }
 
-// AI reply logic based on user input
+// AI reply logic
 function aiReply(userMessage) {
   const lowerMessage = userMessage.toLowerCase();
 
@@ -178,7 +187,7 @@ function aiReply(userMessage) {
   }, 1000);
 }
 
-// Handle form submit event for sending messages
+// Form submit
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const text = input.value.trim();
@@ -189,10 +198,7 @@ form.addEventListener('submit', (e) => {
   }
 });
 
+// === Init ===
 updateAgentStatus();
 loadChatHistory();
-if (!localStorage.getItem(CHAT_HISTORY_KEY)) {
-  addMessage(aiResponses[0], false);
-}
-
 setInterval(updateAgentStatus, 60000);
