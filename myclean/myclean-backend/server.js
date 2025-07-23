@@ -2,11 +2,11 @@
 const express = require('express');
 const path = require('path');
 const bookingRoutes = require('./addBooking'); 
-const pool = require('./db'); // 数据库连接模块
+const pool = require('./db'); // Database connection module
 
 const app = express();
 
-// 中间件
+// middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -15,10 +15,10 @@ app.use((req, res, next) => {
 });
 
 
-// 静态文件目录
+// Static file directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 注册用户
+// Registered User
 app.post('/api/register', async (req, res) => {
   console.log('POST /api/register 接收到请求');
   console.log('register route hit');
@@ -26,11 +26,11 @@ app.post('/api/register', async (req, res) => {
 
   try {
     const sql = `
-      INSERT INTO User (User_fname, User_email, User_password)
+      INSERT INTO User (User_name, User_email, User_password)
       VALUES (?, ?, ?)
     `;
     const [result] = await pool.query(sql, [username, email, password]);
-    console.log('插入结果:', result);
+    console.log('result:', result);
     res.status(201).json({ success: true, userId: result.insertId });
   } catch (err) {
     console.error('❌ Error during registration:', err);
@@ -48,7 +48,7 @@ app.post('/api/login', async (req, res) => {
     );
 
     if (rows.length === 1) {
-      // 登录成功，返回 User_ID
+      // Login successful, return User_ID
       res.json({ success: true, userId: rows[0].User_ID });
     } else {
       res.status(401).json({ success: false, message: 'Invalid credentials' });
@@ -60,10 +60,10 @@ app.post('/api/login', async (req, res) => {
 });
 
 
-// ✅ 注册 booking 路由，前缀为 /api
+// ✅Register the booking route with the prefix /api
 app.use('/api', bookingRoutes);
 
-// 页面路由
+// Page Routing
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -88,20 +88,20 @@ app.get('/setting', (req, res) => {
 
 
 
-// 聊天消息接口
+// Chat message interface
 app.post('/api/chat/message', async (req, res) => {
   try {
     let { content, sender, datetime, sessionId, userId } = req.body;
 
-    // 如果 sessionId 是带前缀的字符串，比如 "session_1752729382520"
+    // If sessionId is a string with a prefix, such as "session_1752729382520"
     if (typeof sessionId === 'string' && sessionId.startsWith('session_')) {
       sessionId = Number(sessionId.replace('session_', ''));
     } else {
-      // 尝试直接转换成数字
+      // Try converting directly to numbers
       sessionId = Number(sessionId);
     }
 
-    userId = Number(userId); // 确保 userId 是数字
+    userId = Number(userId); // Make sure userId is a number
 
     if (isNaN(sessionId) || isNaN(userId)) {
       return res.status(400).json({ error: 'Invalid sessionId or userId' });
@@ -131,7 +131,7 @@ app.get('/api/chat/messages', async (req, res) => {
   }
 });
 
-// 启动服务器
+// Start the server
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
