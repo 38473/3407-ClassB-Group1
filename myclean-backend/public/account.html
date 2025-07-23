@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>My Clean</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ========== Payment Methods Fix =========== */
+    .payment-methods {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .payment-methods li {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e7eb;
+      width: 100%;
+    }
+  
+    .payment-methods li:last-child {
+      border-bottom: none;
+    }
+  
+    .payment-methods .actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto; 
+      white-space: nowrap;
+    }
+
+    .setting-item p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+    /* ========== Security Settings Font Size Fix =========== */
+    #security .setting-item p {
+      font-size: 1.25rem; 
+    }
+  
+    .card > *:not(h3) {
+      margin-top: 38px;
+    }
+  </style>
+  
+</head>
+<body>
+<div id="container">
+  <header>
+    <a href="index.html"><img src="images/myclean.png" alt="My Clean logo" height="70" width="96"></a>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="booking.html">Booking</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="payment.html">Payment</a></li>
+      <li><a href="service.html">Service</a></li>
+      <li><a href="account.html" class="active">Account</a></li>
+    </ul>
+    <div class="auth-buttons">
+      <a href="signin.html" class="btn btn-outline">Sign in</a>
+      <a href="register.html" class="btn btn-primary">Register</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <div class="account-page">
+      <h2>User Account</h2>
+
+
+      <!-- Tab Content -->
+      <div class="tab-content active" id="profile">
+        <section class="card">
+          <h3>Account Information</h3>
+          <form>
+            <label>Full Name</label>
+            <input type="text" value="John Doe">
+
+            <label>Email Address</label>
+            <input type="email" value="john@example.com">
+
+            <label>Phone Number</label>
+            <input type="tel" value="+1 555 123 4567">
+
+            <button type="submit">Save Changes</button>
+          </form>
+        </section>
+
+        <section class="card">
+          <h3>Manage Addresses</h3>
+          <ul class="address-list">
+            <li>
+              <div class="address-info">
+                <p>123 Main St, Cityville <span>(Default)</span></p>
+              </div>
+              <div class="address-actions">
+                <button>Edit</button>
+                <button>Set as Default</button>
+              </div>
+            </li>
+            <li>
+              <div class="address-info">
+                <p>456 Oak Ave, Townsville</p>
+              </div>
+              <div class="address-actions">
+                <button>Edit</button>
+                <button>Set as Default</button>
+              </div>
+            </li>
+          </ul>
+          <button class="btn-secondary">Add New Address</button>
+        </section>
+      </div>
+
+
+        <section class="card">
+          <h3>Security Settings</h3>
+          <div class="setting-item">
+            <p>Password: *********** <a href="#">Change Password</a></p>
+          </div>
+          <div class="setting-item">
+            <p>Two-Factor Authentication: <span class="status disabled">Disabled</span> <a href="#">Enable</a></p>
+          </div>
+
+        </section>
+
+        <section class="card danger-zone">
+          <h3>Logout & Account Management</h3>
+          <button onclick="logout()">Log Out</button>
+          <button onclick="deleteAccount()" class="danger">Delete My Account</button>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo"/>
+        <div class="social-icons">
+          <a href="#"><img src="images/x-icon.jpg" alt="X/Twitter"></a>
+          <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a>
+          <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a>
+          <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Use cases</h4>
+          <ul>
+            <li><a href="#">Home Cleaning</a></li>
+            <li><a href="#">Deep Cleaning</a></li>
+            <li><a href="#">Move-In/Move-Out Cleaning</a></li>
+            <li><a href="#">Office & Commercial Cleaning</a></li>
+            <li><a href="#">Pet-Friendly Services</a></li>
+            <li><a href="#">Eco-Friendly Cleaning</a></li>
+            <li><a href="#">Subscription Plans</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#">Booking Process</a></li>
+            <li><a href="#">Smart Chat (Bot & Human)</a></li>
+            <li><a href="#">Real-Time Cleaner Tracking</a></li>
+            <li><a href="#">Pricing & Packages</a></li>
+            <li><a href="#">Customer Reviews</a></li>
+            <li><a href="#">Multi-language Support</a></li>
+            <li><a href="#">Service Recommendations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">How-To Guides</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Customer Support</a></li>
+            <li><a href="#">Cleaning Tips & Articles</a></li>
+            <li><a href="#">Terms & Policies</a></li>
+            <li><a href="#">Invoices & Billing</a></li>
+            <li><a href="#">Feedback & Reporting</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function getCurrentUserId() {
+  return sessionStorage.getItem('userId');  
+}
+
+
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-link");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    
+        if (tabName === 'bookings') {
+            loadBookings(); // 切换到 Bookings 时加载数据
+        }
+    }
+    
+    async function loadBookings() {
+  const container = document.querySelector("#upcomingAppointments");
+  if (!container) return;
+
+  container.innerHTML = "<p>Loading appointments...</p>";
+
+  // 假设你有某种方法获取当前登录用户ID，写成getCurrentUserId()示范：
+  const userId = getCurrentUserId(); 
+  if (!userId) {
+    container.innerHTML = "<p>Please login to see your bookings.</p>";
+    return;
+  }
+
+  try {
+    const response = await fetch(`/api/bookings?userId=${userId}`);
+    if (!response.ok) throw new Error('Failed to load bookings');
+    const bookings = await response.json();
+
+    // 分未来预约和历史预约
+    const now = new Date();
+
+    const upcoming = bookings.filter(b => new Date(b.Reservation_datetime) > now);
+    const history = bookings.filter(b => new Date(b.Reservation_datetime) <= now);
+
+    // 渲染未来预约
+    if (upcoming.length === 0) {
+      container.innerHTML = "<p>No upcoming appointments.</p>";
+    } else {
+      container.innerHTML = '';
+      upcoming.forEach(b => {
+        const dateObj = new Date(b.Reservation_datetime);
+        const html = `
+          <div class="appointment-card">
+            <p><strong>Date:</strong> ${dateObj.toLocaleDateString()}</p>
+            <p><strong>Time:</strong> ${dateObj.toLocaleTimeString()}</p>
+            <p><strong>Service:</strong> ${b.Reservation_service_type}</p>
+            <p><strong>Address:</strong> ${b.Reservation_address}</p>
+            <p><strong>Phone:</strong> ${b.Reservation_phone_number}</p>
+            <div class="appointment-actions">
+              <button>Reschedule</button>
+              <button>Cancel</button>
+              <button>Contact</button>
+            </div>
+          </div>`;
+        container.insertAdjacentHTML('beforeend', html);
+      });
+    }
+
+    // 历史预约用你已有的loadBookingHistory渲染（或合并改写）
+    loadBookingHistory(history);
+
+  } catch (error) {
+    container.innerHTML = `<p>Error loading bookings: ${error.message}</p>`;
+  }
+}
+
+    
+   function loadBookingHistory(history) {
+  const tableBody = document.querySelector("#bookings table tbody");
+  if (!tableBody) return;
+  tableBody.innerHTML = ""; // 清空旧数据
+  if (!history || history.length === 0) {
+    tableBody.innerHTML = "<tr><td colspan='5'>No booking history found.</td></tr>";
+    return;
+  }
+  history.forEach(booking => {
+    const dateObj = new Date(booking.Reservation_datetime);
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${dateObj.toLocaleDateString()}</td>
+      <td>${booking.Reservation_service_type}</td>
+      <td>Completed</td>  <!-- 这里你可以根据实际状态改 -->
+      <td>$89.99</td>      <!-- 价格需你补充 -->
+      <td><a href="#">Details</a> | <a href="#">Rebook</a></td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const activeTab = document.querySelector('.tab-link.active');
+        if (activeTab && activeTab.textContent.trim() === 'Bookings') {
+            loadBookings();
+            loadBookingHistory();
+        }
+    });
+    </script>    
+</div>
+</body>
+</html>

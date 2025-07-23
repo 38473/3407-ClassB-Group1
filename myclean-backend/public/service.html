@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>My Clean</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 20px;
+        }
+
+        .service-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .service-description {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .service-price {
+            font-size: 16px;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <a href="index.html">
+                <img src="images/myclean.png" alt="My Clean logo" height="70" width="96">
+            </a>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li><a href="service.html" class="active">Service</a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="signin.html" class="btn btn-outline">Sign in</a>
+                <a href="register.html" class="btn btn-primary">Register</a>
+            </div>
+        </nav>
+
+        <main>
+            <div id="intro">
+                <h2>Our Services</h2>
+                <p>Choose from our range of professional cleaning services tailored to your needs.</p>
+
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card">
+                        <img src="images/homeclean.jpeg" alt="Home Cleaning" class="service-image">
+                        <div class="service-content">
+                            <div class="service-title">Home Cleaning</div>
+                            <div class="service-description">Ideal for regular maintenance cleaning in residential homes. Includes dusting, vacuuming, mopping, and basic kitchen/bathroom cleaning.</div>
+                            <div class="service-price">$50/hour</div>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card">
+                        <img src="images/deepclean.jpeg" alt="Deep Cleaning" class="service-image">
+                        <div class="service-content">
+                            <div class="service-title">Deep Cleaning</div>
+                            <div class="service-description">A more thorough clean focusing on hard-to-reach areas, appliances, baseboards, windowsills, and sanitizing surfaces. Perfect for seasonal or post-renovation cleanups.</div>
+                            <div class="service-price">$65/hour</div>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card">
+                        <img src="images/moveclean.jpeg" alt="Move-In/Move-Out Cleaning" class="service-image">
+                        <div class="service-content">
+                            <div class="service-title">Move-In/Move-Out Cleaning</div>
+                            <div class="service-description">Designed for tenants and landlords. Ensures the property is spotless before moving in or after vacating. Includes all standard cleaning tasks plus appliance cleaning and window wiping.</div>
+                            <div class="service-price">From $199 (flat rate)</div>
+                        </div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="service-card">
+                        <img src="images/officeclean.jpeg" alt="Office & Commercial Cleaning" class="service-image">
+                        <div class="service-content">
+                            <div class="service-title">Office & Commercial Cleaning</div>
+                            <div class="service-description">Professional cleaning for offices, shops, and commercial spaces. Includes common areas, restrooms, floors, and glass surfaces. Available during or after business hours.</div>
+                            <div class="service-price">Starting at $120/session</div>
+                        </div>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="service-card">
+                        <img src="images/petclean.jpg" alt="Pet-Friendly Services" class="service-image">
+                        <div class="service-content">
+                            <div class="service-title">Pet-Friendly Services</div>
+                            <div class="service-description">Perfect for pet owners! Our cleaners use pet-safe products and focus on removing pet hair, dander, and odor from floors, furniture, and upholstery.</div>
+                            <div class="service-price">$60/hour</div>
+                        </div>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="service-card">
+                        <img src="images/service-eco-friendly.jpeg" alt="Eco-Friendly Cleaning" class="service-image">
+                        <div class="service-content">
+                            <div class="service-title">Eco-Friendly Cleaning</div>
+                            <div class="service-description">Use of environmentally safe, non-toxic cleaning agents. Great for families with children, pets, or those who care about sustainability and indoor air quality.</div>
+                            <div class="service-price">$55/hour</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-container">
+
+                <!-- Left Column: Logo & Social Icons -->
+                <div class="footer-brand">
+                    <img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo" />
+                    <div class="social-icons">
+                        <a href=" "><img src="images/x-icon.jpg" alt="X/Twitter"></a>
+                        <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a>
+                        <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a>
+                        <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a>
+                    </div>
+                </div>
+
+                <!-- Center Columns: Links -->
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Use cases</h4>
+                        <ul>
+                            <li><a href="#">Home Cleaning</a></li>
+                            <li><a href="#">Deep Cleaning</a></li>
+                            <li><a href="#">Move-In/Move-Out Cleaning</a></li>
+                            <li><a href="#">Office & Commercial Cleaning</a></li>
+                            <li><a href="#">Pet-Friendly Services</a></li>
+                            <li><a href="#">Eco-Friendly Cleaning</a></li>
+                            <li><a href="#">Subscription Plans</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#">Booking Process</a></li>
+                            <li><a href="#">Smart Chat (Bot & Human)</a></li>
+                            <li><a href="#">Real-Time Cleaner Tracking</a></li>
+                            <li><a href="#">Pricing & Packages</a></li>
+                            <li><a href="#">Customer Reviews</a></li>
+                            <li><a href="#">Multi-language Support</a></li>
+                            <li><a href="#">Service Recommendations</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">How-To Guides</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Customer Support</a></li>
+                            <li><a href="#">Cleaning Tips & Articles</a></li>
+                            <li><a href="#">Terms & Policies</a></li>
+                            <li><a href="#">Invoices & Billing</a></li>
+                            <li><a href="#">Feedback & Reporting</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
