@@ -20,10 +20,12 @@ Payment page
 ![1ede992ea657e8f4dd174647c8454260](https://github.com/user-attachments/assets/bb403a1e-cb92-4887-9f3e-f21968eb1087)
 
 Services page
-<img width="431" height="577" alt="services" src="https://github.com/user-attachments/assets/6701fa9b-2a2b-4ca3-9181-5e08ee4f0de2" />
+
+<img width="431" height="577" alt="services" src="https://github.com/user-attachments/assets/b37c8572-0d14-437b-ab10-e7987b498d39" />
 
 
 Account page
+
 ![account](https://github.com/user-attachments/assets/e6c42713-11e5-4d3b-a96b-2e8482c22d85)
 
 
