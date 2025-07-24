@@ -1,4 +1,4 @@
-# Prototype
+![account](https://github.com/user-attachments/assets/385fa55c-8305-4ca2-8d81-fc9374530d61)# Prototype
 
 Home Page
 
@@ -20,10 +20,19 @@ Payment page
 
 ![1ede992ea657e8f4dd174647c8454260](https://github.com/user-attachments/assets/bb403a1e-cb92-4887-9f3e-f21968eb1087)
 
+Services page
+<img width="431" height="577" alt="services" src="https://github.com/user-attachments/assets/6701fa9b-2a2b-4ca3-9181-5e08ee4f0de2" />
+
+
+Account page
+![account](https://github.com/user-attachments/assets/e6c42713-11e5-4d3b-a96b-2e8482c22d85)
+
+
 # Database-ERD
 
 
-![c9dd43aacdb45e4aa6c150e6a92fd368](https://github.com/user-attachments/assets/af11f746-f3b1-4aa1-8cb0-6ff1c5954166)
+![WechatIMG4243](https://github.com/user-attachments/assets/e479d2c2-2691-465c-8675-453901704e0a)
+
 
 
 # UML
