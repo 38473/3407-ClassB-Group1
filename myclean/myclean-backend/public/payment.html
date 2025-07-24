@@ -50,12 +50,12 @@
          <section class="mb-6">
   <h2 class="text-xl font-semibold mb-2">Order Summary</h2>
   <ul class="space-y-2 text-gray-700">
-    <li>Service: Premium Home Cleaning</li>
+    <li><strong>Service:</strong> <span id="summary-service">N/A</span></li>
     <li><strong>Address:</strong> <span id="summary-address">N/A</span></li>
     <li><strong>Mobile:</strong> <span id="summary-mobile">N/A</span></li>
     <li><strong>Date:</strong> <span id="summary-date">N/A</span></li>
     <li><strong>Time:</strong> <span id="summary-time">N/A</span></li>
-    <li>Total: <span class="font-medium">$120.00</span></li>
+    <li>Amount: <span class="font-medium">$120.00</span></li>
   </ul>
 </section>
 
@@ -85,10 +85,19 @@
 
   <!-- Scripts -->
   <script>
-    // 获取 sessionStorage 中的预订信息
+   
+    const serviceNames = {
+    home_cleaning: "Home Cleaning",
+    deep_cleaning: "Deep Cleaning",
+    move_cleaning: "Move-In/Move-Out Cleaning",
+    office_cleaning: "Office & Commercial Cleaning",
+    pet_friendly: "Pet-Friendly Services",
+    package: "Custom Packages & Subscriptions"
+  };
+  // 获取 sessionStorage 中的预订信息
   const bookingData = JSON.parse(sessionStorage.getItem("bookingData"));
-
-  if (bookingData) {
+   if (bookingData) {
+    document.getElementById("summary-service").textContent = serviceNames[bookingData.serviceType] || "N/A";
     document.getElementById("summary-address").textContent = bookingData.address || "N/A";
     document.getElementById("summary-mobile").textContent = bookingData.mobile || "N/A";
     document.getElementById("summary-date").textContent = bookingData.date || "N/A";
@@ -99,8 +108,12 @@
 Transaction ID: TXN-${Math.random().toString(36).substr(2, 9)}
 Date: ${new Date().toLocaleString()}
 Payment Method: ${paymentMethod}
+Service: ${serviceNames[bookingData.serviceType] || "N/A"}
+Address: ${bookingData.address || "N/A"}
+Mobile: ${bookingData.mobile || "N/A"}
+Date: ${bookingData.date || "N/A"}
+Time: ${bookingData.time || "N/A"}
 Amount: $120.00
-Service: Premium Home Cleaning
 Status: ✅ Paid
 
 Thank you for using my clean!
