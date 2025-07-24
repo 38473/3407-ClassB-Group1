@@ -11,7 +11,6 @@
 
 ### 🖥️ Back-end Tools
 
-- **Java** – Implements backend business logic and server functions.
 - **JavaScript (Node.js)** – Used to connect to the database and build server applications (e.g. server.js is used to build server applications, db.js is used to connect to the database).
 - **MySQL Workbench** – A graphical database management tool that assists developers in database structure management and SQL testing.
 
@@ -26,10 +25,9 @@
 
 ### 💬 Programming Languages
 
-- **JavaScript** – Main back-end programming language.
+- **JavaScript** – Main back-end programming language and for interactive front-end features.
 - **HTML** – For building front-end web page structure.
 - **CSS** – For styling the front-end interface.
-- **JavaScript** – For interactive front-end features.
 - **MySQL** – For database querying and manipulation.
 
 
