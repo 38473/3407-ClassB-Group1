@@ -137,54 +137,68 @@ function addTypingMessage(lines) {
 
 // AI reply logic
 function aiReply(userMessage) {
-  const lowerMessage = userMessage.toLowerCase();
+  const isChinese = /[\u4e00-\u9fa5]/.test(userMessage); // 检查是否包含中文
+  const msg = userMessage.trim();
 
-  if (lowerMessage.includes("transfer to agent")) {
-    if (isAgentOnline()) {
-      addMessage("[Agent] You are now connected with a live agent.", false, true);
-    } else {
-      addMessage("The support team is currently offline. Our working hours are from 9 AM to 5 PM.", false);
-    }
-    return;
-  }
+  const serviceKeywords = isChinese
+    ? ["服务", "你们提供", "有哪些服务", "清洁服务", "打扫", "保洁", "家政", "清理"]
+    : ["services", "what do you offer", "what services", "cleaning services", "do you provide", "what kind of cleaning"];
 
-  if (
-    lowerMessage.includes("services") ||
-    lowerMessage.includes("what do you offer") ||
-    lowerMessage.includes("what services") ||
-    lowerMessage.includes("cleaning services") ||
-    lowerMessage.includes("do you provide") ||
-    lowerMessage.includes("what kind of cleaning")
-  ) {
-    const serviceLines = [
-      "We are committed to making your space spotless and stress-free.",
-      "We offer a wide range of professional cleaning services tailored to your needs:",
-      "✓ Home Cleaning – Regular or one-time cleaning for apartments, condos, and houses.",
-      "✓ Deep Cleaning – Thorough top-to-bottom cleaning for kitchens, bathrooms, and other high-use areas.",
-      "✓ Move-In / Move-Out Cleaning – Ensure a fresh start or smooth transition with detailed property cleaning.",
-      "✓ Office & Commercial Cleaning – Keep your workplace clean, healthy, and professional.",
-      "✓ Pet-Friendly Cleaning – Specialized care for homes with furry friends.",
-      "✓ Custom Packages & Subscriptions – Flexible cleaning plans to fit your schedule and budget."
-    ];
+  if (serviceKeywords.some(k => msg.includes(k))) {
+    const serviceLines = isChinese
+      ? [
+          "我们致力于为您打造干净、无忧的生活与工作环境。",
+          "我们提供多种专业清洁服务，满足不同需求：",
+          "✓ 家庭清洁 – 日常或定期打扫公寓、住宅和别墅。",
+          "✓ 深度清洁 – 对厨房、浴室等高频区域进行彻底清理。",
+          "✓ 搬入/搬出清洁 – 让您轻松入住或退房。",
+          "✓ 办公室与商业清洁 – 保持办公场所整洁与专业。",
+          "✓ 宠物友好清洁 – 适用于有宠物的家庭，去除毛发与异味。",
+          "✓ 定制套餐与订阅 – 灵活安排，省心省力。"
+        ]
+      : [
+          "We are committed to making your space spotless and stress-free.",
+          "We offer a wide range of professional cleaning services tailored to your needs:",
+          "✓ Home Cleaning – Regular or one-time cleaning for apartments, condos, and houses.",
+          "✓ Deep Cleaning – Thorough top-to-bottom cleaning for kitchens, bathrooms, and other high-use areas.",
+          "✓ Move-In / Move-Out Cleaning – Ensure a fresh start or smooth transition with detailed property cleaning.",
+          "✓ Office & Commercial Cleaning – Keep your workplace clean, healthy, and professional.",
+          "✓ Pet-Friendly Cleaning – Specialized care for homes with furry friends.",
+          "✓ Custom Packages & Subscriptions – Flexible cleaning plans to fit your schedule and budget."
+        ];
+
     addTypingMessage(serviceLines);
     return;
   }
 
-  const knownKeywords = [
-    "cleaning", "price", "service", "book", "schedule", "appointment",
-    "location", "available", "hours", "support", "chat", "payment", "refund"
-  ];
+  if (msg.toLowerCase().includes("transfer to agent") || msg.includes("转人工")) {
+    if (isAgentOnline()) {
+      addMessage(isChinese ? "[人工客服] 您已连接上客服人员。" : "[Agent] You are now connected with a live agent.", false, true);
+    } else {
+      addMessage(isChinese ? "客服目前离线，我们的工作时间是每天 9:00 至 17:00。" : "The support team is currently offline. Our working hours are from 9 AM to 5 PM.", false);
+    }
+    return;
+  }
 
-  const isRecognized = knownKeywords.some(keyword => lowerMessage.includes(keyword));
+  const knownKeywords = isChinese
+    ? ["清洁", "打扫", "保洁", "价格", "费用", "服务", "预约", "时间", "地点", "付款", "支付", "退款", "聊天", "人工"]
+    : ["cleaning", "price", "service", "book", "schedule", "appointment", "location", "available", "hours", "support", "chat", "payment", "refund"];
+
+  const isRecognized = knownKeywords.some(keyword => msg.toLowerCase().includes(keyword));
 
   setTimeout(() => {
     if (isRecognized) {
-      const reply = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+      const reply = isChinese
+        ? "您好，我是 My Clean 智能助理，很高兴为您服务！"
+        : "Hello! I'm the AI assistant from My Clean. How can I assist you today?";
       addMessage(reply, false);
     } else {
-      addMessage("I'm sorry, I didn't fully understand that. Could you please rephrase or ask something else?", false);
+      const fallback = isChinese
+        ? "对不起，我没太明白您的意思，可以换一种方式问我吗？"
+        : "I'm sorry, I didn't fully understand that. Could you please rephrase?";
+      addMessage(fallback, false);
     }
-  }, 1000);
+  }, 800);
 }
 
 // Form submit
