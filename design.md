@@ -1,4 +1,3 @@
-![account](https://github.com/user-attachments/assets/385fa55c-8305-4ca2-8d81-fc9374530d61)# Prototype
 
 Home Page
 
