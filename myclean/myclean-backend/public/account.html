@@ -20,11 +20,11 @@
       border-bottom: 1px solid #e5e7eb;
       width: 100%;
     }
-  
+
     .payment-methods li:last-child {
       border-bottom: none;
     }
-  
+
     .payment-methods .actions {
       display: flex;
       align-items: center;
@@ -34,20 +34,19 @@
     }
 
     .setting-item p {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     /* ========== Security Settings Font Size Fix =========== */
     #security .setting-item p {
       font-size: 1.25rem; 
     }
-  
+
     .card > *:not(h3) {
       margin-top: 38px;
     }
   </style>
-  
 </head>
 <body>
 <div id="container">
@@ -71,67 +70,80 @@
   </nav>
 
   <main>
-
     <div class="account-page">
       <h2>User Account</h2>
-
-
+  
       <!-- Tab Content -->
       <div class="tab-content active" id="profile">
         <section class="card">
           <h3>Account Information</h3>
-          <form>
+          <form id="accountForm">
             <label>Full Name</label>
-            <input type="text" value="John Doe">
-
+            <input type="text" id="fullName" value="John Doe">
+  
             <label>Email Address</label>
-            <input type="email" value="john@example.com">
-
+            <input type="email" id="email" value="john@example.com">
+  
             <label>Phone Number</label>
-            <input type="tel" value="+1 555 123 4567">
-
+            <input type="tel" id="phone" value="+1 555 123 4567" oninput="validatePhone(this)">
+  
             <button type="submit">Save Changes</button>
           </form>
         </section>
-
+  
         <section class="card">
           <h3>Manage Addresses</h3>
-          <ul class="address-list">
+          <ul class="address-list" id="addressList">
             <li>
               <div class="address-info">
-                <p>123 Main St, Cityville <span>(Default)</span></p>
+                <input type="text" value="123 Main St, Cityville" disabled>
               </div>
               <div class="address-actions">
-                <button>Edit</button>
-                <button>Set as Default</button>
+                <button onclick="editAddress(this)">Edit</button>
+                <button onclick="setDefaultAddress(this)">Set as Default</button>
               </div>
             </li>
             <li>
               <div class="address-info">
-                <p>456 Oak Ave, Townsville</p>
+                <input type="text" value="456 Oak Ave, Townsville" disabled>
               </div>
               <div class="address-actions">
-                <button>Edit</button>
-                <button>Set as Default</button>
+                <button onclick="editAddress(this)">Edit</button>
+                <button onclick="setDefaultAddress(this)">Set as Default</button>
               </div>
             </li>
           </ul>
-          <button class="btn-secondary">Add New Address</button>
+          <button class="btn-secondary" onclick="addNewAddress()">Add New Address</button>
         </section>
-      </div>
-
-
-        <section class="card">
+  
+        <section class="card" id="security">
           <h3>Security Settings</h3>
           <div class="setting-item">
-            <p>Password: *********** <a href="#">Change Password</a></p>
+            <p>Password: *********** <a href="#" onclick="togglePasswordForm(event)">Change Password</a></p>
+            <div id="passwordForm" style="display:none; margin-top: 10px;">
+              <input type="password" placeholder="Current Password" style="margin-bottom: 8px; width: 100%; padding: 6px;"><br>
+              <input type="password" placeholder="New Password" style="margin-bottom: 8px; width: 100%; padding: 6px;"><br>
+              <input type="password" placeholder="Confirm New Password" style="margin-bottom: 8px; width: 100%; padding: 6px;"><br>
+              <button type="button" onclick="saveNewPassword()">Save Password</button>
+            </div>
           </div>
           <div class="setting-item">
-            <p>Two-Factor Authentication: <span class="status disabled">Disabled</span> <a href="#">Enable</a></p>
+            <p>Two-Factor Authentication: <span id="2faStatus" class="status disabled">Disabled</span> <a href="#" onclick="toggle2FA()">Enable</a></p>
           </div>
-
         </section>
 
+        <h2>Feedback</h2>
+        <!-- 新增的 Feedback 表单区块 -->
+        <section class="card">
+          <div class="setting-item">
+            <p>Let us know how we can improve our service. We appreciate your feedback!</p>
+            <form id="feedbackForm" onsubmit="submitFeedback(event)">
+              <textarea id="userFeedback" rows="4" style="width: 100%; padding: 8px; margin-top: 10px;" placeholder="Type your feedback here..."></textarea>
+              <button type="submit" style="margin-top: 10px;">Submit Feedback</button>
+            </form>
+          </div>
+        </section>
+  
         <section class="card danger-zone">
           <h3>Logout & Account Management</h3>
           <button onclick="logout()">Log Out</button>
@@ -140,6 +152,7 @@
       </div>
     </div>
   </main>
+  
 
   <footer class="site-footer">
     <div class="footer-container">
@@ -197,117 +210,154 @@
   </footer>
 
   <script>
-    function getCurrentUserId() {
-  return sessionStorage.getItem('userId');  
-}
-
-
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].classList.remove("active");
-        }
-        tablinks = document.getElementsByClassName("tab-link");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
-        document.getElementById(tabName).classList.add("active");
-        evt.currentTarget.classList.add("active");
-    
-        if (tabName === 'bookings') {
-            loadBookings(); // 切换到 Bookings 时加载数据
-        }
-    }
-    
-    async function loadBookings() {
-  const container = document.querySelector("#upcomingAppointments");
-  if (!container) return;
-
-  container.innerHTML = "<p>Loading appointments...</p>";
-
-  // 假设你有某种方法获取当前登录用户ID，写成getCurrentUserId()示范：
-  const userId = getCurrentUserId(); 
-  if (!userId) {
-    container.innerHTML = "<p>Please login to see your bookings.</p>";
-    return;
-  }
-
-  try {
-    const response = await fetch(`/api/bookings?userId=${userId}`);
-    if (!response.ok) throw new Error('Failed to load bookings');
-    const bookings = await response.json();
-
-    // 分未来预约和历史预约
-    const now = new Date();
-
-    const upcoming = bookings.filter(b => new Date(b.Reservation_datetime) > now);
-    const history = bookings.filter(b => new Date(b.Reservation_datetime) <= now);
-
-    // 渲染未来预约
-    if (upcoming.length === 0) {
-      container.innerHTML = "<p>No upcoming appointments.</p>";
-    } else {
-      container.innerHTML = '';
-      upcoming.forEach(b => {
-        const dateObj = new Date(b.Reservation_datetime);
-        const html = `
-          <div class="appointment-card">
-            <p><strong>Date:</strong> ${dateObj.toLocaleDateString()}</p>
-            <p><strong>Time:</strong> ${dateObj.toLocaleTimeString()}</p>
-            <p><strong>Service:</strong> ${b.Reservation_service_type}</p>
-            <p><strong>Address:</strong> ${b.Reservation_address}</p>
-            <p><strong>Phone:</strong> ${b.Reservation_phone_number}</p>
-            <div class="appointment-actions">
-              <button>Reschedule</button>
-              <button>Cancel</button>
-              <button>Contact</button>
-            </div>
-          </div>`;
-        container.insertAdjacentHTML('beforeend', html);
-      });
-    }
-
-    // 历史预约用你已有的loadBookingHistory渲染（或合并改写）
-    loadBookingHistory(history);
-
-  } catch (error) {
-    container.innerHTML = `<p>Error loading bookings: ${error.message}</p>`;
-  }
-}
-
-    
-   function loadBookingHistory(history) {
-  const tableBody = document.querySelector("#bookings table tbody");
-  if (!tableBody) return;
-  tableBody.innerHTML = ""; // 清空旧数据
-  if (!history || history.length === 0) {
-    tableBody.innerHTML = "<tr><td colspan='5'>No booking history found.</td></tr>";
-    return;
-  }
-  history.forEach(booking => {
-    const dateObj = new Date(booking.Reservation_datetime);
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${dateObj.toLocaleDateString()}</td>
-      <td>${booking.Reservation_service_type}</td>
-      <td>Completed</td>  <!-- 这里你可以根据实际状态改 -->
-      <td>$89.99</td>      <!-- 价格需你补充 -->
-      <td><a href="#">Details</a> | <a href="#">Rebook</a></td>
-    `;
-    tableBody.appendChild(row);
-  });
-}
-
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        const activeTab = document.querySelector('.tab-link.active');
-        if (activeTab && activeTab.textContent.trim() === 'Bookings') {
-            loadBookings();
-            loadBookingHistory();
-        }
+    // 页面加载时从 localStorage 加载用户信息
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedName = localStorage.getItem('fullName') || 'John Doe';
+      const savedEmail = localStorage.getItem('email') || 'john@example.com';
+      const savedPhone = localStorage.getItem('phone') || '+1 555 123 4567';
+  
+      document.getElementById('fullName').value = savedName;
+      document.getElementById('email').value = savedEmail;
+      document.getElementById('phone').value = savedPhone;
     });
-    </script>    
+  
+    // 表单提交时保存数据到 localStorage
+    document.getElementById('accountForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+  
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+  
+      if (fullName && email && phone) {
+        localStorage.setItem('fullName', fullName);
+        localStorage.setItem('email', email);
+        localStorage.setItem('phone', phone);
+        alert('Changes saved successfully!');
+      } else {
+        alert('Please fill in all fields.');
+      }
+    });
+  
+    // 编辑地址
+    function editAddress(button) {
+      const li = button.closest('li');
+      const input = li.querySelector('.address-info input');
+      input.disabled = !input.disabled;
+      button.textContent = input.disabled ? 'Edit' : 'Save';
+      button.classList.toggle('editing');
+  
+      if (!input.disabled) {
+        input.focus();
+      } else {
+        // 可选：保存地址到 localStorage 或 API
+      }
+    }
+  
+    // 设置默认地址
+    function setDefaultAddress(button) {
+      const allButtons = document.querySelectorAll('.address-actions button:nth-child(2)');
+      allButtons.forEach(btn => {
+        btn.textContent = 'Set as Default';
+        btn.style.backgroundColor = '';
+      });
+  
+      button.textContent = 'Default';
+      button.style.backgroundColor = '#10b981';
+    }
+  
+    // 添加新地址
+    function addNewAddress() {
+      const addressList = document.getElementById('addressList');
+      const newLi = document.createElement('li');
+      newLi.innerHTML = `
+        <div class="address-info">
+          <input type="text" placeholder="Enter new address" disabled>
+        </div>
+        <div class="address-actions">
+          <button onclick="editAddress(this)">Edit</button>
+          <button onclick="setDefaultAddress(this)">Set as Default</button>
+        </div>
+      `;
+      addressList.appendChild(newLi);
+    }
+  
+    // 切换密码修改表单
+    function togglePasswordForm(e) {
+      e.preventDefault();
+      const form = document.getElementById('passwordForm');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+  
+    // 保存新密码
+    function saveNewPassword() {
+      alert('Password changed successfully!');
+      // 可在此处添加实际保存逻辑
+      document.getElementById('passwordForm').style.display = 'none';
+    }
+  
+    // 切换 2FA 状态
+    function toggle2FA() {
+      const status = document.getElementById('2faStatus');
+      if (status.classList.contains('disabled')) {
+        status.textContent = 'Enabled';
+        status.classList.remove('disabled');
+        status.classList.add('enabled');
+        status.style.color = 'green';
+        document.querySelector('#security .setting-item a').textContent = 'Disable';
+      } else {
+        status.textContent = 'Disabled';
+        status.classList.remove('enabled');
+        status.classList.add('disabled');
+        status.style.color = 'red';
+        document.querySelector('#security .setting-item a').textContent = 'Enable';
+      }
+    }
+  
+    // 登出功能
+    function logout() {
+      if (confirm('Are you sure you want to log out?')) {
+        localStorage.removeItem('fullName');
+        localStorage.removeItem('email');
+        localStorage.removeItem('phone');
+        alert('Logged out successfully.');
+        window.location.href = 'signin.html';
+      }
+    }
+  
+    // 删除账户
+    function deleteAccount() {
+      if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        localStorage.clear();
+        alert('Your account has been deleted.');
+        window.location.href = 'index.html';
+      }
+
+    
+    }
+
+    function submitFeedback(e) {
+    e.preventDefault();
+    const feedback = document.getElementById('userFeedback').value.trim();
+    if (feedback) {
+      alert('Thank you for your feedback!');
+      // 可选：发送到服务器或保存到 localStorage
+      document.getElementById('userFeedback').value = '';
+    } else {
+      alert('Please enter your feedback before submitting.');
+    }
+  }
+    
+  function validatePhone(input) {
+  const phoneRegex = /^\+65\d{8}$/;
+  if (input.value && !phoneRegex.test(input.value)) {
+    input.setCustomValidity('Phone must be +65 followed by 8 digits');
+  } else {
+    input.setCustomValidity('');
+  }
+}
+  </script>
+  
 </div>
 </body>
 </html>
