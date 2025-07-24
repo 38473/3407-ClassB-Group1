@@ -129,13 +129,32 @@ To do:
 * User Story 5 Task-4 (Yuye Guo)
 
 In progress:
-* User Story 8 Task-1 (Zihan Wang), 16/7/2025
 * User Story 8 Task-2 (Yuye Guo), 16/7/2025
-* User Story 8 Task-2 (Chenxi Wang), 16/7/2025
 
 Completed:
 * User Story 8 Task-1 (Zihan Wang), 16/7/2025
-* User Story 8 Task-2 (Chenxi Wang), 16/7/2025
+* User Story 8 Task-3 (Chenxi Wang), 16/7/2025
+
+### Week 8
+
+In progress:
+* User Story 3 Task-1 (Zihan Wang), 23/7/2025
+* User Story 3 Task-2 (Zihan Wang), 23/7/2025
+* User Story 3 Task-3 (Chenxi Wang), 23/7/2025
+* User Story 3 Task-4 (Yuye Guo), 23/7/2025
+* User Story 5 Task-2 (Yuye Guo), 23/7/2025
+
+Completed:
+* User Story 3 Task-1 (Zihan Wang), 24/7/2025
+* User Story 3 Task-2 (Zihan Wang), 24/7/2025
+* User Story 3 Task-3 (Chenxi Wang), 24/7/2025
+* User Story 3 Task-4 (Yuye Guo), 24/7/2025
+* User Story 5 Task-1 (Zihan Wang), 23/7/2025
+* User Story 5 Task-3 (Chenxi Wang), 23/7/2025
+* User Story 5 Task-4 (Yuye Guo), 23/7/2025
+* User Story 8 Task-1 (Zihan Wang), 16/7/2025
+* User Story 8 Task-3 (Chenxi Wang), 16/7/2025
+* User Story 8 Task-2 (Chenxi Wang), 23/7/2025
 
 ### Burn Down for iteration-2 (see chapter 4):
 Update this at least once per week
