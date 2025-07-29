@@ -64,9 +64,17 @@
 
 ### 📸 Screenshots:
 - **Phone number**
+- **Red-Green-Refactor Process for Phone Number Validation**
+<img width="1112" height="695" alt="截屏2025-07-29 17 09 27" src="https://github.com/user-attachments/assets/2c008c6f-6921-4009-a934-1bc0cb853c38" />
+<img width="1106" height="693" alt="截屏2025-07-29 17 12 01" src="https://github.com/user-attachments/assets/c8b0b83c-fa86-407f-92d9-4e6affb4d31b" />
+<img width="1109" height="692" alt="截屏2025-07-29 17 13 19" src="https://github.com/user-attachments/assets/3ef6a844-0a49-4c7a-af90-ae3343d97c83" />
 <img width="1512" height="982" alt="c6cc5efaf9e315e9feac68d72d91b4e1" src="https://github.com/user-attachments/assets/38c244fc-1d73-4c4d-a050-c05c8c5c2344" />
 
 - **Saving changes**
+- **Red-Green-Refactor Process for Saving changes**
+<img width="1110" height="693" alt="截屏2025-07-29 17 22 15" src="https://github.com/user-attachments/assets/dceffe14-2e5b-4650-96c5-b8fdf714d2aa" />
+<img width="1201" height="750" alt="截屏2025-07-29 17 23 33" src="https://github.com/user-attachments/assets/2d9601cc-931a-4a39-9e13-39bcc9d1ee76" />
+<img width="1201" height="750" alt="截屏2025-07-29 17 24 35" src="https://github.com/user-attachments/assets/4ce5d83f-b19c-4776-a07d-2f6bc5126341" />
 <img width="1512" height="982" alt="bc7ecb37b4dc17a2e3abca3561f74a2b" src="https://github.com/user-attachments/assets/eadc3770-749f-4985-85f4-4588c9f8a2c6" />
 
 
