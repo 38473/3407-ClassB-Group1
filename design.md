@@ -1,42 +1,50 @@
+# Prototype
+## Home Page
 
-Home Page
-
-![b9290fad9924f621a74095cd80c7593d](https://github.com/user-attachments/assets/f262def6-6279-4938-95ea-b3834ebdda34)
-
-About us page
-
-![d7caa6a38fafd35be47d860cc0919867](https://github.com/user-attachments/assets/22834727-2cfa-4d90-be2a-2932cdedbd4b)
-
-Booking page
-
-![d049c3463b48f8646eb9e06b991b61f7](https://github.com/user-attachments/assets/c8f8d156-c4b9-4d7c-bd2a-0c46242e0cee)
-
-Contact page
-
-![7942a7695b251d7cbf28270cc7bf1f66](https://github.com/user-attachments/assets/f3af5aa2-b6ca-4de5-9e54-802bbf1390ff)
-
-Payment page
-
-![1ede992ea657e8f4dd174647c8454260](https://github.com/user-attachments/assets/bb403a1e-cb92-4887-9f3e-f21968eb1087)
-
-Services page
-
-<img width="431" height="577" alt="services" src="https://github.com/user-attachments/assets/b37c8572-0d14-437b-ab10-e7987b498d39" />
+![image](https://github.com/user-attachments/assets/566c7290-fe06-42c9-aefe-cabfa9d1cf6b)
 
 
-Account page
+## About us page
 
-![account](https://github.com/user-attachments/assets/e6c42713-11e5-4d3b-a96b-2e8482c22d85)
+![image](https://github.com/user-attachments/assets/c841c702-3917-4fb4-9296-813c953ff30e)
+
+
+## Booking page
+
+![image](https://github.com/user-attachments/assets/f08c0bf7-b2cf-4d90-a6a7-1f3ae1916612)
+
+
+## Contact page
+
+![image](https://github.com/user-attachments/assets/805e6878-935f-4631-bd38-1e60c59706d6)
+
+
+## Payment page
+
+![image](https://github.com/user-attachments/assets/fbdd2b94-4f9b-41bc-aba6-33227ebe31f0)
+
+
+## Services page
+
+![image](https://github.com/user-attachments/assets/5d19102f-fde5-4791-b0e4-8a3fc2dc853a)
+
+
+## Account page
+
+<img width="1004" height="1240" alt="image" src="https://github.com/user-attachments/assets/a6955a3f-58ed-45bc-b9cd-60bef7774950" />
+
 
 
 # Database-ERD
 
 
-![WechatIMG4243](https://github.com/user-attachments/assets/e479d2c2-2691-465c-8675-453901704e0a)
+![image](https://github.com/user-attachments/assets/43d216f6-a891-4422-9e18-e26fc5039268)
+
 
 
 
 # UML
 
-![96cdd31e7be1f3ef5bc051ea7a3898ca](https://github.com/user-attachments/assets/323cf2dc-7516-4702-aadf-8931741a775e)
+<img width="1063" height="430" alt="image" src="https://github.com/user-attachments/assets/3ba66616-e1c9-4cc0-9ed9-4a5d27a44ec6" />
+
 
