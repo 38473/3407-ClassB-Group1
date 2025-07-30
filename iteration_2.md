@@ -12,47 +12,11 @@ Checklist:
 * Number of developers: 3
 * Total estimated amount of work: YY days
 
+
 # 3 User stories or tasks:
 
 
-**1. User Story 5:**
-
-   
-   Title: Give Feedback
-
-   Description: As a business owner, I would like to be able to provide feedback or report inaccuracies to help improve the service and performance of the MyClean website.
-
-   Priority: Low
-
-   Effort Estimate: 4 days
-
-* Task 1: 
-
-    Design and implement front-end feedback from UI
-
-    Estimated Time: 0.5 day
-
-* Task 2: 
-
-    Set up backend API endpoint to receive feedback submissions
-
-    Estimated Time: 1.5 day
-
-* Task 3: 
-
-    Implement basic validation and confirmation message for feedback form
-
-    Estimated Time: 1 day
-
-* Task 4: 
-
-    Add ‘Give Feedback’ or ‘Report an Issue’ button in the site footer or profile page
-
-    Estimated Time: 1 day
-
-
-
-**2. User Story 3:**
+**1. User Story 3:**
 
    Title: Multi-Languages
    
@@ -85,6 +49,38 @@ Checklist:
     Add language preference selector in user profile or site header
 
     Estimated Time: 0.5 day
+
+
+
+**2. User Story 5:**
+
+   
+   Title: Give Feedback
+
+   Description: As a business owner, I would like to be able to provide feedback or report inaccuracies to help improve the service and performance of the MyClean website.
+
+   Priority: Low
+
+   Effort Estimate: 4 days
+
+* Task 1: 
+
+    Design and implement front-end feedback from UI
+
+    Estimated Time: 0.5 day
+
+
+* Task 2: 
+
+    Implement basic validation and confirmation message for feedback form
+
+    Estimated Time: 1 day
+
+* Task 3: 
+
+    Add ‘Give Feedback’ or ‘Report an Issue’ button in the site footer or profile page
+
+    Estimated Time: 1 day
 
 
 
@@ -124,9 +120,8 @@ To do:
 * User Story 3 Task-3 (Chenxi Wang)
 * User Story 3 Task-4 (Yuye Guo)
 * User Story 5 Task-1 (Zihan Wang)
-* User Story 5 Task-2 (Yuye Guo)
-* User Story 5 Task-3 (Chenxi Wang)
-* User Story 5 Task-4 (Yuye Guo)
+* User Story 5 Task-2 (Chenxi Wang)
+* User Story 5 Task-3 (Yuye Guo)
 
 In progress:
 * User Story 8 Task-2 (Yuye Guo), 16/7/2025
@@ -142,7 +137,6 @@ In progress:
 * User Story 3 Task-2 (Zihan Wang), 23/7/2025
 * User Story 3 Task-3 (Chenxi Wang), 23/7/2025
 * User Story 3 Task-4 (Yuye Guo), 23/7/2025
-* User Story 5 Task-2 (Yuye Guo), 23/7/2025
 
 Completed:
 * User Story 3 Task-1 (Zihan Wang), 24/7/2025
@@ -150,16 +144,31 @@ Completed:
 * User Story 3 Task-3 (Chenxi Wang), 24/7/2025
 * User Story 3 Task-4 (Yuye Guo), 24/7/2025
 * User Story 5 Task-1 (Zihan Wang), 23/7/2025
-* User Story 5 Task-3 (Chenxi Wang), 23/7/2025
-* User Story 5 Task-4 (Yuye Guo), 23/7/2025
+* User Story 5 Task-2 (Chenxi Wang), 23/7/2025
+* User Story 5 Task-3 (Yuye Guo), 23/7/2025
 * User Story 8 Task-1 (Zihan Wang), 16/7/2025
 * User Story 8 Task-3 (Chenxi Wang), 16/7/2025
 * User Story 8 Task-2 (Chenxi Wang), 23/7/2025
 
+### Week 9
+
+Completed:
+* User Story 3 Task-1 (Zihan Wang), 24/7/2025
+* User Story 3 Task-2 (Zihan Wang), 24/7/2025
+* User Story 3 Task-3 (Chenxi Wang), 24/7/2025
+* User Story 3 Task-4 (Yuye Guo), 24/7/2025
+* User Story 5 Task-1 (Zihan Wang), 23/7/2025
+* User Story 5 Task-2 (Chenxi Wang), 23/7/2025
+* User Story 5 Task-3 (Yuye Guo), 23/7/2025
+* User Story 8 Task-1 (Zihan Wang), 16/7/2025
+* User Story 8 Task-2 (Chenxi Wang), 23/7/2025
+* User Story 8 Task-3 (Chenxi Wang), 16/7/2025
+
+
 ### Burn Down for iteration-2 (see chapter 4):
 Update this at least once per week
 * 4 weeks left, 7.5 days of estimated amount of work
-* 2 weeks left, xx days of estimated amount of work
-* 1 weeks left, xx days of estimated amount of work
-* 0 weeks left, xx days of estimated amount of work
+* 2 weeks left, 0 days of estimated amount of work
+* 1 week left, 0 days of estimated amount of work
+* 0 week left, 0 days of estimated amount of work
 * Actual Velocity: ?? 
