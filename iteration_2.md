@@ -172,3 +172,13 @@ Update this at least once per week
 * 1 week left, 0 days of estimated amount of work
 * 0 week left, 0 days of estimated amount of work
 * Actual Velocity: ?? 
+
+## System test
+After completing all tasks outlined in the user stories, we proceeded with system testing. During this phase, we identified several minor bugs. For instance, when the website was zoomed out, the components became cluttered and overlapped, as illustrated in Figure 1. To address this issue, we revised the code to enhance responsiveness, ensuring that the layout adapts properly and maintains an optimal display across all screen sizes and zoom levels.
+
+### Figure 1
+<img width="500" height="739" alt="c44120b54433086a974c9877d86cd27d" src="https://github.com/user-attachments/assets/06fee579-14c2-49da-804a-a90715968437" />
+
+
+
+
