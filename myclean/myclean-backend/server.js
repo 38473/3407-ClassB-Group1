@@ -98,31 +98,45 @@ app.get('/setting', (req, res) => {
 
 
 
-// Chat message interface
+// Chat message interface (with auto-create ChatSession)
 app.post('/api/chat/message', async (req, res) => {
   try {
     let { content, sender, datetime, sessionId, userId } = req.body;
 
-    // If sessionId is a string with a prefix, such as "session_1752729382520"
+    // Convert sessionId if needed
     if (typeof sessionId === 'string' && sessionId.startsWith('session_')) {
       sessionId = Number(sessionId.replace('session_', ''));
     } else {
-      // Try converting directly to numbers
       sessionId = Number(sessionId);
     }
 
-    userId = Number(userId); // Make sure userId is a number
+    userId = Number(userId); // Ensure userId is numeric
 
     if (isNaN(sessionId) || isNaN(userId)) {
       return res.status(400).json({ error: 'Invalid sessionId or userId' });
     }
 
+    // ✅ Ensure ChatSession exists (create it if missing)
+    const [existingSession] = await pool.query(
+      `SELECT * FROM ChatSession WHERE ChatSession_ID = ? AND User_ID = ?`,
+      [sessionId, userId]
+    );
+
+    if (existingSession.length === 0) {
+      console.log(`No ChatSession found. Creating new session: ${sessionId} for user: ${userId}`);
+      await pool.query(
+        `INSERT INTO ChatSession (ChatSession_ID, User_ID, Is_bot_active) VALUES (?, ?, 1)`,
+        [sessionId, userId]
+      );
+    }
+
+    // ✅ Insert the chat message
     const sql = `
       INSERT INTO ChatMessage 
       (ChatMessage_content, ChatMessage_sender, ChatMessage_datetime, ChatSession_ID, User_ID)
       VALUES (?, ?, ?, ?, ?)
     `;
-    await pool.query(sql, [content, sender, datetime, sessionId, userId]);
+    await pool.query(sql, [content, sender, datetime || new Date(), sessionId, userId]);
 
     res.status(201).json({ message: 'Message saved successfully.' });
   } catch (err) {
@@ -130,6 +144,38 @@ app.post('/api/chat/message', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// View all reservations (ordered by datetime)
+app.get('/api/reservations', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM Reservation ORDER BY Reservation_datetime DESC');
+    res.json(rows);
+  } catch (err) {
+    console.error('Error fetching reservations:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// View all chat history (join with sessions)
+app.get('/api/chat/history', async (req, res) => {
+  try {
+    const [rows] = await pool.query(`
+      SELECT cm.ChatMessage_ID, cm.ChatMessage_content, cm.ChatMessage_sender, cm.ChatMessage_datetime,
+             cs.ChatSession_ID, cs.User_ID
+      FROM ChatMessage cm
+      JOIN ChatSession cs 
+      ON cm.ChatSession_ID = cs.ChatSession_ID AND cm.User_ID = cs.User_ID
+      ORDER BY cm.ChatMessage_datetime DESC
+    `);
+    res.json(rows);
+  } catch (err) {
+    console.error('Error fetching chat history:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+
 
 app.get('/api/chat/messages', async (req, res) => {
   try {

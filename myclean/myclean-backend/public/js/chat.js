@@ -31,6 +31,7 @@ function updateAgentStatus() {
 }
 
 // Save chat history
+// Save chat history
 function saveChatHistory() {
   const messages = Array.from(chatBox.children).map(msg => {
     const bubble = msg.querySelector('div');
@@ -38,39 +39,44 @@ function saveChatHistory() {
       text: bubble.textContent,
       isUser: msg.classList.contains('text-right'),
       isAgent: bubble.classList.contains('bg-green-100'),
-      datetime: new Date().toISOString()
+      datetime: new Date().toISOString() // Save timestamp for each message
     };
   });
 
+  // Save to localStorage
   localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(messages));
 
+  // Retrieve session and user info from localStorage
   const sessionId = localStorage.getItem('myclean_current_session');
-  if (sessionId) {
-    const sessions = JSON.parse(localStorage.getItem('myclean_chat_sessions') || '{}');
-    if (sessions[sessionId]) {
-      sessions[sessionId].messages = messages;
-      localStorage.setItem('myclean_chat_sessions', JSON.stringify(sessions));
-    }
-  }
-
   const userId = localStorage.getItem('myclean_user_id');
-  if (sessionId && userId) {
+
+  if (sessionId && userId && messages.length > 0) {
+    const latest = messages[messages.length - 1]; // Get the latest message
+
+    // Send the latest message to the backend API for database insertion
     fetch('/api/chat/message', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sessionId, userId, messages })
+      body: JSON.stringify({
+        content: latest.text,                      // Message text
+        sender: latest.isUser ? 'user' : 'bot',    // Sender (user or bot)
+        datetime: latest.datetime,                 // Timestamp
+        sessionId: sessionId,                      // Chat session ID
+        userId: userId                             // User ID
+      })
     })
     .then(res => res.json())
     .then(data => {
       if (data.message) {
-        console.log(data.message);
+        console.log('✅ Message saved successfully:', data.message);
       } else {
-        console.error('Save chat failed:', data.error);
+        console.error('❌ Failed to save message:', data.error);
       }
     })
-    .catch(err => console.error('Save chat error:', err));
+    .catch(err => console.error('❌ Save chat error:', err));
   }
 }
+
 
 // Load chat history (仅恢复，不加欢迎语)
 function loadChatHistory() {
