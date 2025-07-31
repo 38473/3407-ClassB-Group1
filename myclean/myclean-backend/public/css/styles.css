@@ -19,6 +19,9 @@ header {
     width: 25%;
     float: left;
 }
+#menu-toggle {
+  display: none;
+}
 
 nav {
     width: 70%;
@@ -27,7 +30,7 @@ nav {
     position: relative;
     z-index: 10;
 
-    /* 新增 */
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,9 +44,11 @@ nav ul {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
+    overflow-x: auto;
 }
 
 nav li {
+    flex-shrink: 0;
     display: inline-block;
     font-size: 1.2em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -136,17 +141,25 @@ nav a.active {
     font-family: 'Arial', sans-serif;
     text-align: center; /* ✅ 让文字居中 */
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-    margin: 0;
-    padding: 0;
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10px;
 }
 #header-text p {
     font-size: 30px;     /* 可根据需要改大或改小 */
     font-weight: normal; /* 可选：让它不加粗 */
     margin-top: 10px;    /* 可选：让段落和标题之间留点空隙 */
-    white-space: nowrap; /* ✅ 防止文字换行 */
+    white-space: normal; 
 }
 
-
+#header-background {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: hidden;
+}
 /* 图片通用样式，确保无空隙 */
 .full-width-image {
     width: 100%;
@@ -243,7 +256,13 @@ main {
   text-align: center;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
   font-family: Arial, sans-serif;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
+
+
 /*account*/
 .account-page {
   padding: 20px;
@@ -478,23 +497,6 @@ footer p a {
 
 .footer-column ul li a:hover {
   text-decoration: underline;
-}
-
-/* Responsive layout */
-@media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-column {
-    text-align: center;
-  }
 }
 
 /* ========== Account Page Styling ========== */
@@ -783,26 +785,53 @@ footer p a {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+  /* 汉堡按钮显示 */
+  #menu-toggle {
+    display: block;
+    margin: 10px 15px;
+  }
+
+  /* 导航整体布局 */
+  nav {
+    width: 100%;
+    float: none;
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 默认隐藏菜单 */
   nav ul {
+    display: none;
     flex-direction: column;
-    align-items: flex-start;
+    background: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+    padding: 10px 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* 点击汉堡按钮后显示 */
+  nav ul.active {
+    display: flex;
   }
 
   nav li {
     width: 100%;
-    text-align: left;
+    text-align: center;
   }
 
   .auth-buttons {
     flex-direction: column;
-    align-items: flex-start;
-    margin-top: 12px;
-  }
-
-  .tab-nav {
-    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 10px;
   }
 }
+
 
 
 
