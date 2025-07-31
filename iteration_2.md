@@ -10,7 +10,7 @@ Checklist:
 
   v2 = E2 / E1 * V1 = 9 / 14 * 0.7 = 0.45
 * Number of developers: 3
-* Total estimated amount of work: YY days
+* Total estimated amount of work: 15 * 3 * 0.45 = 20.25 days
 
 
 # 3 User stories or tasks:
@@ -171,7 +171,10 @@ Update this at least once per week
 * 2 weeks left, 0 days of estimated amount of work
 * 1 week left, 0 days of estimated amount of work
 * 0 week left, 0 days of estimated amount of work
-* Actual Velocity: ?? 
+* Actual Velocity: ??
+![26625022dbb76abb61681eb73095ccdf](https://github.com/user-attachments/assets/bd512812-014e-40e8-810b-82364d2e96fb)
+
+v2 = E2 / A2 = 9 / 15 = 0.6
 
 ## System test
 After completing all tasks outlined in the user stories, we proceeded with system testing. During this phase, we identified several minor bugs. For instance, when the website was zoomed out, the components became cluttered and overlapped, as illustrated in Figure 1. To address this issue, we revised the code to enhance responsiveness, ensuring that the layout adapts properly and maintains an optimal display across all screen sizes and zoom levels.
