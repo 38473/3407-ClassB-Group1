@@ -167,14 +167,74 @@ Completed:
 
 ### Burn Down for iteration-2 (see chapter 4):
 Update this at least once per week
-* 4 weeks left, 7.5 days of estimated amount of work
-* 2 weeks left, 0 days of estimated amount of work
+* 3 weeks left, 9 days of estimated amount of work
+* 2 weeks left, 7.5 days of estimated amount of work
 * 1 week left, 0 days of estimated amount of work
 * 0 week left, 0 days of estimated amount of work
-* Actual Velocity: ??
+* Actual Velocity: v2 = E2 / A2 = 9 / 15 = 0.6
 ![26625022dbb76abb61681eb73095ccdf](https://github.com/user-attachments/assets/bd512812-014e-40e8-810b-82364d2e96fb)
 
 v2 = E2 / A2 = 9 / 15 = 0.6
+
+## Connect to AWS Cloud
+
+To achieve backend database connectivity and data persistence for this project, we used the Amazon Web Services (AWS) RDS service as the database hosting platform, and used MySQL Workbench for remote connection and data manipulation. The following is an implementation guide with screenshots:
+
+### 1. AWS RDS instance setup successful
+
+<img width="468" height="305" alt="image" src="https://github.com/user-attachments/assets/b1f084ca-5923-4568-83a6-bf73644b8a93" />
+
+As shown in the figure, I created and enabled a MySQL RDS instance named myclean in the AWS console. This instance is set to Publicly accessible, ensuring that I can connect remotely from my local machine using Workbench.
+* Endpoint: myclean.c3as8c8e0uku.ap-southeast-2.rds.amazonaws.com
+* Port: 3306
+* Engine: MySQL Community
+
+
+### 2. Configure db.js to connect to AWS RDS
+
+<img width="468" height="191" alt="image" src="https://github.com/user-attachments/assets/5ec613b1-5327-4d59-8ec8-1e67f427d53b" />
+
+In my backend project, the db.js file uses the mysql2/promise package and configures the connection parameters to point to the AWS RDS host address and specify the database mydb:
+
+### 3. Workbench successfully connects to and queries the AWS database
+
+#### User
+
+<img width="468" height="345" alt="image" src="https://github.com/user-attachments/assets/57b87dc2-8b3a-4255-974b-550b76ceb317" />
+
+
+#### Reservation
+
+<img width="1469" height="917" alt="image" src="https://github.com/user-attachments/assets/d18b3140-e217-44f6-bda4-844d94b5142f" />
+
+#### Chat Message
+
+<img width="1469" height="919" alt="image" src="https://github.com/user-attachments/assets/65b2e5c8-a10c-4bbd-a24a-08f9e5fee361" />
+
+After successfully connecting to RDS using MySQL Workbench, I checked the User, Reserva, and ChatMessage tables in the mydb database. Multiple records were returned after successful operation, indicating that the connection is valid and the data is complete.
+
+### 4. Browser verification backend interface reads AWS RDS data
+
+#### User
+
+<img width="1466" height="916" alt="image" src="https://github.com/user-attachments/assets/25692ef7-dc28-436d-9fd8-c9466dc9f248" />
+
+Visit http://localhost:3000/api/users in your browser and you will see the User table contents returned from the AWS RDS database. This indicates that the backend project has successfully read the remote AWS database data.
+
+#### Reservation
+
+<img width="1464" height="912" alt="image" src="https://github.com/user-attachments/assets/32de92ca-1772-4424-8eb2-36be6ef54413" />
+
+Visit http://localhost:3000/api/reservations in your browser and you will see the contents of the Reservation table returned from the AWS RDS database. This indicates that the backend project has successfully read data from the remote AWS database.
+
+#### Chat Message
+
+<img width="1464" height="917" alt="image" src="https://github.com/user-attachments/assets/03f34a2c-adc6-4279-be49-663776c0fbc0" />
+
+Visit http://localhost:3000/api/chat/history in your browser and you will see the ChatMessage table contents returned from the AWS RDS database. This indicates that the backend project has successfully read the remote AWS database data.
+
+**So, all of these have been successfully connected to AWS cloud**
+
 
 ## System test
 After completing all tasks outlined in the user stories, we proceeded with system testing. During this phase, we identified several minor bugs. For instance, when the website was zoomed out, the components became cluttered and overlapped, as illustrated in Figure 1. To address this issue, we revised the code to enhance responsiveness, ensuring that the layout adapts properly and maintains an optimal display across all screen sizes and zoom levels.
