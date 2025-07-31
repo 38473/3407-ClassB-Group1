@@ -176,8 +176,54 @@ Update this at least once per week
 ## System test
 After completing all tasks outlined in the user stories, we proceeded with system testing. During this phase, we identified several minor bugs. For instance, when the website was zoomed out, the components became cluttered and overlapped, as illustrated in Figure 1. To address this issue, we revised the code to enhance responsiveness, ensuring that the layout adapts properly and maintains an optimal display across all screen sizes and zoom levels.
 
-### Figure 1
-<img width="500" height="739" alt="c44120b54433086a974c9877d86cd27d" src="https://github.com/user-attachments/assets/06fee579-14c2-49da-804a-a90715968437" />
+Here show some examples before and after realize screen adaptation:
+
+### Example 1
+#### Before
+
+
+<img width="655" height="824" alt="image" src="https://github.com/user-attachments/assets/6bab912f-a705-4318-8778-83ffba6f45c6" />
+
+#### After
+
+<img width="655" height="824" alt="image" src="https://github.com/user-attachments/assets/dcaf91fa-c828-4aa9-b93a-eef2cc9ccade" />
+
+#### After
+When the screen is zoomed out to a certain extent, the hamburger will be displayed
+
+<img width="655" height="824" alt="image" src="https://github.com/user-attachments/assets/b0582cfd-0c61-407a-9022-e1377e5bf098" />
+
+### Example 2
+#### Before
+
+
+<img width="655" height="824" alt="image" src="https://github.com/user-attachments/assets/19198235-e30c-4cbb-9f1f-c37fed7505cc" />
+
+#### After
+
+<img width="655" height="824" alt="image" src="https://github.com/user-attachments/assets/9fbd20a1-322e-4cae-bc14-f2c027408c44" />
+
+
+### Example 3
+#### Before
+
+<img width="655" height="824" alt="image" src="https://github.com/user-attachments/assets/5c73d323-f28f-4023-a1e7-b7845eaa4645" />
+
+
+#### After
+
+<img width="655" height="824" alt="image" src="https://github.com/user-attachments/assets/35330724-a1f9-47ae-8d2c-8102e382d1d1" />
+
+
+### Example 4
+#### Before
+
+<img width="655" height="824" alt="image" src="https://github.com/user-attachments/assets/9c336b9a-6fc5-48ef-b34f-60388bfec670" />
+
+#### After
+
+<img width="655" height="824" alt="image" src="https://github.com/user-attachments/assets/37a3d0c7-252f-48a1-81c1-60b6fb054848" />
+
 
 
 
