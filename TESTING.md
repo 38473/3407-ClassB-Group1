@@ -168,4 +168,13 @@
 **on the website**
 <img width="1512" height="982" alt="bc7ecb37b4dc17a2e3abca3561f74a2b" src="https://github.com/user-attachments/assets/eadc3770-749f-4985-85f4-4588c9f8a2c6" />
 
+## 4.  👤 Manual online test
+- We tested whether the transfer to manual chat would be successful when the human customer service was not available. We conducted the test at 5:04 pm, and the test results were consistent with our expectations.
+
+### 📸 Screenshots:
+**Agent Status**
+<img width="1074" height="675" alt="7820ba188a9ed29dd80e280f44a57753" src="https://github.com/user-attachments/assets/b284ad25-ce46-4e57-9802-bb92366bad31" />
+
+**Non-Agent Status**
+<img width="2940" height="1912" alt="a25aeeb6000cc7d8e424e363a0c9484c" src="https://github.com/user-attachments/assets/4b9e2091-560b-460b-867c-6e7b3e7f8a33" />
 
