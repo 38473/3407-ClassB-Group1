@@ -262,7 +262,7 @@ Completed：
 * 1 week left: 6.0 days
 * 0 weeks left: 0.0 days
 * Actual Velocity: 0.15
-![image](https://github.com/user-attachments/assets/a7a296fb-e926-44c8-8599-e64d1db5f466)
+![7bd8a98002380fd65b172c36e525152d](https://github.com/user-attachments/assets/210658ed-713c-4493-9ac2-9c7f856a033e)
 
 v1 = E1 / A1 = 14 / 20 = 0.7
 
