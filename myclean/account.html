@@ -20,11 +20,11 @@
       border-bottom: 1px solid #e5e7eb;
       width: 100%;
     }
-  
+
     .payment-methods li:last-child {
       border-bottom: none;
     }
-  
+
     .payment-methods .actions {
       display: flex;
       align-items: center;
@@ -34,25 +34,25 @@
     }
 
     .setting-item p {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     /* ========== Security Settings Font Size Fix =========== */
     #security .setting-item p {
       font-size: 1.25rem; 
     }
-  
+
     .card > *:not(h3) {
       margin-top: 38px;
     }
   </style>
-  
 </head>
 <body>
 <div id="container">
   <header>
     <a href="index.html"><img src="images/myclean.png" alt="My Clean logo" height="70" width="96"></a>
+    <button id="menu-toggle" aria-label="Toggle menu">☰</button>
   </header>
   <nav>
     <ul>
@@ -61,7 +61,7 @@
       <li><a href="booking.html">Booking</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="payment.html">Payment</a></li>
-      <li><a href="setting.html">Setting</a></li>
+      <li><a href="service.html">Service</a></li>
       <li><a href="account.html" class="active">Account</a></li>
     </ul>
     <div class="auth-buttons">
@@ -71,193 +71,80 @@
   </nav>
 
   <main>
-
     <div class="account-page">
       <h2>User Account</h2>
-
-      <!-- Tab Navigation -->
-      <nav class="tab-nav">
-        <button class="tab-link active" onclick="openTab(event, 'profile')">Profile</button>
-        <button class="tab-link" onclick="openTab(event, 'bookings')">Bookings</button>
-        <button class="tab-link" onclick="openTab(event, 'payment')">Payment</button>
-        <button class="tab-link" onclick="openTab(event, 'preferences')">Preferences</button>
-        <button class="tab-link" onclick="openTab(event, 'security')">Security</button>
-      </nav>
-
+  
       <!-- Tab Content -->
       <div class="tab-content active" id="profile">
         <section class="card">
           <h3>Account Information</h3>
-          <form>
+          <form id="accountForm">
             <label>Full Name</label>
-            <input type="text" value="John Doe">
-
+            <input type="text" id="fullName" value="John Doe">
+  
             <label>Email Address</label>
-            <input type="email" value="john@example.com">
-
+            <input type="email" id="email" value="john@example.com">
+  
             <label>Phone Number</label>
-            <input type="tel" value="+1 555 123 4567">
-
+            <input type="tel" id="phone" value="+1 555 123 4567" oninput="validatePhone(this)">
+  
             <button type="submit">Save Changes</button>
           </form>
         </section>
-
+  
         <section class="card">
           <h3>Manage Addresses</h3>
-          <ul class="address-list">
+          <ul class="address-list" id="addressList">
             <li>
               <div class="address-info">
-                <p>123 Main St, Cityville <span>(Default)</span></p>
+                <input type="text" value="123 Main St, Cityville" disabled>
               </div>
               <div class="address-actions">
-                <button>Edit</button>
-                <button>Set as Default</button>
+                <button onclick="editAddress(this)">Edit</button>
+                <button onclick="setDefaultAddress(this)">Set as Default</button>
               </div>
             </li>
             <li>
               <div class="address-info">
-                <p>456 Oak Ave, Townsville</p>
+                <input type="text" value="456 Oak Ave, Townsville" disabled>
               </div>
               <div class="address-actions">
-                <button>Edit</button>
-                <button>Set as Default</button>
+                <button onclick="editAddress(this)">Edit</button>
+                <button onclick="setDefaultAddress(this)">Set as Default</button>
               </div>
             </li>
           </ul>
-          <button class="btn-secondary">Add New Address</button>
+          <button class="btn-secondary" onclick="addNewAddress()">Add New Address</button>
         </section>
-      </div>
-
-      <div class="tab-content" id="bookings">
-        <section class="card">
-          <h3>Upcoming Appointments</h3>
-          <div class="appointment-card">
-            <p><strong>Date:</strong> April 10, 2025</p>
-            <p><strong>Time:</strong> 10:00 AM - 1 PM</p>
-            <p><strong>Cleaner:</strong> Jane Smith</p>
-            <p><strong>Address:</strong> 123 Main St</p>
-            <button>Reschedule</button>
-            <button>Cancel</button>
-            <button>Contact Cleaner</button>
-          </div>
-        </section>
-
-        <section class="card">
-          <h3>Booking History</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Service Type</th>
-                <th>Status</th>
-                <th>Total</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>April 1, 2025</td>
-                <td>Home Cleaning</td>
-                <td>Completed</td>
-                <td>$89.99</td>
-                <td><a href="#">Details</a> | <a href="#">Rebook</a></td>
-              </tr>
-              <tr>
-                <td>March 25, 2025</td>
-                <td>Office Deep Clean</td>
-                <td>Pending</td>
-                <td>$129.99</td>
-                <td><a href="#">Details</a> | <a href="#">Cancel</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      </div>
-
-      <div class="tab-content" id="payment">
-        <section class="card">
-          <h3>Payment Methods</h3>
-          <ul class="payment-methods">
-            <li>
-              Visa •••• 4242
-              <div class="actions">
-                <a href="#">Edit</a> |
-                <a href="#">Delete</a>
-              </div>
-            </li>
-            <li>
-              PayNow ID: john123
-              <div class="actions">
-                <a href="#">Edit</a> |
-                <a href="#">Delete</a>
-              </div>
-            </li>
-          </ul>          
-          <button class="btn-secondary">Add New Payment Method</button>
-        </section>
-
-        <section class="card">
-          <h3>Billing & Invoices</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Invoice</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>April 1, 2025</td>
-                <td>Home Cleaning Service</td>
-                <td>$89.99</td>
-                <td><a href="#">Download PDF</a></td>
-              </tr>
-              <tr>
-                <td>March 25, 2025</td>
-                <td>Office Deep Cleaning</td>
-                <td>$129.99</td>
-                <td><a href="#">Download PDF</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      </div>
-
-      <div class="tab-content" id="preferences">
-        <section class="card">
-          <h3>Cleaner Preferences</h3>
-          <form>
-            <label><input type="checkbox" checked> Jane Smith (Favorite Cleaner)</label>
-            <label><input type="checkbox"> Female Preferred</label>
-            <label><input type="checkbox"> English Preferred</label>
-            <button type="submit">Save Preferences</button>
-          </form>
-        </section>
-
-        <section class="card">
-          <h3>Support & Feedback</h3>
-          <p><a href="#">Contact Customer Support</a></p>
-          <p><a href="#">Submit a Help Request</a></p>
-          <p><a href="#">View My Reviews</a></p>
-        </section>
-      </div>
-
-      <div class="tab-content" id="security">
-        <section class="card">
+  
+        <section class="card" id="security">
           <h3>Security Settings</h3>
           <div class="setting-item">
-            <p>Password: *********** <a href="#">Change Password</a></p>
+            <p>Password: *********** <a href="#" onclick="togglePasswordForm(event)">Change Password</a></p>
+            <div id="passwordForm" style="display:none; margin-top: 10px;">
+              <input type="password" placeholder="Current Password" style="margin-bottom: 8px; width: 100%; padding: 6px;"><br>
+              <input type="password" placeholder="New Password" style="margin-bottom: 8px; width: 100%; padding: 6px;"><br>
+              <input type="password" placeholder="Confirm New Password" style="margin-bottom: 8px; width: 100%; padding: 6px;"><br>
+              <button type="button" onclick="saveNewPassword()">Save Password</button>
+            </div>
           </div>
           <div class="setting-item">
-            <p>Two-Factor Authentication: <span class="status disabled">Disabled</span> <a href="#">Enable</a></p>
-          </div>
-          <div class="setting-item">
-            <p>Login History: <a href="#">View Recent Logins</a></p>
+            <p>Two-Factor Authentication: <span id="2faStatus" class="status disabled">Disabled</span> <a href="#" onclick="toggle2FA()">Enable</a></p>
           </div>
         </section>
 
+        <h2>Feedback</h2>
+        <!-- 新增的 Feedback 表单区块 -->
+        <section class="card">
+          <div class="setting-item">
+            <p>Let us know how we can improve our service. We appreciate your feedback!</p>
+            <form id="feedbackForm" onsubmit="submitFeedback(event)">
+              <textarea id="userFeedback" rows="4" style="width: 100%; padding: 8px; margin-top: 10px;" placeholder="Type your feedback here..."></textarea>
+              <button type="submit" style="margin-top: 10px;">Submit Feedback</button>
+            </form>
+          </div>
+        </section>
+  
         <section class="card danger-zone">
           <h3>Logout & Account Management</h3>
           <button onclick="logout()">Log Out</button>
@@ -266,118 +153,216 @@
       </div>
     </div>
   </main>
+  
 
   <footer class="site-footer">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo"/>
-        <div class="social-icons">
-          <a href="#"><img src="images/x-icon.jpg" alt="X/Twitter"></a>
-          <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a>
-          <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a>
-          <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a>
-        </div>
-      </div>
-
-      <div class="footer-links">
-        <div class="footer-column">
-          <h4>Use cases</h4>
-          <ul>
-            <li><a href="#">Home Cleaning</a></li>
-            <li><a href="#">Deep Cleaning</a></li>
-            <li><a href="#">Move-In/Move-Out Cleaning</a></li>
-            <li><a href="#">Office & Commercial Cleaning</a></li>
-            <li><a href="#">Pet-Friendly Services</a></li>
-            <li><a href="#">Eco-Friendly Cleaning</a></li>
-            <li><a href="#">Subscription Plans</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-column">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="#">Booking Process</a></li>
-            <li><a href="#">Smart Chat (Bot & Human)</a></li>
-            <li><a href="#">Real-Time Cleaner Tracking</a></li>
-            <li><a href="#">Pricing & Packages</a></li>
-            <li><a href="#">Customer Reviews</a></li>
-            <li><a href="#">Multi-language Support</a></li>
-            <li><a href="#">Service Recommendations</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-column">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="#">How-To Guides</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Customer Support</a></li>
-            <li><a href="#">Cleaning Tips & Articles</a></li>
-            <li><a href="#">Terms & Policies</a></li>
-            <li><a href="#">Invoices & Billing</a></li>
-            <li><a href="#">Feedback & Reporting</a></li>
-          </ul>
-        </div>
+  <div class="footer-container">
+    
+   
+    <div class="footer-brand">
+      <img src="images/myclean.png" alt="My Clean Logo" class="footer-logo" />
+      <div class="social-icons">
+        <a href="#"><img src="images/x-icon.jpg" alt="X/Twitter"></a>
+        <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a>
+        <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a>
+        <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a>
       </div>
     </div>
-  </footer>
+
+  
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>Use cases</h4>
+        <ul>
+          <li><a href="about.html#home_cleaning">Home Cleaning</a></li>
+          <li><a href="about.html#deep_cleaning">Deep Cleaning</a></li>
+          <li><a href="about.html#move_cleaning">Move-In/Move-Out Cleaning</a></li>
+          <li><a href="about.html#office_cleaning">Office & Commercial Cleaning</a></li>
+          <li><a href="about.html#pet_cleaning">Pet-Friendly Services</a></li>
+          <li><a href="about.html#other_cleaning">Eco-Friendly Cleaning</a></li>
+          <li><a href="#">Subscription Plans</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Booking Process</a></li>
+          <li><a href="#">Smart Chat (Bot & Human)</a></li>
+          <li><a href="#">Real-Time Cleaner Tracking</a></li>
+          <li><a href="#">Pricing & Packages</a></li>
+          <li><a href="#">Customer Reviews</a></li>
+          <li><a href="#">Multi-language Support</a></li>
+          <li><a href="#">Service Recommendations</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">How-To Guides</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Customer Support</a></li>
+          <li><a href="#">Cleaning Tips & Articles</a></li>
+          <li><a href="#">Terms & Policies</a></li>
+          <li><a href="#">Invoices & Billing</a></li>
+          <li><a href="#">Feedback & Reporting</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
 
   <script>
-    function openTab(evt, tabName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tab-content");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("active");
-      }
-      tablinks = document.getElementsByClassName("tab-link");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
-      }
-      document.getElementById(tabName).classList.add("active");
-      evt.currentTarget.classList.add("active");
-    }
-
-    function loadSessions() {
-      const sessionList = document.getElementById("session-list");
-      sessionList.innerHTML = "";
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      sessions.forEach((session, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <span contenteditable="true" onblur="renameSession(${index}, this.textContent)">${session}</span>
-          <button onclick="deleteSession(${index})" title="Delete">🗑️</button>
-        `;
-        sessionList.appendChild(li);
-      });
-    }
-
-    function addNewSession() {
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      const newName = "New Session " + (sessions.length + 1);
-      sessions.push(newName);
-      localStorage.setItem("chatSessions", JSON.stringify(sessions));
-      loadSessions();
-    }
-
-    function renameSession(index, newName) {
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      sessions[index] = newName.trim() || "Untitled Session";
-      localStorage.setItem("chatSessions", JSON.stringify(sessions));
-      loadSessions();
-    }
-
-    function deleteSession(index) {
-      const sessions = JSON.parse(localStorage.getItem("chatSessions")) || [];
-      sessions.splice(index, 1);
-      localStorage.setItem("chatSessions", JSON.stringify(sessions));
-      loadSessions();
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelector('.tab-link').click();
-      loadSessions();
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedName = localStorage.getItem('fullName') || 'John Doe';
+      const savedEmail = localStorage.getItem('email') || 'john@example.com';
+      const savedPhone = localStorage.getItem('phone') || '+1 555 123 4567';
+  
+      document.getElementById('fullName').value = savedName;
+      document.getElementById('email').value = savedEmail;
+      document.getElementById('phone').value = savedPhone;
     });
+  
+    // 表单提交时保存数据到 localStorage
+    document.getElementById('accountForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+  
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+  
+      if (fullName && email && phone) {
+        localStorage.setItem('fullName', fullName);
+        localStorage.setItem('email', email);
+        localStorage.setItem('phone', phone);
+        alert('Changes saved successfully!');
+      } else {
+        alert('Please fill in all fields.');
+      }
+    });
+  
+    // 编辑地址
+    function editAddress(button) {
+      const li = button.closest('li');
+      const input = li.querySelector('.address-info input');
+      input.disabled = !input.disabled;
+      button.textContent = input.disabled ? 'Edit' : 'Save';
+      button.classList.toggle('editing');
+  
+      if (!input.disabled) {
+        input.focus();
+      } else {
+        // 可选：保存地址到 localStorage 或 API
+      }
+    }
+  
+    // 设置默认地址
+    function setDefaultAddress(button) {
+      const allButtons = document.querySelectorAll('.address-actions button:nth-child(2)');
+      allButtons.forEach(btn => {
+        btn.textContent = 'Set as Default';
+        btn.style.backgroundColor = '';
+      });
+  
+      button.textContent = 'Default';
+      button.style.backgroundColor = '#10b981';
+    }
+  
+    // 添加新地址
+    function addNewAddress() {
+      const addressList = document.getElementById('addressList');
+      const newLi = document.createElement('li');
+      newLi.innerHTML = `
+        <div class="address-info">
+          <input type="text" placeholder="Enter new address" disabled>
+        </div>
+        <div class="address-actions">
+          <button onclick="editAddress(this)">Edit</button>
+          <button onclick="setDefaultAddress(this)">Set as Default</button>
+        </div>
+      `;
+      addressList.appendChild(newLi);
+    }
+  
+    // 切换密码修改表单
+    function togglePasswordForm(e) {
+      e.preventDefault();
+      const form = document.getElementById('passwordForm');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+  
+    // 保存新密码
+    function saveNewPassword() {
+      alert('Password changed successfully!');
+      // 可在此处添加实际保存逻辑
+      document.getElementById('passwordForm').style.display = 'none';
+    }
+  
+    // 切换 2FA 状态
+    function toggle2FA() {
+      const status = document.getElementById('2faStatus');
+      if (status.classList.contains('disabled')) {
+        status.textContent = 'Enabled';
+        status.classList.remove('disabled');
+        status.classList.add('enabled');
+        status.style.color = 'green';
+        document.querySelector('#security .setting-item a').textContent = 'Disable';
+      } else {
+        status.textContent = 'Disabled';
+        status.classList.remove('enabled');
+        status.classList.add('disabled');
+        status.style.color = 'red';
+        document.querySelector('#security .setting-item a').textContent = 'Enable';
+      }
+    }
+  
+    // 登出功能
+    function logout() {
+      if (confirm('Are you sure you want to log out?')) {
+        localStorage.removeItem('fullName');
+        localStorage.removeItem('email');
+        localStorage.removeItem('phone');
+        alert('Logged out successfully.');
+        window.location.href = 'signin.html';
+      }
+    }
+  
+    // 删除账户
+    function deleteAccount() {
+      if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        localStorage.clear();
+        alert('Your account has been deleted.');
+        window.location.href = 'index.html';
+      }
+
+    
+    }
+
+    function submitFeedback(e) {
+    e.preventDefault();
+    const feedback = document.getElementById('userFeedback').value.trim();
+    if (feedback) {
+      alert('Thank you for your feedback!');
+      // 可选：发送到服务器或保存到 localStorage
+      document.getElementById('userFeedback').value = '';
+    } else {
+      alert('Please enter your feedback before submitting.');
+    }
+  }
+    
+  function validatePhone(input) {
+  const phoneRegex = /^\+65\d{8}$/;
+  if (input.value && !phoneRegex.test(input.value)) {
+    input.setCustomValidity('Phone must be +65 followed by 8 digits');
+  } else {
+    input.setCustomValidity('');
+  }
+}
   </script>
+  
 </div>
+<script src="js/menu.js"></script>
 </body>
 </html>

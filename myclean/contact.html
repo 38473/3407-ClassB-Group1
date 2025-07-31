@@ -36,6 +36,7 @@
   <div id="container">
     <header>
       <a href="index.html"><img src="images/myclean.png" alt="My Clean logo" height="70" width="96"></a>
+      <button id="menu-toggle" aria-label="Toggle menu">☰</button>
     </header>
     <nav>
       <ul>
@@ -44,7 +45,7 @@
         <li><a href="booking.html">Booking</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
         <li><a href="payment.html">Payment</a></li>
-        <li><a href="setting.html">Setting</a></li>
+        <li><a href="service.html">Service</a></li>
         <li><a href="account.html">Account</a></li>
       </ul>
       <div class="auth-buttons">
@@ -58,458 +59,114 @@
         <!-- Live Chat Integration -->
         <div class="bg-gray-100 text-gray-800">
           <!-- Session Tabs -->
-<div id="session-tabs" class="flex gap-2 px-6 py-2 border-b border-gray-300 overflow-x-auto text-sm">
-  <!-- Sessions will be added here -->
-  <button id="new-session" class="text-blue-600 hover:underline">+ New Chat</button>
-</div>
-
-          <!-- Header -->
-          <header class="bg-white shadow-sm py-4 px-6 w-full">
-            <div class="flex items-center">
-              <!-- Left: Logo -->
-              <div class="text-xl font-bold text-gray-900">my clean</div>
-          
-              <!-- Middle: Title -->
-              <div class="mx-4 text-lg font-semibold">Live Chat</div>
-          
-              <!-- Right: Agent Status -->
-              <div class="ml-auto text-sm text-gray-500 flex items-center gap-2 whitespace-nowrap" id="agent-status">
-                <span>Agent Status:</span>
-                <div class="flex items-center">
-                  <span id="status-indicator" class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span>
-                  <span id="status-text">Offline</span>
-                </div>
-                <span>(9 AM - 5 PM)</span>
-              </div>
-            </div>
-          </header>          
-          
 
           <!-- Chat Container -->
-          <main class="max-w-8xl mx-auto mt-6 p-4 bg-white shadow rounded-lg min-h-[300px] max-h-[80vh] flex flex-col overflow-hidden">
-
-            <!-- Chat Messages -->
-            <div id="chat-box" class="flex-1 overflow-y-auto p-4 space-y-4">
-              <!-- Message bubbles will be added here -->
-            </div>
-
-            <!-- Input Form -->
-            <form id="chat-form" class="mt-4 flex items-center gap-2">
-              <input type="text" id="message-input" placeholder="Type your message..." class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required />
-              <button type="submit" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">Send</button>
-            </form>
-          </main>
-
-        </div>
+         <main class="h-screen overflow-hidden">
+  <div class="flex h-full">
+    <!-- 左侧聊天列表 -->
+    <aside class="w-64 bg-gray-100 p-4 border-r overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-bold">💬 Chat List</h2>
+        <button id="newChatBtn" class="bg-blue-500 text-white px-2 py-1 text-sm rounded">➕</button>
       </div>
-    </main>
+      <ul id="chatList" class="space-y-2"></ul>
+    </aside>
 
-    <footer class="site-footer">
-      <div class="footer-container">
-        <!-- Left Column: Logo & Social Icons -->
-        <div class="footer-brand">
-          <img src="images/myclean.png" alt="Impureclean Logo" class="footer-logo" />
-          <div class="social-icons">
-            <a href="#"><img src="images/x-icon.jpg" alt="X/Twitter"></a>
-            <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a>
-            <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a>
-            <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a>
+    <!-- 右侧聊天区域 -->
+    <section class="flex-1 flex flex-col">
+      <!-- 顶部导航 -->
+      <header class="bg-white shadow-sm py-4 px-6 w-full flex items-center">
+        <div class="text-xl font-bold text-gray-900">my clean</div>
+        <div class="mx-4 text-lg font-semibold">Live Chat</div>
+        <div class="ml-auto text-sm text-gray-500 flex items-center gap-2" id="agent-status">
+          <span>Agent Status:</span>
+          <div class="flex items-center">
+            <span id="status-indicator" class="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span>
+            <span id="status-text">Offline</span>
           </div>
+          <span>(9 AM - 5 PM)</span>
         </div>
+      </header>
 
-        <!-- Center Columns: Links -->
-        <div class="footer-links">
-          <div class="footer-column">
-            <h4>Use cases</h4>
-            <ul>
-              <li><a href="#">Home Cleaning</a></li>
-              <li><a href="#">Deep Cleaning</a></li>
-              <li><a href="#">Move-In/Move-Out Cleaning</a></li>
-              <li><a href="#">Office & Commercial Cleaning</a></li>
-              <li><a href="#">Pet-Friendly Services</a></li>
-              <li><a href="#">Eco-Friendly Cleaning</a></li>
-              <li><a href="#">Subscription Plans</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h4>Explore</h4>
-            <ul>
-              <li><a href="#">Booking Process</a></li>
-              <li><a href="#">Smart Chat (Bot & Human)</a></li>
-              <li><a href="#">Real-Time Cleaner Tracking</a></li>
-              <li><a href="#">Pricing & Packages</a></li>
-              <li><a href="#">Customer Reviews</a></li>
-              <li><a href="#">Multi-language Support</a></li>
-              <li><a href="#">Service Recommendations</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h4>Resources</h4>
-            <ul>
-              <li><a href="#">How-To Guides</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Customer Support</a></li>
-              <li><a href="#">Cleaning Tips & Articles</a></li>
-              <li><a href="#">Terms & Policies</a></li>
-              <li><a href="#">Invoices & Billing</a></li>
-              <li><a href="#">Feedback & Reporting</a></li>
-            </ul>
-          </div>
-        </div>
+      <!-- 聊天内容 -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-white" id="chat-box">
+        <!-- Message bubbles will be inserted here -->
       </div>
-    </footer>
+
+      <!-- 输入区域 -->
+      <form id="chat-form" class="p-4 bg-gray-50 border-t flex gap-2">
+        <input type="text" id="message-input" placeholder="Type your message..."
+          class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required />
+        <button type="submit"
+          class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">Send</button>
+      </form>
+    </section>
+  </div>
+</main>
+
+
+   <footer class="site-footer">
+  <div class="footer-container">
+    
+   
+    <div class="footer-brand">
+      <img src="images/myclean.png" alt="My Clean Logo" class="footer-logo" />
+      <div class="social-icons">
+        <a href="#"><img src="images/x-icon.jpg" alt="X/Twitter"></a>
+        <a href="#"><img src="images/instagram-icon.jpg" alt="Instagram"></a>
+        <a href="#"><img src="images/youtube-icon.jpg" alt="YouTube"></a>
+        <a href="#"><img src="images/linkedin-icon.jpg" alt="LinkedIn"></a>
+      </div>
+    </div>
+
+  
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>Use cases</h4>
+        <ul>
+          <li><a href="about.html#home_cleaning">Home Cleaning</a></li>
+          <li><a href="about.html#deep_cleaning">Deep Cleaning</a></li>
+          <li><a href="about.html#move_cleaning">Move-In/Move-Out Cleaning</a></li>
+          <li><a href="about.html#office_cleaning">Office & Commercial Cleaning</a></li>
+          <li><a href="about.html#pet_cleaning">Pet-Friendly Services</a></li>
+          <li><a href="about.html#other_cleaning">Eco-Friendly Cleaning</a></li>
+          <li><a href="#">Subscription Plans</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Booking Process</a></li>
+          <li><a href="#">Smart Chat (Bot & Human)</a></li>
+          <li><a href="#">Real-Time Cleaner Tracking</a></li>
+          <li><a href="#">Pricing & Packages</a></li>
+          <li><a href="#">Customer Reviews</a></li>
+          <li><a href="#">Multi-language Support</a></li>
+          <li><a href="#">Service Recommendations</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">How-To Guides</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Customer Support</a></li>
+          <li><a href="#">Cleaning Tips & Articles</a></li>
+          <li><a href="#">Terms & Policies</a></li>
+          <li><a href="#">Invoices & Billing</a></li>
+          <li><a href="#">Feedback & Reporting</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
   </div>
 
   <!-- Script for chat functionality -->
-  <script>
-  const chatBox = document.getElementById('chat-box');
-  const form = document.getElementById('chat-form');
-  const input = document.getElementById('message-input');
-  const statusIndicator = document.getElementById('status-indicator');
-  const statusText = document.getElementById('status-text');
-
-  const CHAT_HISTORY_KEY = 'myclean_chat_history';
-
-  const aiResponses = [
-    "Hello! I'm the AI assistant from my clean. How can I assist you today?",
-    "We offer professional cleaning services for homes, offices, and special areas.",
-    "Please let me know your needs, and I'll do my best to help.",
-    "Is there anything specific you'd like to know about our cleaning services?"
-  ];
-
-  // Check if the agent is online based on working hours (9 AM - 5 PM)
-  function isAgentOnline() {
-    const now = new Date();
-    const currentHour = now.getHours();
-    return currentHour >= 9 && currentHour < 17;
-  }
-
-  // Update the agent status indicator and text
-  function updateAgentStatus() {
-    if (isAgentOnline()) {
-      statusIndicator.style.backgroundColor = 'green';
-      statusText.textContent = 'Online';
-    } else {
-      statusIndicator.style.backgroundColor = 'red';
-      statusText.textContent = 'Offline';
-    }
-  }
-
-  // Save chat history to localStorage
-  function saveChatHistory() {
-    const messages = Array.from(chatBox.children).map(msg => {
-      const bubble = msg.querySelector('div');
-      return {
-        text: bubble.textContent,
-        isUser: msg.classList.contains('text-right'),
-        isAgent: bubble.classList.contains('bg-green-100')
-      };
-    });
-    localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(messages));
-  }
-
-  // Load chat history from localStorage
-  function loadChatHistory() {
-    const saved = localStorage.getItem(CHAT_HISTORY_KEY);
-    if (!saved) return;
-    const messages = JSON.parse(saved);
-    messages.forEach(msg => addMessage(msg.text, msg.isUser, msg.isAgent));
-  }
-
-  // Add a message bubble to the chat box
-  function addMessage(text, isUser = false, isAgent = false) {
-    const message = document.createElement('div');
-    message.className = isUser ? 'text-right' : 'text-left';
-
-    const bubble = document.createElement('div');
-    bubble.className = `${isUser
-      ? 'bg-blue-500 text-white'
-      : isAgent
-        ? 'bg-green-100 text-gray-800'
-        : 'bg-gray-200 text-gray-800'
-    } inline-block p-3 rounded-lg whitespace-pre-line leading-relaxed max-w-[60vw] min-w-[80px] break-words`;
-    bubble.textContent = text;
-    message.appendChild(bubble);
-    chatBox.appendChild(message);
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    saveChatHistory(); // Save after adding each message
-  }
-
-  // Simulate typing effect for AI responses split into multiple lines
-  // Add AI response with typing effect, then save full message to history
-function addTypingMessage(lines) {
-  if (!lines || lines.length === 0) return;
-
-  const wrapper = document.createElement('div');
-  wrapper.className = 'text-left';
-
-  const bubble = document.createElement('div');
-  bubble.className = 'bg-green-100 text-gray-800 inline-block p-3 rounded-lg whitespace-pre-line leading-relaxed max-w-[60vw] min-w-[80px] break-words';
-  bubble.textContent = '';
-
-  wrapper.appendChild(bubble);
-  chatBox.appendChild(wrapper);
-  chatBox.scrollTop = chatBox.scrollHeight;
-
-  let index = 0;
-  let fullText = ''; // Store full AI reply text
-
-  function typeLine() {
-    if (index < lines.length) {
-      fullText += lines[index] + '\n\n';
-      bubble.textContent = fullText.trim(); // Update visible text
-      chatBox.scrollTop = chatBox.scrollHeight;
-      index++;
-      setTimeout(typeLine, 1000);
-    } else {
-      // After all lines are typed, save as a message
-      // Remove temporary bubble
-      chatBox.removeChild(wrapper);
-      // Add full AI message properly for consistent history saving
-      addMessage(fullText.trim(), false, true);
-    }
-  }
-
-  typeLine();
-}
-
-
-  // AI reply logic based on user input
-  function aiReply(userMessage) {
-    const lowerMessage = userMessage.toLowerCase();
-
-    // Transfer to live agent if requested and agent is online
-    if (lowerMessage.includes("transfer to agent")) {
-      if (isAgentOnline()) {
-        addMessage("[Agent] You are now connected with a live agent.", false, true);
-      } else {
-        addMessage("The support team is currently offline. Our working hours are from 9 AM to 5 PM.", false);
-      }
-      return;
-    }
-
-    // Respond with service details if user asks about services
-    if (
-      lowerMessage.includes("services") ||
-      lowerMessage.includes("what do you offer") ||
-      lowerMessage.includes("what services") ||
-      lowerMessage.includes("cleaning services") ||
-      lowerMessage.includes("do you provide") ||
-      lowerMessage.includes("what kind of cleaning")
-    ) {
-      const serviceLines = [
-        "We are committed to making your space spotless and stress-free.",
-        "We offer a wide range of professional cleaning services tailored to your needs:",
-        "✓ Home Cleaning – Regular or one-time cleaning for apartments, condos, and houses.",
-        "✓ Deep Cleaning – Thorough top-to-bottom cleaning for kitchens, bathrooms, and other high-use areas.",
-        "✓ Move-In / Move-Out Cleaning – Ensure a fresh start or smooth transition with detailed property cleaning.",
-        "✓ Office & Commercial Cleaning – Keep your workplace clean, healthy, and professional.",
-        "✓ Pet-Friendly Cleaning – Specialized care for homes with furry friends.",
-        "✓ Custom Packages & Subscriptions – Flexible cleaning plans to fit your schedule and budget."
-      ];
-      addTypingMessage(serviceLines);
-      return;
-    }
-
-    // Keywords to recognize general inquiries
-    const knownKeywords = [
-      "cleaning", "price", "service", "book", "schedule", "appointment",
-      "location", "available", "hours", "support", "chat", "payment", "refund"
-    ];
-
-    const isRecognized = knownKeywords.some(keyword => lowerMessage.includes(keyword));
-
-    setTimeout(() => {
-      if (isRecognized) {
-        const reply = aiResponses[Math.floor(Math.random() * aiResponses.length)];
-        addMessage(reply, false);
-      } else {
-        addMessage("I'm sorry, I didn't fully understand that. Could you please rephrase or ask something else?", false);
-      }
-    }, 1000);
-  }
-
-  // Handle form submit event for sending messages
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const text = input.value.trim();
-    if (text !== '') {
-      addMessage(text, true);
-      aiReply(text);
-      input.value = '';
-    }
-  });
-
-  updateAgentStatus();
-  loadChatHistory(); // Restore previous messages from localStorage
-  if (!localStorage.getItem(CHAT_HISTORY_KEY)) {
-    addMessage(aiResponses[0], false);
-  }
-
-  // Update agent status every minute
-  setInterval(updateAgentStatus, 60000);
-  let currentSessionId = null;
-const SESSION_STORAGE_KEY = 'chat_sessions';
-
-// 获取所有会话
-function getSessions() {
-  return JSON.parse(localStorage.getItem(SESSION_STORAGE_KEY) || '{}');
-}
-
-// 保存所有会话
-function saveSessions(sessions) {
-  localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(sessions));
-}
-
-// 创建一个新会话
-function createNewSession() {
-  const sessions = getSessions();
-  const id = 'session_' + Date.now();
-  const welcome = aiResponses[0]; // <- use first AI response
-
-  sessions[id] = {
-    name: 'Untitled Chat',
-    messages: [
-      { text: welcome, isUser: false, isAgent: true } // <- AI opening
-    ]
-  };
-
-  saveSessions(sessions);
-  currentSessionId = id;
-  renderSessionTabs();
-  loadSession(id);
-}
-
-
-// 渲染顶部的会话标签
-function renderSessionTabs() {
-  const sessions = getSessions();
-  const tabContainer = document.getElementById('session-tabs');
-  tabContainer.innerHTML = ''; // 清空
-
-  for (const id in sessions) {
-    const session = sessions[id];
-    const name = session.name || 'Chat';
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'flex items-center gap-1';
-
-    const btn = document.createElement('button');
-    btn.textContent = name;
-    btn.className = `px-3 py-1 rounded ${id === currentSessionId ? 'bg-blue-100 font-bold' : 'hover:bg-gray-200'}`;
-    btn.onclick = () => {
-      currentSessionId = id;
-      loadSession(id);
-      renderSessionTabs();
-    };
-
-    const renameBtn = document.createElement('span');
-    renameBtn.textContent = '✏️';
-    renameBtn.title = 'Rename';
-    renameBtn.className = 'cursor-pointer text-xs';
-    renameBtn.onclick = (e) => {
-      e.stopPropagation();
-      const newName = prompt('Rename this chat:', name);
-      if (newName && newName.trim()) {
-        sessions[id].name = newName.trim();
-        saveSessions(sessions);
-        renderSessionTabs();
-      }
-    };
-
-    const deleteBtn = document.createElement('span');
-    deleteBtn.textContent = '❌';
-    deleteBtn.title = 'Delete';
-    deleteBtn.className = 'cursor-pointer text-xs';
-    deleteBtn.onclick = (e) => {
-      e.stopPropagation();
-      if (confirm(`Are you sure you want to delete "${name}"?`)) {
-        delete sessions[id];
-        saveSessions(sessions);
-        const remaining = Object.keys(sessions);
-        currentSessionId = remaining.length ? remaining[0] : null;
-        renderSessionTabs();
-        if (currentSessionId) loadSession(currentSessionId);
-        else createNewSession();
-      }
-    };
-
-    wrapper.appendChild(btn);
-    wrapper.appendChild(renameBtn);
-    wrapper.appendChild(deleteBtn);
-    tabContainer.appendChild(wrapper);
-  }
-
-  // + 新建会话按钮
-  const newBtn = document.createElement('button');
-  newBtn.textContent = '+ New Chat';
-  newBtn.className = 'text-blue-600 hover:underline ml-2';
-  newBtn.onclick = createNewSession;
-  tabContainer.appendChild(newBtn);
-}
-// Load chat history for a specific session ID
-function loadSession(sessionId) {
-  const sessions = getSessions();
-  if (!sessions[sessionId]) return;
-
-  currentSessionId = sessionId;
-  chatBox.innerHTML = '';
-
-  const messages = sessions[sessionId].messages || [];
-  messages.forEach(msg => {
-    // Use your original addMessage, but pass save=false to avoid double save
-    addMessage(msg.text, msg.isUser, msg.isAgent);
-  });
-}
-
-// Save the current session's messages from the chat box
-function saveCurrentSessionMessages() {
-  if (!currentSessionId) return;
-
-  const sessions = getSessions();
-
-  const messages = Array.from(chatBox.children).map(msg => {
-    const bubble = msg.querySelector('div');
-    return {
-      text: bubble.textContent,
-      isUser: msg.classList.contains('text-right'),
-      isAgent: bubble.classList.contains('bg-green-100')
-    };
-  });
-
-  if (!sessions[currentSessionId]) sessions[currentSessionId] = { name: 'Untitled Chat', messages: [] };
-
-  sessions[currentSessionId].messages = messages;
-  saveSessions(sessions);
-}
-
-// Override your addMessage to optionally skip saving
-const originalAddMessage = addMessage;
-addMessage = function(text, isUser = false, isAgent = false) {
-  originalAddMessage(text, isUser, isAgent);
-  saveCurrentSessionMessages(); // Save after adding message to current session
-};
-
-// Initialize sessions on page load
-function initializeSessions() {
-  const sessions = getSessions();
-  if (Object.keys(sessions).length === 0) {
-    createNewSession();
-  } else {
-    // Load first session by default
-    currentSessionId = Object.keys(sessions)[0];
-    loadSession(currentSessionId);
-  }
-  renderSessionTabs();
-}
-
-// Run initialization after your current code runs
-initializeSessions();
-
-</script>
-
+   <script src="/js/chatList.js"></script>
+  <script src="./js/chat.js"></script>
+<script src="js/menu.js"></script>
 </body>
 </html>

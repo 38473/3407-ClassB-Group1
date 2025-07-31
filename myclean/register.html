@@ -114,23 +114,9 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById("registerForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirmPassword").value;
-
-      if (password !== confirmPassword) {
-        alert("The passwords entered twice are inconsistent");
-        return;
-      }
-
-      // 模拟注册成功后跳转
-      alert("registered successfully!");
-      window.location.href = "index.html";
-    });
-  </script>
+ <script src="js/register.js"></script>
 
 </body>
 </html>
+
+
