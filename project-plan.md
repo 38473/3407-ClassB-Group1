@@ -1,4 +1,4 @@
-# Retrospective
+# Iteration 1 Retrospective
 
 ## Completion Status
 In the first iteration, we completed five user stories: User Story 1 (Collecting User Location Information), 2 (Smart Chat with Switchable Human-Computer Mode), 4 (Service Booking System), 6 (Conversation History), and 7 (In-App Payment). We connected the conversation history to the database and received feedback. However, when we reported our work to our instructor, she suggested that we also store booking information in the database. We subsequently implemented this improvement.
