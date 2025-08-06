@@ -173,7 +173,8 @@
 
 ### 📸 Screenshots:
 **Non-Agent Status**
-<img width="1074" height="675" alt="7820ba188a9ed29dd80e280f44a57753" src="https://github.com/user-attachments/assets/b284ad25-ce46-4e57-9802-bb92366bad31" />
+<img width="1470" height="956" alt="35dbf586cfd279f1771d9ee3fc3d9cd6" src="https://github.com/user-attachments/assets/3ed1132a-583b-484d-9702-d7ebfc6721ee" />
+
 
 **Agent Status**
 <img width="1470" height="956" alt="image" src="https://github.com/user-attachments/assets/8dce16ab-be83-4868-8046-d8ee59c4d043" />
