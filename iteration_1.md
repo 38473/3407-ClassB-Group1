@@ -164,20 +164,21 @@ Checklist:
 ### week 3
 
 To do:
-* User story2 Task-3 (Wang chenxi)
+* User story1 Task-3 (Wang zihan)
 * User story1 Task-2 (Wang zihan)
 * User story1 Task-4 (Wang chenxi)
+* User story2 Task-2 (Wang zihan)
+* User story2 Task-3 (Wang chenxi)
+* User story2 Task-4 (Guo yuye)
+* User story4 Task-2 (Wang chenxi)
 * User story6 Task-1 (Wang zihan)
 * User story6 Task-2 (Wang chenxi)
-* User story2 Task-2 (Wang zihan)
-* User story2 Task-4 (Guo yuye)
-* User story1 Task-3 (Wang zihan)
-* User story4 Task-2 (Wang chenxi)
+
 
   
 In progress:
-* User story2 Task-1 (Guo yuye), 4/06
 * User story1 Task-1 (Guo yuye), 4/06
+* User story2 Task-1 (Guo yuye), 4/06
 * User story4 Task-1 (Guo yuye), 4/06
 * User story4 Task-3 (Wang zihan), 4/06
 * User story7 Task-1 (Wang chenxi), 4/06
@@ -188,23 +189,23 @@ In progress:
 ### week 4
 
 To do:
-* User story2 Task-3 (Wang chenxi)
 * User story1 Task-2 (Wang zihan)
 * User story1 Task-4 (Wang chenxi)
+* User story2 Task-3 (Wang chenxi)
 * User story6 Task-1 (Wang zihan)
 * User story6 Task-2 (Wang chenxi)
 
 
 In progress:
+* User story1 Task-3 (Wang zihan), 12/06
 * User story2 Task-2 (Wang zihan), 11/06
 * User story2 Task-4 (Guo yuye), 11/06
-* User story1 Task-3 (Wang zihan), 12/06
 * User story4 Task-2 (Wang chenxi), 12/06
 
   
 Completed:
-* User story2 Task-1 (Guo yuye), 11/06
 * User story1 Task-1 (Guo yuye), 11/06
+* User story2 Task-1 (Guo yuye), 11/06
 * User story4 Task-1 (Guo yuye), 11/06
 * User story4 Task-3 (Wang zihan), 12/06
 * User story7 Task-1 (Wang chenxi), 12/06
@@ -215,21 +216,21 @@ Completed:
 ### week 5
 
 In progress:
-* User story2 Task-3 (Wang chenxi), 09/07
 * User story1 Task-2 (Wang zihan), 09/07
 * User story1 Task-4 (Wang chenxi), 09/07
+* User story2 Task-3 (Wang chenxi), 09/07
 * User story6 Task-1 (Wang zihan), 09/07
 * User story6 Task-2 (Wang chenxi), 09/07
 
 
 Completed：
+* User story1 Task-1 (Guo yuye), 11/06
+* User story1 Task-3 (Wang zihan), 18/06
+* User story2 Task-1 (Guo yuye), 11/06
 * User story2 Task-2 (Wang zihan), 18/06
 * User story2 Task-4 (Guo yuye), 18/06
-* User story1 Task-3 (Wang zihan), 18/06
-* User story4 Task-2 (Wang chenxi), 18/06
-* User story2 Task-1 (Guo yuye), 11/06
-* User story1 Task-1 (Guo yuye), 11/06
 * User story4 Task-1 (Guo yuye), 11/06
+* User story4 Task-2 (Wang chenxi), 18/06
 * User story4 Task-3 (Wang zihan), 12/06
 * User story7 Task-1 (Wang chenxi), 12/06
 * User story7 Task-2 (Guo yuye), 12/06
@@ -238,31 +239,34 @@ Completed：
 ### week 6
 
 Completed：
-* User story2 Task-3 (Wang chenxi), 09/07
+* User story1 Task-1 (Guo yuye), 11/06
 * User story1 Task-2 (Wang zihan), 09/07
+* User story1 Task-3 (Wang zihan), 18/06
 * User story1 Task-4 (Wang chenxi), 09/07
+* User story2 Task-1 (Guo yuye), 11/06
+* User story2 Task-2 (Wang zihan), 18/06
+* User story2 Task-3 (Wang chenxi), 09/07
+* User story2 Task-4 (Guo yuye), 18/06
+* User story4 Task-1 (Guo yuye), 11/06
+* User story4 Task-2 (Wang chenxi), 18/06
+* User story4 Task-3 (Wang zihan), 12/06
 * User story6 Task-1 (Wang zihan), 09/07
 * User story6 Task-2 (Wang chenxi), 09/07
-* User story2 Task-2 (Wang zihan), 18/06
-* User story2 Task-4 (Guo yuye), 18/06
-* User story1 Task-3 (Wang zihan), 18/06
-* User story4 Task-2 (Wang chenxi), 18/06
-* User story2 Task-1 (Guo yuye), 11/06
-* User story1 Task-1 (Guo yuye), 11/06
-* User story4 Task-1 (Guo yuye), 11/06
-* User story4 Task-3 (Wang zihan), 12/06
 * User story7 Task-1 (Wang chenxi), 12/06
 * User story7 Task-2 (Guo yuye), 12/06
 * User story7 Task-3 (Wang zihan), 12/06
 
 
 ### Burn Down for iteration-1 (see chapter 4):
-* 4 weeks left: 13.5 days of estimated work
-* 2 weeks left: 6.0 days
-* 1 week left: 6.0 days
+* 4 weeks left: 14 days of estimated work
+* 3 weeks left: 14 days of estimated work
+* 2 weeks left: 10 days
+* 1 week left: 6 days
 * 0 weeks left: 0.0 days
 * Actual Velocity: 0.15
-![7bc43913a927e20d947a55e127ad298b](https://github.com/user-attachments/assets/5f557066-e2b2-4786-8a81-af67d9d086cf)
+
+<img width="1250" height="756" alt="0e7b8c7853e3454506a9bc202db3787c" src="https://github.com/user-attachments/assets/b7f09ca3-4ea9-4676-a9a8-e8b36956fe53" />
+
 
 v1 = E1 / A1 = 14 / 20 = 0.7
 
