@@ -172,9 +172,9 @@ Update this at least once per week
 * 1 week left, 0 days of estimated amount of work
 * 0 week left, 0 days of estimated amount of work
 * Actual Velocity: v2 = E2 / A2 = 9 / 15 = 0.6
-![26625022dbb76abb61681eb73095ccdf](https://github.com/user-attachments/assets/bd512812-014e-40e8-810b-82364d2e96fb)
 
-v2 = E2 / A2 = 9 / 15 = 0.6
+<img width="1248" height="760" alt="229e07cb67baa7e353f09ad2e4e2e43c" src="https://github.com/user-attachments/assets/fd3b21ee-e59d-41a5-8c6b-33e7e3f78311" />
+
 
 ## Connect to AWS Cloud
 
