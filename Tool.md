@@ -66,3 +66,5 @@
 
 - GitHub – hosts project code repositories and provides collaboration tools.
 
+### figma link for mornitoring our work:
+https://www.figma.com/board/ZJ5Mw2ckssVhX6q9xeVAT1/FigJam-basics?node-id=0-1&p=f&t=tuTemW3iG7OGDwDu-0
